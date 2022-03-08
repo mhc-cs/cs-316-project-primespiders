@@ -1,7 +1,7 @@
 //demo code from https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
 
 import React, { Component } from "react";
-import logo from './logo.svg';
+import logo from './Flower-transparent.png'
 import './App.css';
 //import dotenv from 'dotenv';
 
@@ -12,13 +12,19 @@ class App extends Component{
   }
 
   callAPI() {
-    fetch("http://localhost:9000/test/API")
+    fetch("http://localhost:9000/testAPI/hello")
       .then(res => res.text())
       .then(res => this.setState({apiResponse: res}))
       .catch(err => err);
-  }
 
-  componentDidMount() {
+    fetch("http://localhost:9000/")
+    .then((res)=> {console.log(res)});
+  }
+  // componentDidMount() {
+  //   this.callAPI();
+  // }
+
+  handleHello(){
     this.callAPI();
   }
 
@@ -27,9 +33,10 @@ class App extends Component{
       <div className="App">
         <header className="App-Header">
           <img src={logo} className="App-logo" alt ="logo"/>
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Recovery Co-op</h1>
         </header>
-        <p className="App-title">{this.state.apiResponse}</p>
+        <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
+        <h2 className="App-title">{this.state.apiResponse}</h2>
       </div>
     );
   }
