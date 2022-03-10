@@ -1,8 +1,8 @@
 //https://www.bezkoder.com/react-node-express-mysql/
 module.exports = {
     HOST: "localhost",
-    USER: "root",
-    PASSWORD: "spider3",
+    USER: "user",
+    PASSWORD: "pass",
     DB: "mysql_coop",
     dialect: "mysql"
   };
