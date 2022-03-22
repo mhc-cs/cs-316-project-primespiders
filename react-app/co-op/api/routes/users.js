@@ -18,11 +18,11 @@ router.post("/add", users.create);
 // Get all users
 router.get("/get", users.findAll);
 // Get one user using id
-router.get("/:id", tutorials.findOne);
+router.get("/:id", users.findOne);
 // update user info using id
-router.put("/:id", tutorials.update);
+router.put("/:id", users.update);
 // delete specific user using id
-router.delete("/:id", tutorials.delete);
+router.delete("/:id", users.delete);
 
 module.exports = router;
 
