@@ -11,15 +11,23 @@ class App extends Component{
   this.state = { apiResponse: "" };
   }
 
-  callAPI() {
-    fetch("http://localhost:9000/testAPI")
+  // callAPI() {
+  //   fetch("http://localhost:9000/testAPI")
+  //     .then(res => res.text())
+  //     .then(res => this.setState({apiResponse: res}))
+  //     .catch(err => err);
+  // }
+
+  callUserAPI() {
+    fetch("http://localhost:9000/users/get")
       .then(res => res.text())
       .then(res => this.setState({apiResponse: res}))
       .catch(err => err);
   }
 
   componentDidMount() {
-    this.callAPI();
+    // this.callAPI();
+    this.callUserAPI()
   }
 
   render() {
