@@ -1,7 +1,7 @@
 //https://www.bezkoder.com/node-js-express-sequelize-mysql/
 
 var express = require("express");
-var users = require("../../controller/user.controller.js");
+var users = require("../../../react-app/co-op/controller/user.controller.js");
 var router = express.Router();
 
 router.get("/", function(req, res, next) {
