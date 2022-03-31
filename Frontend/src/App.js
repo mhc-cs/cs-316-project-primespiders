@@ -1,7 +1,6 @@
 //demo code from https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
 
 import React, { Component } from "react";
-import logo from './logo.svg';
 import './App.css';
 //import dotenv from 'dotenv';
 
@@ -33,7 +32,6 @@ class App extends Component{
     return (
       <div className="App">
         <header className="App-Header">
-          <img src={logo} className="App-logo" alt ="logo"/>
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-title">{this.state.apiResponse}</p>
