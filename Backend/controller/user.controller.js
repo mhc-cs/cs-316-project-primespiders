@@ -81,7 +81,7 @@ exports.findOne = (req, res) => {
 
   exports.delete = (req, res) => {
     const id = req.params.id;
-    Tutorial.destroy({
+    User.destroy({
       where: { id: id }
     })
       .then(num => {
