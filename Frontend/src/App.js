@@ -4,37 +4,42 @@ import React, { Component } from "react";
 import './App.css';
 //import dotenv from 'dotenv';
 
+import LandingPage from './Pages/LandingPage.js'
+import SetupAccount from './Pages/SetupAccount.js'
+
 class App extends Component{
   constructor(props){
   super(props);
   this.state = { apiResponse: "" };
   }
-  // callAPI() {
-  //   fetch("http://localhost:9000/testAPI")
-  //     .then(res => res.text())
-  //     .then(res => this.setState({apiResponse: res}))
-  //     .catch(err => err);
-  // }
 
-  callUserAPI() {
-    fetch("http://localhost:9000/users/get")
+  callAPI() {
+    fetch("http://localhost:9000/testAPI/hello")
       .then(res => res.text())
       .then(res => this.setState({apiResponse: res}))
       .catch(err => err);
-  }
 
-  componentDidMount() {
-    // this.callAPI();
-    this.callUserAPI()
+    fetch("http://localhost:9000/")
+    .then((res)=> {console.log(res)});
+  }
+  // componentDidMount() {
+  //   this.callAPI();
+  // }
+
+  handleHello(){
+    this.callAPI();
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-Header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Recovery Co-op</h1>
+          <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
+          <h2 className="App-title">{this.state.apiResponse}</h2>
         </header>
-        <p className="App-title">{this.state.apiResponse}</p>
+        {/* <LandingPage/> */}
+        <SetupAccount/>
       </div>
     );
   }
