@@ -1,5 +1,5 @@
 //https://www.bezkoder.com/node-js-express-sequelize-mysql/
-var db = require("../models");
+var db = require("../models/index");
 var User = db.users;
 var Op = db.Sequelize.Op;
 // Add a new user to the database.
