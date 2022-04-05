@@ -12,7 +12,9 @@ exports.create = (req, res, next) => {
     }
     // create a user to add
     var userToAdd = {
-        num: req.body.num,
+      username: req.body.username,
+      password: req.body.password,
+      bioIndex: req.body.bioIndex
     };
     User.create(userToAdd)
         .then(data => {res.send(data)})
@@ -38,28 +40,28 @@ exports.findAll = (req, res, next) => {
 
 // Get one user from the database.
 exports.findOne = (req, res) => {
-    var id = req.params.id;
-    User.findByPk(id)
+    var username = req.params.username;
+    User.findByPk(username)
       .then(data => {
         if (data) {
           res.send(data);
         } else {
           res.status(404).send({
-            message: `Cannot find User with id=${id}.`
+            message: `Cannot find User with username=${username}.`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving User with id=" + id
+          message: "Error retrieving User with username=" + username
         });
       });
   };
 
   exports.update = (req, res) => {
-    var id = req.params.id;
+    var username = req.params.username;
     User.update(req.body, {
-      where: { id: id }
+      where: { username: username }
     })
       .then(num => {
         if (num == 1) {
@@ -68,21 +70,21 @@ exports.findOne = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
+            message: `Cannot update User with username=${username}. Maybe User was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating User with id=" + id
+          message: "Error updating User with username=" + username
         });
       });
   };
 
   exports.delete = (req, res) => {
-    const id = req.params.id;
+    const username = req.params.username;
     User.destroy({
-      where: { id: id }
+      where: { username: username }
     })
       .then(num => {
         if (num == 1) {
@@ -91,13 +93,13 @@ exports.findOne = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot delete User with id=${id}. Maybe User was not found!`
+            message: `Cannot delete User with username=${username}. Maybe User was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete User with id=" + id
+          message: "Could not delete User with username=" + username
         });
       });
   };
