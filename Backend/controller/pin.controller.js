@@ -1,107 +1,105 @@
 //https://www.bezkoder.com/node-js-express-sequelize-mysql/
 var db = require("../models/index");
-var User = db.users;
+var Pin = db.pins;
 var Op = db.Sequelize.Op;
-// Add a new user to the database.
+// Add a new pin to the database.
 exports.create = (req, res, next) => {
-    if (!req.body.username) {
+    if (!req.body.num || !req.body.account) {
         res.status(400).send({
           message: "Must include parameters!"
         });
         return;
     }
-    // create a user to add
-    var userToAdd = {
-      username: req.body.username,
-      password: req.body.password,
-      bioIndex: req.body.bioIndex
+    // create a pin to add
+    var pinToAdd = {
+      account: req.body.account,
+      num: req.body.num
     };
-    User.create(userToAdd)
+    Pin.create(pinToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Could not add user"
+                    err.message || "Could not add pin"
             })
         })
 };
 
-// Get all users from the database.
+// Get all pins from the database.
 exports.findAll = (req, res, next) => {
-    User.findAll()
+    Pin.findAll()
         .then(data => {res.send(data)})
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Could not retrieve users"
+                    err.message || "Could not retrieve pins"
             })
         })
 };
 
-// Get one user from the database.
+// Get one pin from the database.
 exports.findOne = (req, res) => {
-    var username = req.params.username;
-    User.findByPk(username)
+    var num = req.params.num;
+    Pin.findByPk(num)
       .then(data => {
         if (data) {
           res.send(data);
         } else {
           res.status(404).send({
-            message: `Cannot find User with username=${username}.`
+            message: `Cannot find Pin with num=${num}.`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving User with username=" + username
+          message: "Error retrieving Pin with num=" + num
         });
       });
   };
 
   exports.update = (req, res) => {
-    var username = req.params.username;
-    User.update(req.body, {
-      where: { username: username }
+    var num = req.params.num;
+    Pin.update(req.body, {
+      where: { num: num }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "User info was updated successfully."
+            message: "Pin info was updated successfully."
           });
         } else {
           res.send({
-            message: `Cannot update User with username=${username}. Maybe User was not found or req.body is empty!`
+            message: `Cannot update Pin with num=${num}. Maybe Pin was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating User with username=" + username
+          message: "Error updating Pin with num=" + num
         });
       });
   };
 
   exports.delete = (req, res) => {
-    const username = req.params.username;
-    User.destroy({
-      where: { username: username }
+    var num = req.params.num;
+    Pin.destroy({
+      where: { num: num }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "User was deleted successfully!"
+            message: "Pin was deleted successfully!"
           });
         } else {
           res.send({
-            message: `Cannot delete User with username=${username}. Maybe User was not found!`
+            message: `Cannot delete Pin with num=${num}. Maybe Pin was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete User with username=" + username
+          message: "Could not delete Pin with num=" + num
         });
       });
   };
-
 

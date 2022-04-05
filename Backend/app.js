@@ -7,6 +7,8 @@ var cors = require("cors");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var biosRouter = require('./routes/bios');
+var pinsRouter = require('./routes/pins');
 var testAPIRouter = require("./routes/testAPI"); // testing freecodecamp demo
 var db = require("./models/index");
 
@@ -25,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/bios', biosRouter);
+app.use('/pins', pinsRouter);
 app.use("/testAPI", testAPIRouter); //testing https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
 
 // catch 404 and forward to error handler

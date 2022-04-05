@@ -1,107 +1,103 @@
 //https://www.bezkoder.com/node-js-express-sequelize-mysql/
 var db = require("../models/index");
-var User = db.users;
+var Bio = db.bios;
 var Op = db.Sequelize.Op;
-// Add a new user to the database.
+// Add a new bio to the database.
 exports.create = (req, res, next) => {
-    if (!req.body.username) {
+    if (!req.body.bio) {
         res.status(400).send({
           message: "Must include parameters!"
         });
         return;
     }
-    // create a user to add
-    var userToAdd = {
-      username: req.body.username,
-      password: req.body.password,
-      bioIndex: req.body.bioIndex
+    // create a bio to add
+    var bioToAdd = {
+      bio: req.body.bio
     };
-    User.create(userToAdd)
+    Bio.create(bioToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Could not add user"
+                    err.message || "Could not add bio"
             })
         })
 };
 
-// Get all users from the database.
+// Get all bios from the database.
 exports.findAll = (req, res, next) => {
-    User.findAll()
+    Bio.findAll()
         .then(data => {res.send(data)})
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Could not retrieve users"
+                    err.message || "Could not retrieve bios"
             })
         })
 };
 
-// Get one user from the database.
+// Get one bio from the database.
 exports.findOne = (req, res) => {
-    var username = req.params.username;
-    User.findByPk(username)
+    var id = req.params.id;
+    Bio.findByPk(id)
       .then(data => {
         if (data) {
           res.send(data);
         } else {
           res.status(404).send({
-            message: `Cannot find User with username=${username}.`
+            message: `Cannot find bio with id=${id}.`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving User with username=" + username
+          message: "Error retrieving bio with id=" + id
         });
       });
   };
 
   exports.update = (req, res) => {
-    var username = req.params.username;
-    User.update(req.body, {
-      where: { username: username }
+    var id = req.params.id;
+    Bio.update(req.body, {
+      where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "User info was updated successfully."
+            message: "bio info was updated successfully."
           });
         } else {
           res.send({
-            message: `Cannot update User with username=${username}. Maybe User was not found or req.body is empty!`
+            message: `Cannot update bio with id=${id}. Maybe bio was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating User with username=" + username
+          message: "Error updating bio with id=" + id
         });
       });
   };
 
   exports.delete = (req, res) => {
-    const username = req.params.username;
-    User.destroy({
-      where: { username: username }
+    var id = req.params.id;
+    Bio.destroy({
+      where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: "User was deleted successfully!"
+            message: "Bio was deleted successfully!"
           });
         } else {
           res.send({
-            message: `Cannot delete User with username=${username}. Maybe User was not found!`
+            message: `Cannot delete Bio with id=${id}. Maybe Bio was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete User with username=" + username
+          message: "Could not delete Bio with id=" + id
         });
       });
   };
-
-

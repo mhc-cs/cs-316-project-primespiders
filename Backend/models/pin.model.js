@@ -4,7 +4,8 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       num: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        primaryKey: true
       }
     });
     return Pin;
