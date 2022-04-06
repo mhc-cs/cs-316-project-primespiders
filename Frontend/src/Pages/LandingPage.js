@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
+import flower from "../Flower-black.png"
 
 const LandingPage = (props) => {
-    return (
+    return(
         <div className = "landingPage">
-
             <h3>About</h3>
             <ul>
                 <li>Mission Statement</li>
@@ -34,4 +34,4 @@ const LandingPage = (props) => {
 }
 
 
-export default LandingPage
+export default LandingPage;

@@ -6,6 +6,7 @@ import './App.css';
 
 import LandingPage from './Pages/LandingPage.js'
 import SetupAccount from './Pages/SetupAccount.js'
+import Navbar from './Pages/Navbar.js'
 
 class App extends Component{
   constructor(props){
@@ -35,10 +36,11 @@ class App extends Component{
       <div className="App">
         <header className="App-Header">
           <h1 className="App-title">Recovery Co-op</h1>
-          <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
-          <h2 className="App-title">{this.state.apiResponse}</h2>
+          {/* <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
+          <h2 className="App-title">{this.state.apiResponse}</h2> */}
+          <Navbar/>
         </header>
-        {/* <LandingPage/> */}
+        <LandingPage/>
         <SetupAccount/>
       </div>
     );
