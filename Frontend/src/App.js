@@ -8,10 +8,15 @@ import LandingPage from './Pages/LandingPage.js'
 import SetupAccount from './Pages/SetupAccount.js'
 import Navbar from './Pages/Navbar.js'
 
+import Checkbox from '@mui/material/Checkbox';
+
 class App extends Component{
   constructor(props){
   super(props);
-  this.state = { apiResponse: "" };
+  this.state = { 
+    apiResponse: "", 
+    loggedIn: false,
+  };
   }
 
   callAPI() {
@@ -31,6 +36,11 @@ class App extends Component{
     this.callAPI();
   }
 
+  handleLoginChange = (event) =>{
+    this.setState({loggedIn: event.target.checked})
+    console.log(this.state.loggedIn);
+  }
+
   render() {
     return (
       <div className="App">
@@ -38,7 +48,13 @@ class App extends Component{
           <h1 className="App-title">Recovery Co-op</h1>
           {/* <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
           <h2 className="App-title">{this.state.apiResponse}</h2> */}
+           {/* <Checkbox className = "check"
+            checked={this.state.loggedIn}
+            onChange={this.handleLoginChange}
+            inputProps={{ 'aria-label': 'controlled' }}
+          /> */}
           <Navbar/>
+
         </header>
         <LandingPage/>
         <SetupAccount/>

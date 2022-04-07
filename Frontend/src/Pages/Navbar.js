@@ -1,5 +1,6 @@
 import React from "react";
 import flower from "../Flower-black.png"
+import Checkbox from '@mui/material/Checkbox';
 
 const NavBar = (props) =>{
     // const menus = {

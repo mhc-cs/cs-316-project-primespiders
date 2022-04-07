@@ -14,6 +14,10 @@
   color: white;
 }
 
+.check{
+  float: right;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -72,7 +76,6 @@
   position: absolute;
   z-index: 1;
   padding: .5rem .5rem;
-  border-radius: 5px;
 }
 .dropdown .dropdown-content a{
   color: white;
@@ -84,4 +87,13 @@
 }
 .dropdown:hover .dropdown-content{
   display: block;
+}
+
+/** Landing page CSS**/
+.banner {
+  width: 100%;
+}
+.banner img {
+  object-fit: scale-down;
+  width: 100%;
 }

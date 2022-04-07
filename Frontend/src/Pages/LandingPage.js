@@ -4,6 +4,10 @@ import flower from "../Flower-black.png"
 const LandingPage = (props) => {
     return(
         <div className = "landingPage">
+            <div className = "banner">
+                <img src = "https://www.rimage.com/apac/wp-content/uploads/sites/4/2016/02/Two-Business-People-Talking-Banner-1.png"></img>
+                <div className = "cover"></div>
+            </div>
             <h3>About</h3>
             <ul>
                 <li>Mission Statement</li>
