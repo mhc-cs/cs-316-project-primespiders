@@ -14,7 +14,6 @@ const SetupAccount = (props) => {
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
     console.log("page:",page)
 
-
     function getConditionalContent(page, setPage) {
         switch (page) {
         case 0:
@@ -44,7 +43,19 @@ const SetupAccount = (props) => {
 
     const PinEnter = (props) =>{
         const handleSubmit = ()=>{
-            setError("oh no it didn't work!")
+            var inputNum = document.getElementById("pin").value;
+            fetch(`http://localhost:9000/pins/${inputNum}`)
+                .then(data => {
+                    return data.json();
+                })
+                .then(pin => {
+                    if(pin.account) {
+                        console.log(pin.account);
+                        setPage(1)
+                    }
+                    else setError("Invalid pin. Please check for errors.")
+                });
+            //setError("oh no it didn't work!")
             //setPage(1)
         }
         return(
@@ -54,7 +65,7 @@ const SetupAccount = (props) => {
                 </p>
                     <form >
                         <label for="fname">Pin: </label>
-                        <input type="text" id="fname" name="fname"></input>
+                        <input type="text" id="pin" name="pin"></input>
                         <br></br><br></br>
                     </form>
                     <button onClick = {() => handleSubmit()}>Submit</button>
@@ -64,7 +75,23 @@ const SetupAccount = (props) => {
 
     const EnterInfo = (props) =>{
         const handleSubmit = ()=>{
-
+            //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+            const newUser = {
+                username: document.getElementById("fname").value,
+                password: document.getElementById("passwords").value,
+                bioIndex: 0
+            };
+            const options = {
+                method: 'POST',
+                body: JSON.stringify(newUser),
+            };
+            fetch(`http://localhost:9000/users`, options)
+                .then(data => {
+                    return data.json();
+                })
+                .then(update => {
+                    console.log(update);
+                });
             props.setPage(1)
         }
         return(
