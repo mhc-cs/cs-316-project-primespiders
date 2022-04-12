@@ -7,6 +7,7 @@ import './App.css';
 import LandingPage from './Pages/LandingPage.js'
 import SetupAccount from './Pages/SetupAccount.js'
 import Navbar from './Pages/Navbar.js'
+import Footer from './Pages/Footer.js'
 
 import Checkbox from '@mui/material/Checkbox';
 
@@ -58,6 +59,7 @@ class App extends Component{
         </header>
         <LandingPage/>
         <SetupAccount/>
+        <Footer/>
       </div>
     );
   }

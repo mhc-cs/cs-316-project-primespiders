@@ -97,3 +97,20 @@
   object-fit: scale-down;
   width: 100%;
 }
+
+.footer {
+  overflow: hidden;
+  background-color: rgb(255, 203, 255);
+  color: black;
+  height: 40px;
+  padding: 1em 0em;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 33%;
+  padding: 1em;
+}
