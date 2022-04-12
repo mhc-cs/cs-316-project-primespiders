@@ -127,10 +127,13 @@
 
 .footer {
   overflow: hidden;
-  background-color: rgb(255, 203, 255);
+  background-color: rgb(163, 214, 255);
   color: black;
   height: 40px;
   padding: 1em 0em;
+  position:absolute;
+  bottom:0;
+  width: 100%;
 }
 
 .row {
