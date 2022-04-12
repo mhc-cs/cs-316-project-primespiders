@@ -1,5 +1,9 @@
-const Donate = () => {
-    return <h1>$$$$$</h1>;
-  };
+import React, { Component} from "react";
+
+class Donate extends Component {
+  render(){
+    return (<h1>$$$$$</h1>);
+  }
+}
   
   export default Donate;

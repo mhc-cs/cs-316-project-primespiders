@@ -1,11 +1,22 @@
 //demo code from https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
+//Routing and layout template based on W3schools demo https://www.w3schools.com/react/react_router.asp
 
 import React, { Component } from "react";
 import './App.css';
-//import dotenv from 'dotenv';
-
-import LandingPage from './Pages/LandingPage.js'
-import SetupAccount from './Pages/SetupAccount.js'
+import{ Routes, Route} from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import MissionStatement from "./pages/MissionStatement";
+import Staff from "./pages/Staff";
+import OurModel from "./pages/OurModel";
+import CommunityResources from "./pages/CommunityResources";
+import ConnectWithMentors from "./pages/ConnectWithMentors";
+import Donate from "./pages/Donate";
+import Volunteer from "./pages/Volunteer";
+import Contact from "./pages/Staff";
+import SetUpAccount from "./pages/SetUpAccount";
+import LogIn from "./pages/LogIn";
+import NoPage from "./pages/NoPage";
 
 class App extends Component{
   constructor(props){
@@ -13,6 +24,7 @@ class App extends Component{
   this.state = { apiResponse: "" };
   }
 
+  //this was from the demo, I'm keeping it to adapt from when we start using fetch commands
   callAPI() {
     fetch("http://localhost:9000/testAPI/hello")
       .then(res => res.text())
@@ -26,43 +38,30 @@ class App extends Component{
   //   this.callAPI();
   // }
 
-  handleHello(){
-    this.callAPI();
-  }
+  //handleHello(){
+  //  this.callAPI();
+  //}
 
   render() {
     return (
-      <div className="App">
-        <header className="App-Header">
-          <h1 className="App-title">Recovery Co-op</h1>
-          <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
-          <h2 className="App-title">{this.state.apiResponse}</h2>
-        </header>
-        {/* <LandingPage/> */}
-        <SetupAccount/>
-      </div>
+        <Routes>
+        <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+          <Route path="/MissionStatement" element={<MissionStatement />} />
+          <Route path="/Staff" element={<Staff />} />
+          <Route path="/OurModel" element={<OurModel/>} />
+          <Route path="/CommunityResources" element={<CommunityResources/>} />
+          <Route path="/ConnectWithMentors" element={<ConnectWithMentors/>} />
+          <Route path="/Donate" element={<Donate/>} />
+          <Route path="/Volunteer" element={<Volunteer/>} />
+          <Route path="/Contact" element ={<Contact/>} />
+          <Route path="/SetUpAccount" element ={<SetUpAccount/>} />
+          <Route path="/LogIn" element = {<LogIn/>} />
+          <Route path = "*" element={<NoPage />} />
+          </Route>
+        </Routes>
     );
   }
-
-  /*return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-  */
 }
 
 export default App;

@@ -1,8 +1,10 @@
+//Routing and layout template based on W3schools demo https://www.w3schools.com/react/react_router.asp
 import React, { Component, useLayoutEffect } from "react";
 import {Outlet, Link} from "react-router-dom";
 
 
-const Layout = (props) => {
+class Layout extends Component {
+    render(){
     return (
         <>
         <nav>
@@ -39,15 +41,15 @@ const Layout = (props) => {
             <ul>  
                 <li><Link to="/SetUpAccount">Set Up Account</Link></li>
                 <li><Link to="/LogIn">Log In</Link></li>
-                {/* I think this is a duplicate? <li>Contact</li> */}
             </ul>
             </div> 
         </nav>
 
         <Outlet />
         </>
-    )
-};
+    );
+    }
+}
 
 
 export default Layout;
