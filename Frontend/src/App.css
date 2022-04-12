@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -14,20 +13,18 @@
   color: white;
 }
 
-.check{
-  float: right;
-}
 
 .App-link {
   color: #61dafb;
 }
 
-.landingPage{
+.basicPage{
   text-align: left;
 }
+
 .navbar{
   overflow: hidden;
-  background-color: rgb(255, 203, 255);
+  background-color: rgb(163, 214, 255);
   color: black;
   display: block;
   padding: 0em 0em;
@@ -72,7 +69,7 @@
 
 .dropdown .dropdown-content{
   display: none;
-  background-color: #8700f5;
+  background-color: rgb(33, 150, 247);
   position: absolute;
   z-index: 1;
   padding: .5rem .5rem;
@@ -97,3 +94,35 @@
   object-fit: scale-down;
   width: 100%;
 }
+
+/** Account setup style**/
+.setupAccount{
+  padding: 0% 5%;
+}
+.setupAccount h3{
+  padding: 0% 0% 0% 2%;
+}
+.setupAccount .grid{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.setupAccount .grid .content-box1,.content-box2{
+
+  border-radius: 12px;
+  padding: 3% 5%;
+  margin: 0% 3%;
+}
+.setupAccount .grid .content-box1{
+  background-color:rgb(209, 209, 190);
+  border: medium solid rgb(209, 209, 190);
+  max-height: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.setupAccount .grid .content-box2{
+  background-color:beige;
+  border: medium solid rgb(209, 209, 190);
+
+}
+
+

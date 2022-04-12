@@ -22,11 +22,11 @@ const NavBar = (props) =>{
 
     // }}
     const about = ["Mission Statment", "Staff", "Our Model"];
-    const aboutLinks = ["link1", "link2", "link3"]
+    const aboutLinks = ["link1", "link2", "link3"];
     const clients = ["Community Resources", "Connent with Mentors"];
-    const clientLinks = ["link1", "link2"]
+    const clientLinks = ["link1", "link2"];
     const getInvolved = ["Donate", "Volunteer", "Contact"];
-    const involvedLinks = ["link1", "link2", "link3"]
+    const involvedLinks = ["link1", "link2", "link3"];
     return (
         <div class = "navbar">
             <img className = "navbar-item" src = {flower}/>
@@ -38,7 +38,7 @@ const NavBar = (props) =>{
 }
 
 const DropDown = (props) =>{
-   //remember to do name and items
+   //remember to do name and items and links
     return(
         <div className = "dropdown navbar-item">
             <button class= "dropbtn">
