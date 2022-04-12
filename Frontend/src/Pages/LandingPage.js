@@ -1,5 +1,4 @@
 import React from "react";
-import flower from "../Flower-black.png"
 
 const LandingPage = (props) => {
     return(

@@ -2,20 +2,20 @@
 
 import React, { Component } from "react";
 import './App.css';
+
 //import dotenv from 'dotenv';
 
-import LandingPage from './Pages/LandingPage.js'
 import SetupAccount from './Pages/SetupAccount.js'
 import Navbar from './Pages/Navbar.js'
+import flower from "./Flower-black.png"
 import Footer from './Pages/Footer.js'
-
 import Checkbox from '@mui/material/Checkbox';
 
 class App extends Component{
   constructor(props){
   super(props);
-  this.state = { 
-    apiResponse: "", 
+  this.state = {
+    apiResponse: "",
     loggedIn: false,
   };
   }
@@ -44,9 +44,10 @@ class App extends Component{
 
   render() {
     return (
-      <div className="App">
+      <div className="App" >
         <header className="App-Header">
-          <h1 className="App-title">Recovery Co-op</h1>
+
+            <h1 className="App-title">Recovery Ventures</h1>
           {/* <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
           <h2 className="App-title">{this.state.apiResponse}</h2> */}
            {/* <Checkbox className = "check"
@@ -57,7 +58,7 @@ class App extends Component{
           <Navbar/>
 
         </header>
-        <LandingPage/>
+        {/* <LandingPage/> */}
         <SetupAccount/>
         <Footer/>
       </div>
