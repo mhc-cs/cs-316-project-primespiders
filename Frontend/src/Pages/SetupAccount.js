@@ -76,17 +76,23 @@ const SetupAccount = (props) => {
     const EnterInfo = (props) =>{
         const handleSubmit = ()=>{
             //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+            var inputUsername = document.getElementById("fname").value
+            var inputPassword = document.getElementById("password").value
             const newUser = {
-                username: document.getElementById("fname").value,
-                password: document.getElementById("passwords").value,
+                username: inputUsername,
+                password: inputPassword,
                 bioIndex: 0
             };
             const options = {
                 method: 'POST',
                 body: JSON.stringify(newUser),
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
             };
             fetch(`http://localhost:9000/users`, options)
                 .then(data => {
+                    console.log(data)
                     return data.json();
                 })
                 .then(update => {
