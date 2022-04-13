@@ -10,10 +10,10 @@ router.post("/", pins.create);
 // Get all pins
 router.get("/", pins.findAll);
 // Get one pin using num
-router.get("/:id", pins.findOne);
+router.get("/:num", pins.findOne);
 // update pin info using num
-router.put("/:id", pins.update);
+router.put("/:num", pins.update);
 // delete specific user using num
-router.delete("/:id", pins.delete);
+router.delete("/:num", pins.delete);
 
 module.exports = router;
