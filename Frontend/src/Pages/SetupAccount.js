@@ -9,11 +9,9 @@ import React, { useState } from "react";
 
 const SetupAccount = (props) => {
 
-    
     const [page, setPage] = useState(0);
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
     console.log("page:",page)
-
 
     function getConditionalContent(page, setPage) {
         switch (page) {
@@ -33,7 +31,7 @@ const SetupAccount = (props) => {
         return(
             <div className = "content-box1">
                 <h3>
-                Information about how to log in will appear below!
+                Information about how to set up your account in will appear below!
                 </h3>
                 <p>
                     {error}
@@ -45,14 +43,14 @@ const SetupAccount = (props) => {
     const PinEnter = (props) =>{
         const handleSubmit = ()=>{
             setError("oh no it didn't work!")
-            //setPage(1)
+            setPage(1)
         }
         return(
-            <div className = "contentBox1">
+            <div>
                 <p>
                 Enter your 5 digit activation pin to begin the account creation process
                 </p>
-                    <form >
+                    <form>
                         <label for="fname">Pin: </label>
                         <input type="text" id="fname" name="fname"></input>
                         <br></br><br></br>
@@ -62,13 +60,13 @@ const SetupAccount = (props) => {
         );
     }
 
-    const EnterInfo = (props) =>{
+    const EnterInfo = () =>{
         const handleSubmit = ()=>{
 
-            props.setPage(1)
+            setPage(1)
         }
         return(
-            <div className = "contentBox1">
+            <div className >
                 <p>Enter your information below</p>
                     <form>
                         <label for="fname">First name: </label>

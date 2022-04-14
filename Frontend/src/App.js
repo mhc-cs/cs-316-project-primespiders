@@ -5,8 +5,10 @@ import './App.css';
 
 //import dotenv from 'dotenv';
 
-import SetupAccount from './Pages/SetupAccount.js'
-import Navbar from './Pages/Navbar.js'
+import SetupAccount from './pages/SetupAccount.js'
+import Login from './pages/Login'
+import LandingPage from './pages/LandingPage.js'
+import Navbar from './pages/Navbar.js'
 import flower from "./Flower-black.png"
 import Checkbox from '@mui/material/Checkbox';
 
@@ -17,23 +19,6 @@ class App extends Component{
     apiResponse: "", 
     loggedIn: false,
   };
-  }
-
-  callAPI() {
-    fetch("http://localhost:9000/testAPI/hello")
-      .then(res => res.text())
-      .then(res => this.setState({apiResponse: res}))
-      .catch(err => err);
-
-    fetch("http://localhost:9000/")
-    .then((res)=> {console.log(res)});
-  }
-  // componentDidMount() {
-  //   this.callAPI();
-  // }
-
-  handleHello(){
-    this.callAPI();
   }
 
   handleLoginChange = (event) =>{
@@ -57,8 +42,8 @@ class App extends Component{
           <Navbar/>
 
         </header>
-        {/* <LandingPage/> */}
-        <SetupAccount/>
+        <LandingPage/>
+        {/* <Login/> */}
       </div>
     );
   }
