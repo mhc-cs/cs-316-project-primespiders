@@ -5,10 +5,10 @@ import './App.css';
 
 //import dotenv from 'dotenv';
 
-import SetupAccount from './Pages/SetupAccount.js'
-import Navbar from './Pages/Navbar.js'
+import SetupAccount from './pages/SetupAccount.js'
+import Navbar from './pages/Navbar.js'
 import flower from "./Flower-black.png"
-import Footer from './Pages/Footer.js'
+import Footer from './pages/Footer.js'
 import Checkbox from '@mui/material/Checkbox';
 
 class App extends Component{

@@ -9,12 +9,12 @@ var router = express.Router();
 router.post("/", users.create);
 // Get all users
 router.get("/", users.findAll);
-// Get one user using username
-router.get("/:username", users.findOne);
-// update user info using username
-router.put("/:username", users.update);
-// delete specific user using username
-router.delete("/:username", users.delete);
+// Get one user using email
+router.get("/:email", users.findOne);
+// update user info using email
+router.put("/:email", users.update);
+// delete specific user using email
+router.delete("/:email", users.delete);
 
 module.exports = router;
 

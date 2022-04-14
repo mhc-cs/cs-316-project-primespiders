@@ -13,6 +13,7 @@ const SetupAccount = (props) => {
     const [page, setPage] = useState(0);
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
     console.log("page:",page)
+    const [account, setAccount] = useState("client");
 
     function getConditionalContent(page, setPage) {
         switch (page) {
@@ -50,7 +51,7 @@ const SetupAccount = (props) => {
                 })
                 .then(pin => {
                     if(pin.account) {
-                        console.log(pin.account);
+                        setAccount(pin.account);
                         setPage(1)
                     }
                     else setError("Invalid pin. Please check for errors.")
@@ -76,11 +77,16 @@ const SetupAccount = (props) => {
     const EnterInfo = (props) =>{
         const handleSubmit = ()=>{
             //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
-            var inputUsername = document.getElementById("fname").value
+            var inputEmail = document.getElementById("fname").value
             var inputPassword = document.getElementById("password").value
+            var inputFName = document.getElementById("fname").value
+            var inputLName = document.getElementById("lname").value
             const newUser = {
-                username: inputUsername,
+                email: inputEmail,
                 password: inputPassword,
+                firstName: inputFName,
+                lastName: inputLName,
+                accountType: account,
                 bioIndex: 0
             };
             const options = {

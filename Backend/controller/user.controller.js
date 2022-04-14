@@ -4,7 +4,7 @@ var User = db.users;
 var Op = db.Sequelize.Op;
 // Add a new user to the database.
 exports.create = (req, res, next) => {
-    if (!req.body.username) {
+    if (!req.body.email) {
         res.status(400).send({
           message: "Must include parameters!"
         });
@@ -12,8 +12,11 @@ exports.create = (req, res, next) => {
     }
     // create a user to add
     var userToAdd = {
-      username: req.body.username,
+      email: req.body.email,
       password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      accountType: req.body.accountType,
       bioIndex: req.body.bioIndex
     };
     User.create(userToAdd)
@@ -40,28 +43,28 @@ exports.findAll = (req, res, next) => {
 
 // Get one user from the database.
 exports.findOne = (req, res) => {
-    var username = req.params.username;
-    User.findByPk(username)
+    var email = req.params.uemail;
+    User.findByPk(email)
       .then(data => {
         if (data) {
           res.send(data);
         } else {
           res.status(404).send({
-            message: `Cannot find User with username=${username}.`
+            message: `Cannot find User with email=${email}.`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving User with username=" + username
+          message: "Error retrieving User with email=" + email
         });
       });
   };
 
   exports.update = (req, res) => {
-    var username = req.params.username;
+    var email = req.params.email;
     User.update(req.body, {
-      where: { username: username }
+      where: { email: email }
     })
       .then(num => {
         if (num == 1) {
@@ -70,21 +73,21 @@ exports.findOne = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot update User with username=${username}. Maybe User was not found or req.body is empty!`
+            message: `Cannot update User with email=${email}. Maybe User was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating User with username=" + username
+          message: "Error updating User with email=" + email
         });
       });
   };
 
   exports.delete = (req, res) => {
-    const username = req.params.username;
+    const email = req.params.email;
     User.destroy({
-      where: { username: username }
+      where: { email: email }
     })
       .then(num => {
         if (num == 1) {
@@ -93,13 +96,13 @@ exports.findOne = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot delete User with username=${username}. Maybe User was not found!`
+            message: `Cannot delete User with email=${email}. Maybe User was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete User with username=" + username
+          message: "Could not delete User with email=" + email
         });
       });
   };
