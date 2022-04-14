@@ -94,35 +94,39 @@
   object-fit: scale-down;
   width: 100%;
 }
+.landingPage{
+  text-align: left;
+}
 
 /** Account setup style**/
-.setupAccount{
+.basicPage{
   padding: 0% 5%;
 }
-.setupAccount h3{
+
+.basicPage h3{
   padding: 0% 0% 0% 2%;
 }
-.setupAccount .grid{
+
+.basicPage .grid{
   display: grid;
   grid-template-columns: 50% 50%;
 }
-.setupAccount .grid .content-box1,.content-box2{
 
+.basicPage .grid .content-box1,.content-box2{
   border-radius: 12px;
   padding: 3% 5%;
   margin: 0% 3%;
 }
-.setupAccount .grid .content-box1{
+.basicPage .grid .content-box1{
   background-color:rgb(209, 209, 190);
   border: medium solid rgb(209, 209, 190);
   max-height: fit-content;
   height: fit-content;
   position: relative;
 }
-.setupAccount .grid .content-box2{
+.basicPage .grid .content-box2{
   background-color:beige;
   border: medium solid rgb(209, 209, 190);
-
 }
 
 .footer {

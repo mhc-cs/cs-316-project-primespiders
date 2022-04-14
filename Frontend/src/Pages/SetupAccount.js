@@ -2,14 +2,13 @@ import React, { useState } from "react";
 
 
 
-// SetupAccount is the account setup page. 
-// It has a form for entering the pin to begin account setup. 
+// SetupAccount is the account setup page.
+// It has a form for entering the pin to begin account setup.
 // If the pin is correct, the form should update to a full account setup page
 //TODO: Create Account setup component
 
 const SetupAccount = (props) => {
 
-    
     const [page, setPage] = useState(0);
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
     console.log("page:",page)
@@ -33,7 +32,7 @@ const SetupAccount = (props) => {
         return(
             <div className = "content-box1">
                 <h3>
-                Information about how to log in will appear below!
+                Information about how to set up your account in will appear below!
                 </h3>
                 <p>
                     {error}
@@ -58,13 +57,15 @@ const SetupAccount = (props) => {
                 });
             //setError("oh no it didn't work!")
             //setPage(1)
+            setError("oh no it didn't work!")
+            setPage(1)
         }
         return(
-            <div className = "contentBox1">
+            <div>
                 <p>
                 Enter your 5 digit activation pin to begin the account creation process
                 </p>
-                    <form >
+                    <form>
                         <label for="fname">Pin: </label>
                         <input type="text" id="pin" name="pin"></input>
                         <br></br><br></br>
@@ -74,7 +75,7 @@ const SetupAccount = (props) => {
         );
     }
 
-    const EnterInfo = (props) =>{
+    const EnterInfo = () =>{
         const handleSubmit = ()=>{
             //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
             var inputEmail = document.getElementById("email").value
@@ -107,7 +108,7 @@ const SetupAccount = (props) => {
             props.setPage(1)
         }
         return(
-            <div className = "contentBox1">
+            <div className >
                 <p>Enter your information below</p>
                     <form>
                         <label for="fname">First name: </label>
