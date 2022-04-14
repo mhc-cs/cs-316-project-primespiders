@@ -77,7 +77,7 @@ const SetupAccount = (props) => {
     const EnterInfo = (props) =>{
         const handleSubmit = ()=>{
             //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
-            var inputEmail = document.getElementById("fname").value
+            var inputEmail = document.getElementById("email").value
             var inputPassword = document.getElementById("password").value
             var inputFName = document.getElementById("fname").value
             var inputLName = document.getElementById("lname").value
