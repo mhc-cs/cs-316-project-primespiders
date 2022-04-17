@@ -10,7 +10,7 @@ import React, { useState } from "react";
 const SetupAccount = (props) => {
 
     const [page, setPage] = useState(0);
-    const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
+    const [error, setError] = useState("If there is a problem with your login attempt, it may appear here!");
     console.log("page:",page)
 
     function getConditionalContent(page, setPage) {

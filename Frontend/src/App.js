@@ -9,6 +9,7 @@ import SetupAccount from './pages/SetupAccount.js'
 import Login from './pages/Login'
 import LandingPage from './pages/LandingPage.js'
 import Navbar from './pages/Navbar.js'
+import MentorSearch from './pages/MentorSearch'
 import flower from "./Flower-black.png"
 import Checkbox from '@mui/material/Checkbox';
 
@@ -42,7 +43,7 @@ class App extends Component{
           <Navbar/>
 
         </header>
-        <LandingPage/>
+          <MentorSearch/>
         {/* <Login/> */}
       </div>
     );
