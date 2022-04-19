@@ -1,0 +1,49 @@
+import React, { useState } from "react";
+
+//Login is a page to allow the user to login to their account
+//The user should enter a username and password
+
+const Login = (props) =>{
+    const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
+
+    const HelpBox = (props) =>{
+        return(
+            <div className = "content-box1">
+                <h3>
+                Information about how to login will appear below!
+                </h3>
+                <p>
+                    {error}
+                </p>
+            </div>
+        );
+    }
+
+    const handleSubmit = ()=> {
+        var inputName = document.getElementById("fname").value;
+        setError('Trying to log in ' + inputName);
+    }
+
+    return(
+        <div className = "login basicPage">
+            <h3>Login</h3>
+            <div className = "grid">
+                <div className = "content-box2">
+                    <p>Enter your information below</p>
+                        <form>
+                            <label for="fname">First name: </label>
+                            <input type="text" id="fname" name="fname"></input>
+                            <br></br><br></br>
+                            <label for="password">Password: </label>
+                            <input type="text" id="password" name="password"></input>
+                            <br></br><br></br>
+                        </form>
+                        <button onClick = {() => handleSubmit()}>Submit</button>
+                </div>
+                <HelpBox />
+            </div>
+        </div>
+    );
+}
+
+export default Login;

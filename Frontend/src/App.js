@@ -2,67 +2,55 @@
 
 import React, { Component } from "react";
 import './App.css';
-//import dotenv from 'dotenv';
-
-import LandingPage from './Pages/LandingPage.js'
+import{ Routes, Route} from "react-router-dom";
 import SetupAccount from './Pages/SetupAccount.js'
+import Login from './Pages/Login'
+import LandingPage from './Pages/LandingPage.js'
+import Layout from './Pages/Layout.js'
+import MentorSearch from './Pages/MentorSearch'
+import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, Contact, OurModel} from "./Pages/StaticPages";
+//import ConnectWithMentors from "./Pages/ConnectWithMentors"; add this later
+
+import flower from "./Flower-black.png"
+
+//import Checkbox from '@mui/material/Checkbox';
 
 class App extends Component{
   constructor(props){
   super(props);
-  this.state = { apiResponse: "" };
+  this.state = { 
+    apiResponse: "", 
+    loggedIn: false,
+  };
   }
 
-  callAPI() {
-    fetch("http://localhost:9000/testAPI/hello")
-      .then(res => res.text())
-      .then(res => this.setState({apiResponse: res}))
-      .catch(err => err);
-
-    fetch("http://localhost:9000/")
-    .then((res)=> {console.log(res)});
-  }
-  // componentDidMount() {
-  //   this.callAPI();
-  // }
-
-  handleHello(){
-    this.callAPI();
+  handleLoginChange = (event) =>{
+    this.setState({loggedIn: event.target.checked})
+    console.log(this.state.loggedIn);
   }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-Header">
-          <h1 className="App-title">Recovery Co-op</h1>
-          <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
-          <h2 className="App-title">{this.state.apiResponse}</h2>
-        </header>
-        {/* <LandingPage/> */}
-        <SetupAccount/>
+    return(
+      <div className="App" >
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<LandingPage />} />
+          <Route path="/Donate" element={<Donate/>} />
+          <Route path="/Volunteer" element={<Volunteer/>} />
+          <Route path="/CommunityResources" element={<CommunityResources/>} />
+          <Route path="/MissionStatement" element={<MissionStatement />} />
+          <Route path="/Staff" element={<Staff />} />
+          <Route path="/ConnectWithMentors" element={<MentorSearch/>} />
+          *<Route path="/OurModel" element={<OurModel/>} />
+          <Route path="/Contact" element ={<Contact/>} />
+          <Route path="/LogIn" element = {<Login/>} />
+          <Route path="/SetUpAccount" element ={<SetupAccount/>} />
+          <Route path = "*" element={<NoPage/>} />
+        </Route>
+      </Routes>
       </div>
     );
   }
-
-  /*return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-  */
 }
 
 export default App;
