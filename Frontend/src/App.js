@@ -10,7 +10,7 @@ import Layout from './Pages/Layout.js'
 import MentorSearch from './Pages/MentorSearch'
 import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, Contact, OurModel} from "./Pages/StaticPages";
 //import ConnectWithMentors from "./Pages/ConnectWithMentors"; add this later
-import Footer from './pages/Footer.js'
+import Footer from './Pages/Footer.js'
 
 class App extends Component{
   constructor(props){
