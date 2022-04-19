@@ -2,15 +2,17 @@
 
 import React, { Component } from "react";
 import './App.css';
+import{ Routes, Route} from "react-router-dom";
 
-//import dotenv from 'dotenv';
-
-import SetupAccount from './pages/SetupAccount.js'
-import Login from './pages/Login'
-import LandingPage from './pages/LandingPage.js'
-import Navbar from './pages/Navbar.js'
+import SetupAccount from './Pages/SetupAccount.js'
+import Login from './Pages/Login'
+import LandingPage from './Pages/LandingPage.js'
+import Layout from './Pages/Layout.js'
+import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage} from "./Pages/StaticPages";
+//import ConnectWithMentors from "./Pages/ConnectWithMentors"; add this later
 import flower from "./Flower-black.png"
-import Checkbox from '@mui/material/Checkbox';
+
+//import Checkbox from '@mui/material/Checkbox';
 
 class App extends Component{
   constructor(props){
@@ -29,21 +31,32 @@ class App extends Component{
   render() {
     return (
       <div className="App" >
-        <header className="App-Header">
-
-            <h1 className="App-title">Recovery Ventures</h1>
-          {/* <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
-          <h2 className="App-title">{this.state.apiResponse}</h2> */}
-           {/* <Checkbox className = "check"
-            checked={this.state.loggedIn}
-            onChange={this.handleLoginChange}
-            inputProps={{ 'aria-label': 'controlled' }}
-          /> */}
-          <Navbar/>
-
-        </header>
+        
         <LandingPage/>
         {/* <Login/> */}
+      </div>
+    );
+  }
+
+  render() {
+    return(
+      <div className="App" >
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<LandingPage />} />
+          <Route path="/Donate" element={<Donate/>} />
+          <Route path="/Volunteer" element={<Volunteer/>} />
+          <Route path="/CommunityResources" element={<CommunityResources/>} />
+          <Route path="/MissionStatement" element={<MissionStatement />} />
+          <Route path="/Staff" element={<Staff />} />
+          {/*<Route path="/OurModel" element={<OurModel/>} />
+          <Route path="/ConnectWithMentors" element={<ConnectWithMentors/>} />
+          <Route path="/Contact" element ={<Contact/>} /> */}
+          <Route path="/LogIn" element = {<Login/>} />
+          <Route path="/SetUpAccount" element ={<SetupAccount/>} />
+          <Route path = "*" element={<NoPage/>} />
+        </Route>
+      </Routes>
       </div>
     );
   }

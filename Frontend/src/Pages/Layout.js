@@ -1,6 +1,7 @@
 import React from "react";
 import flower from "../Flower-black.png"
-import Checkbox from '@mui/material/Checkbox';
+import {Outlet, Link} from "react-router-dom";
+//import Checkbox from '@mui/material/Checkbox';
 
 const NavBar = (props) =>{
     // const menus = {
@@ -22,18 +23,32 @@ const NavBar = (props) =>{
 
     // }}
     const about = ["Mission Statment", "Staff", "Our Model"];
-    const aboutLinks = ["link1", "link2", "link3"];
+    const aboutLinks = ["/MissionStatement", "/Staff", "/OurModel"];
     const clients = ["Community Resources", "Connent with Mentors"];
-    const clientLinks = ["link1", "link2"];
+    const clientLinks = ["/CommunityResources", "link2"];
     const getInvolved = ["Donate", "Volunteer", "Contact"];
-    const involvedLinks = ["link1", "link2", "link3"];
+    const involvedLinks = ["/Donate", "/Volunteer", "/Contact"];
     return (
-        <div class = "navbar">
-            <img className = "navbar-item" src = {flower}/>
-            <DropDown name = "About" items = {about} links = {aboutLinks}/>
-            <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
-            <DropDown name = "Get involved" items = {getInvolved} links = {involvedLinks}/>
-        </div>
+        <>
+        <header className="App-Header">
+
+            <h1 className="App-title">Recovery Ventures</h1>
+          {/* <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
+          <h2 className="App-title">{this.state.apiResponse}</h2> */}
+           {/* <Checkbox className = "check"
+            checked={this.state.loggedIn}
+            onChange={this.handleLoginChange}
+            inputProps={{ 'aria-label': 'controlled' }}
+          /> */}
+            <div class = "navbar">
+                <img className = "navbar-item" src = {flower}/>
+                <DropDown name = "About" items = {about} links = {aboutLinks}/>
+                <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
+                <DropDown name = "Get involved" items = {getInvolved} links = {involvedLinks}/>
+            </div>
+        </header>
+    <Outlet />
+    </>
     );
 }
 
@@ -47,7 +62,7 @@ const DropDown = (props) =>{
             <div className = "dropdown-content">
                 {
                 props.items.map((item, i) => {
-                return (<a key={i} href={props.links[i]}>{item}</a>)
+                return (<Link key={i} to={props.links[i]}>{item}</Link>)
                 })
                 }
             </div>
