@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import baseServerURL from "../constants.js"
+import {baseServerURL} from "../constants.js"
 // import Modal from '@mui/material/Modal';
 
 const MentorSearch = ()=>{
@@ -19,9 +19,9 @@ const MentorSearch = ()=>{
     //the correct list of bios given the search criteria
     useEffect(() => {
         makeBioList();
-      }, []);
+    }, []);
     
-    const makeBioList = () => {
+    const makeBioList = (jsonObject) => {
         let tempBioList = []
         for (let i = 0; i < 20; i++){
             tempBioList.push(makeBioObject( 
@@ -34,17 +34,25 @@ const MentorSearch = ()=>{
         setBiolist(tempBioList)
     }
 
-    const getBioList = () => {
-        fetch(baseServerURL)
-        .then((res)=>{
-            if (res.status == 200){ //if the response is OK
-                return res.json()
+    function getBioList(){
+        fetch("http://localhost:9000/users")
+        .then(res=> res.json()) //convert response to JSOn
+        .then(data => {
+            let tempBioList = []
+            console.log(data)
+            for (let i= 0; i<data.length; i++){
+                //make a bio in the correct format using makeBioObject
+                tempBioList.push(makeBioObject(  
+                    "https://philpeople.org/assets/storage/hn/53/variants/hn53pGbwWXTFg4zUUj8TQMuy/315ff44855809d54a726e8c586da6618910c4812e16ad3eacc2580fe3adba825",
+                    data[i].firstName,
+                    "lorem Ipsum blah blah blah",
+                    [data[i].email, data[i].lastName]
+                ))
             }
+            console.log(tempBioList);
+            setBiolist(tempBioList);
         })
-        .then(res => {
-            console.log(res)
-            setBiolist(res)
-        })
+        .catch(e => console.log(e));
     }
 
     const [taglist, setTaglist] = useState(["Mentor"])
@@ -55,7 +63,7 @@ const MentorSearch = ()=>{
     }
 
     const onSubmit = (event) => {
-
+        getBioList();
         event.preventDefault();
     }
 
@@ -76,12 +84,9 @@ const MentorSearch = ()=>{
                 <p>
                 Enter a tag to narrow down the mentors.
                 </p>
-                <form onSubmit = {(event)=> {
-                    console.log("submitted")
-                    event.preventDefault();
-                    }}>
+                <form onSubmit = {onSubmit}>
                     <input type="text" id="areaTag" name="areaTag"></input>
-                    <button onClick = {onAddTagClick}>Add Tag</button>
+                    <button onClick = {onAddTagClick}>Add</button>
                     <div className = "tagbox">
                         {
                             taglist.map((item, i) => {
