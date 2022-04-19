@@ -15,6 +15,8 @@ router.get("/:email", users.findOne);
 router.put("/:email", users.update);
 // delete specific user using email
 router.delete("/:email", users.delete);
+// authenticate email using user and pass
+// router.post("/authenticate", users.authenticate);
 
 module.exports = router;
 

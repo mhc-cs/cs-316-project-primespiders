@@ -43,7 +43,7 @@ exports.findAll = (req, res, next) => {
 
 // Get one user from the database.
 exports.findOne = (req, res) => {
-    var email = req.params.uemail;
+    var email = req.params.email;
     User.findByPk(email)
       .then(data => {
         if (data) {
@@ -108,3 +108,27 @@ exports.findOne = (req, res) => {
   };
 
 
+// Get if the user is authentic
+// exports.Authenticate = (req, res) => {
+//   var email = req.body.email;
+//   var password = req.body.password;
+//   User.findByPk(email)
+//     .then(data => {
+//       if (data) {
+//         if(data.password){
+//           console.log(data.password)
+//           if(data.password === password) res.send("authenticated");
+//         }
+//         console.log("testttt")
+//       } else {
+//         res.status(404).send({
+//           message: `Cannot find User with email=${email}.`
+//         });
+//       }
+//     })
+//     .catch(err => {
+//       res.status(500).send({
+//         message: "Error retrieving User with email=" + email
+//       });
+//     });
+// };

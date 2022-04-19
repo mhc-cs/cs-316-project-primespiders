@@ -44,6 +44,7 @@ class App extends Component{
 
         </header>
         {/* <LandingPage/> */}
+        {/* <Login/> */}
         <SetupAccount/>
         <Footer/>
       </div>

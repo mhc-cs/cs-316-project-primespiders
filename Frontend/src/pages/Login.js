@@ -20,8 +20,29 @@ const Login = (props) =>{
     }
 
     const handleSubmit = ()=> {
-        var inputName = document.getElementById("fname").value;
-        setError('Trying to log in ' + inputName);
+        //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+        var inputEmail = document.getElementById("email").value
+        var inputPassword = document.getElementById("password").value
+        const checkUser = {
+            email: inputEmail,
+            password: inputPassword
+        };
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(checkUser),
+            headers: new Headers({
+                "Content-Type": "application/json"
+            })
+        };
+        fetch(`http://localhost:9000/users/authenticate`, options)
+            .then(data => {
+                console.log(data)
+                return data.json();
+            })
+            .then(auth => {
+                console.log(auth)
+            });
+        props.setPage(1)
     }
 
     return(
@@ -31,8 +52,8 @@ const Login = (props) =>{
                 <div className = "content-box2">
                     <p>Enter your information below</p>
                         <form>
-                            <label for="fname">First name: </label>
-                            <input type="text" id="fname" name="fname"></input>
+                            <label for="email">Email: </label>
+                            <input type="text" id="email" name="email"></input>
                             <br></br><br></br>
                             <label for="password">Password: </label>
                             <input type="text" id="password" name="password"></input>
