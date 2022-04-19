@@ -4,28 +4,10 @@ import {Outlet, Link} from "react-router-dom";
 //import Checkbox from '@mui/material/Checkbox';
 
 const NavBar = (props) =>{
-    // const menus = {
-    //     about: {
-    //         title: "About",
-    //         names: ["Mission Statment", "Staff", "Our Model"],
-    //         links: ["link1", "link2", "link3"]
-    //     },
-    //     clients: {
-    //         title: "Clients",
-    //         names: ["Community Resources", "Connent with Mentors"],
-    //         links: ["link1", "link2"]
-    //     },
-    //     getInvolved: {
-    //         title: "Get Involved",
-    //         names: ["Donate", "Volunteer", "Contact"],
-    //         links: ["link1", "link2", "link3"]
-    //     }
-
-    // }}
     const about = ["Mission Statment", "Staff", "Our Model"];
     const aboutLinks = ["/MissionStatement", "/Staff", "/OurModel"];
     const clients = ["Community Resources", "Connent with Mentors"];
-    const clientLinks = ["/CommunityResources", "link2"];
+    const clientLinks = ["/CommunityResources", "/ConnectWithMentors"];
     const getInvolved = ["Donate", "Volunteer", "Contact"];
     const involvedLinks = ["/Donate", "/Volunteer", "/Contact"];
     return (
@@ -41,7 +23,7 @@ const NavBar = (props) =>{
             inputProps={{ 'aria-label': 'controlled' }}
           /> */}
             <div class = "navbar">
-                <img className = "navbar-item" src = {flower}/>
+                <Link to={"/"}><img className = "navbar-item" src = {flower}/></Link>
                 <DropDown name = "About" items = {about} links = {aboutLinks}/>
                 <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
                 <DropDown name = "Get involved" items = {getInvolved} links = {involvedLinks}/>

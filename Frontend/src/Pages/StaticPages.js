@@ -3,7 +3,15 @@ import React from "react";
 export const MissionStatement = (props) => {
     return (
         <div>
-            <h3>Mission Statement</h3>
+            <h3>The statement of our mission...</h3>
+        </div>
+    );
+}
+
+export const OurModel = (props) => {
+    return (
+        <div>
+            <h3>This is our model!</h3>
         </div>
     );
 }
@@ -11,7 +19,7 @@ export const MissionStatement = (props) => {
 export const Staff = (props) => {
     return (
         <div>
-            <h3>Staff</h3>
+            <h3>That would be us :)</h3>
         </div>
     );
 }
@@ -27,7 +35,7 @@ export const CommunityResources = (props) => {
 export const Donate = (props) => {
     return (
         <div>
-            <h3>Donate</h3>
+            <h3>$$$</h3>
         </div>
     );
 }
@@ -43,7 +51,7 @@ export const Volunteer = (props) => {
 export const Contact = (props) => {
     return (
         <div>
-            <h3>Contact</h3>
+            <h3>Phone or email or facebook or instagram or twitter or fax or letters...</h3>
         </div>
     );
 }
