@@ -15,13 +15,6 @@ const NavBar = (props) =>{
         <header className="App-Header">
 
             <h1 className="App-title">Recovery Ventures</h1>
-          {/* <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
-          <h2 className="App-title">{this.state.apiResponse}</h2> */}
-           {/* <Checkbox className = "check"
-            checked={this.state.loggedIn}
-            onChange={this.handleLoginChange}
-            inputProps={{ 'aria-label': 'controlled' }}
-          /> */}
             <div class = "navbar">
                 <Link to={"/"}><img className = "navbar-item" src = {flower}/></Link>
                 <DropDown name = "About" items = {about} links = {aboutLinks}/>
