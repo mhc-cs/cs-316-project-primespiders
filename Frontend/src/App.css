@@ -18,6 +18,25 @@
   color: #61dafb;
 }
 
+input[type=text], select {
+  padding: 8px 16px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit], button {
+  background-color:rgb(33, 150, 247);
+  color: white;
+  padding: 8px 20px;
+  margin: 2px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .basicPage{
   text-align: left;
 }
@@ -33,6 +52,7 @@
 /* The dropdown container */
 .navbar .navbar-item {
   overflow: hidden;
+  display: inline-block;
 }
 .navbar .dropdown {
   float: right;
@@ -136,11 +156,12 @@
 .mentor-page {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  background-color: rgb(238, 239, 248);
 }
 
 .mentor-page .sidebar {
   padding: 1rem;
-  background-color: beige;
+  background-color: rgb(200, 244, 255);
   text-align: left;
 }
 
@@ -158,7 +179,7 @@
   min-height: 2rem;
 }
 
-.mentor-page .sidebar .tagbox p{
+.mentor-page .sidebar .tagbox p, .tags{
   background-color: #F0FFFF;
   margin: .25rem;
   display: inline-block;
@@ -168,6 +189,7 @@
   border-width: 2px;
   padding: .2rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+  font-size: x-small;
 }
 
 .mentor-page .sidebar .tagbox p:hover{
@@ -181,7 +203,7 @@
 }
 
 .mentor-box {
-  background-color: rgb(155, 227, 255);
+  background-color: rgb(246, 252, 255);
   display: grid;
   grid-template-columns: auto auto;
   padding: 1rem;
@@ -190,15 +212,19 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
 }
 .mentor-box .textbox{
-  background-color:beige;
+  background-color:rgb(200, 244, 255);
   text-align: center;
   border-left-style: solid;
   padding: .5rem;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 .mentor-box img{
   width: 5rem;
   height: 5rem;
   border: solid;
+  border-color: rgb(43, 43, 43);
+  border-width: 2px; 
 }
 /*
 .mentor-page .mentor-box .bio-modal {
