@@ -140,9 +140,20 @@ const SetupAccount = (props) => {
     const BioEnter = (props) =>{
         const handleSubmit = ()=>{
             var inputBio = document.getElementById("bio").value;
+            var inputName = document.getElementById("name").value
+            var inputLocation = document.getElementById("location").value
+            var inputExpertise = document.getElementById("expertise").value
+            var inputContact = document.getElementById("contact").value
+            var inputImage = document.getElementById("image").value
             const newBio = {
-                bio: inputBio
+                bio: inputBio,
+                name: inputName,
+                location: inputLocation,
+                expertise: inputExpertise,
+                contact: inputContact,
+                image: inputImage
             };
+            console.log(newBio)
             const options = {
                 method: 'POST',
                 body: JSON.stringify(newBio),
@@ -180,11 +191,26 @@ const SetupAccount = (props) => {
         return(
             <div>
                 <p>
-                Please enter your mentor bio here! This bio will be available for clients to see.
+                Please enter your mentor bio information here! This bio will be available for clients to see.
                 </p>
                     <form>
+                        <label for="fname">Name: </label>
+                        <input type="text" id="name" name="name"></input>
+                        <br></br><br></br>
                         <label for="fname">Bio: </label>
                         <input type="text" id="bio" name="bio"></input>
+                        <br></br><br></br>
+                        <label for="fname">Location: </label>
+                        <input type="text" id="location" name="location"></input>
+                        <br></br><br></br>
+                        <label for="fname">Expertise: </label>
+                        <input type="text" id="expertise" name="expertise"></input>
+                        <br></br><br></br>
+                        <label for="fname">Contact: </label>
+                        <input type="text" id="contact" name="contact"></input>
+                        <br></br><br></br>
+                        <label for="fname">Image: </label>
+                        <input type="text" id="image" name="image"></input>
                         <br></br><br></br>
                     </form>
                     <button onClick = {() => handleSubmit()}>Submit</button>

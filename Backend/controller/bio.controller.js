@@ -12,7 +12,12 @@ exports.create = (req, res, next) => {
     }
     // create a bio to add
     var bioToAdd = {
-      bio: req.body.bio
+      bio: req.body.bio,
+      name: req.body.name,
+      location: req.body.location,
+      expertise: req.body.expertise,
+      contact: req.body.contact,
+      image: req.body.image
     };
     Bio.create(bioToAdd)
         .then(data => {res.send(data)})
