@@ -10,16 +10,13 @@ import Layout from './Pages/Layout.js'
 import MentorSearch from './Pages/MentorSearch'
 import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, Contact, OurModel} from "./Pages/StaticPages";
 //import ConnectWithMentors from "./Pages/ConnectWithMentors"; add this later
-
-import flower from "./Flower-black.png"
-
-//import Checkbox from '@mui/material/Checkbox';
+import Footer from './pages/Footer.js'
 
 class App extends Component{
   constructor(props){
   super(props);
-  this.state = { 
-    apiResponse: "", 
+  this.state = {
+    apiResponse: "",
     loggedIn: false,
   };
   }
