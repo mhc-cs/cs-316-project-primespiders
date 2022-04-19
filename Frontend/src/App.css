@@ -94,8 +94,9 @@
   object-fit: scale-down;
   width: 100%;
 }
-.landingPage{
+.landingPage {
   text-align: left;
+  padding: 1rem;
 }
 
 /** Account setup style**/
@@ -128,6 +129,83 @@
   background-color:beige;
   border: medium solid rgb(209, 209, 190);
 }
+
+
+/* Mentor Page */
+
+.mentor-page {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.mentor-page .sidebar {
+  padding: 1rem;
+  background-color: beige;
+  text-align: left;
+}
+
+.mentor-page .sidebar .sidebar-content {
+  position: sticky;
+  z-index: 2;
+  top: 20px;
+}
+
+.mentor-page .sidebar .tagbox{
+  background-color: white;
+  border: solid;
+  margin: 1rem 1rem 1rem 0rem;
+  padding: .5rem .5rem .5rem .5rem;
+  min-height: 2rem;
+}
+
+.mentor-page .sidebar .tagbox p{
+  background-color: #F0FFFF;
+  margin: .25rem;
+  display: inline-block;
+  border: solid;
+  border-color: rgb(200, 244, 255);
+  border-radius: 10px;
+  border-width: 2px;
+  padding: .2rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.mentor-page .sidebar .tagbox p:hover{
+  background-color: rgb(200, 244, 255);
+}
+.mentor-page .mentor-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.mentor-box {
+  background-color: rgb(155, 227, 255);
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 1rem;
+  border-radius: 10px;
+  gap: 1rem;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.mentor-box .textbox{
+  background-color:beige;
+  text-align: center;
+  border-left-style: solid;
+  padding: .5rem;
+}
+.mentor-box img{
+  width: 5rem;
+  height: 5rem;
+  border: solid;
+}
+/*
+.mentor-page .mentor-box .bio-modal {
+  position: 'absolute';
+  width: 400;
+  background-color: 'white';
+} */
 
 .footer {
   overflow: hidden;

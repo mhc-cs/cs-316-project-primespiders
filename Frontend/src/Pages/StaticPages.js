@@ -1,22 +1,30 @@
 import React from "react";
 
-const MissionStatement = (props) => {
+export const MissionStatement = (props) => {
     return (
         <div>
-            <h3>Mission Statement</h3>
+            <h3>The statement of our mission...</h3>
         </div>
     );
 }
 
-const Staff = (props) => {
+export const OurModel = (props) => {
     return (
         <div>
-            <h3>Staff</h3>
+            <h3>This is our model!</h3>
         </div>
     );
 }
 
-const CommunityResources = (props) => {
+export const Staff = (props) => {
+    return (
+        <div>
+            <h3>That would be us :)</h3>
+        </div>
+    );
+}
+
+export const CommunityResources = (props) => {
     return (
         <div>
             <h3>Community Resources</h3>
@@ -24,15 +32,15 @@ const CommunityResources = (props) => {
     );
 }
 
-const Donate = (props) => {
+export const Donate = (props) => {
     return (
         <div>
-            <h3>Donate</h3>
+            <h3>$$$</h3>
         </div>
     );
 }
 
-const Volunteer = (props) => {
+export const Volunteer = (props) => {
     return (
         <div>
             <h3>Volunteer</h3>
@@ -40,18 +48,26 @@ const Volunteer = (props) => {
     );
 }
 
-const Contact = (props) => {
+export const Contact = (props) => {
     return (
         <div>
-            <h3>Contact</h3>
+            <h3>Phone or email or facebook or instagram or twitter or fax or letters...</h3>
+        </div>
+    );
+}
+
+export const NoPage = (props) => {
+    return (
+        <div>
+            <h3>404: Page not found</h3>
         </div>
     );
 }
 
 
-export default MissionStatement
-export default Staff
-export default CommunityResources
-export default Donate
-export default Volunteer
-export default Contact
+// export default MissionStatement
+// export default Staff
+// export default CommunityResources
+// export default Donate
+// export default Volunteer
+// export default Contact
