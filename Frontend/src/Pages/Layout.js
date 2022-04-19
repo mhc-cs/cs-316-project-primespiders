@@ -10,6 +10,8 @@ const NavBar = (props) =>{
     const clientLinks = ["/CommunityResources", "/ConnectWithMentors"];
     const getInvolved = ["Donate", "Volunteer", "Contact"];
     const involvedLinks = ["/Donate", "/Volunteer", "/Contact"];
+    const account = ["Login", "Create Account"];
+    const accountLinks = ["/Login", "/SetupAccount"];
     return (
         <>
         <header className="App-Header">
@@ -17,6 +19,7 @@ const NavBar = (props) =>{
             <h1 className="App-title">Recovery Ventures</h1>
             <div class = "navbar">
                 <Link to={"/"}><img className = "navbar-item" src = {flower}/></Link>
+                <DropDown name = "Your Account" items = {account} links = {accountLinks}/>
                 <DropDown name = "About" items = {about} links = {aboutLinks}/>
                 <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
                 <DropDown name = "Get involved" items = {getInvolved} links = {involvedLinks}/>
