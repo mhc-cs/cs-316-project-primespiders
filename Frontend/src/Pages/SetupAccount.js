@@ -13,6 +13,7 @@ const SetupAccount = (props) => {
     const [error, setError] = useState("If there is a problem with your login attempt, it may appear here!");
     console.log("page:",page)
     const [account, setAccount] = useState("client");
+    const [user, setUser] = useState("NULL");
 
     function getConditionalContent(page, setPage) {
         switch (page) {
@@ -22,9 +23,11 @@ const SetupAccount = (props) => {
                 <PinEnter setPage= {() => setPage(1)}/>
             </div>)
         case 1:
-            return <EnterInfo setPage= {() => setPage(2)}/>;
+            return <EnterInfo setPage= {() => setPage(3)}/>;
+        case 2:
+            return <BioEnter setPage= {() => setPage(3)}/>;
         default:
-            return <div>Sorry no account 4 u :(</div>;
+            return <div>Account created!</div>;
         }
     }
 
@@ -57,8 +60,6 @@ const SetupAccount = (props) => {
                 });
             //setError("oh no it didn't work!")
             //setPage(1)
-            setError("oh no it didn't work!")
-            setPage(1)
         }
         return(
             <div>
@@ -78,7 +79,7 @@ const SetupAccount = (props) => {
     const EnterInfo = () =>{
         const handleSubmit = ()=>{
             //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
-            var inputEmail = document.getElementById("email").value
+            var inputEmail = document.getElementById("email1").value
             var inputPassword = document.getElementById("password").value
             var inputFName = document.getElementById("fname").value
             var inputLName = document.getElementById("lname").value
@@ -104,11 +105,15 @@ const SetupAccount = (props) => {
                 })
                 .then(update => {
                     console.log(update);
+                    setUser(inputEmail);
+                    if(account == "mentor") {
+                        setPage(2)
+                    }
+                    else setPage(3)
                 });
-            props.setPage(1)
         }
         return(
-            <div className >
+            <div className = "contentBox1">
                 <p>Enter your information below</p>
                     <form>
                         <label for="fname">First name: </label>
@@ -129,6 +134,61 @@ const SetupAccount = (props) => {
                     </form>
                     <button onClick = {() => handleSubmit()}>Submit</button>
                 </div>
+        );
+    }
+
+    const BioEnter = (props) =>{
+        const handleSubmit = ()=>{
+            var inputBio = document.getElementById("bio").value;
+            const newBio = {
+                bio: inputBio
+            };
+            const options = {
+                method: 'POST',
+                body: JSON.stringify(newBio),
+                headers: new Headers({
+                    "Content-Type": "application/json"
+                })
+            };
+            fetch(`http://localhost:9000/bios`, options)
+                .then(data => {
+                    return data.json();
+                })
+                .then(bio => {
+                    if(bio.id) {
+                        const updateUser = {
+                            bioIndex: bio.id
+                        };
+                        const options = {
+                            method: 'PUT',
+                            body: JSON.stringify(updateUser),
+                            headers: new Headers({
+                                "Content-Type": "application/json"
+                            })
+                        };
+                        fetch(`http://localhost:9000/users/${user}`, options)
+                            .then(data => {
+                                return data.json();
+                            })
+                        setPage(3)
+                    }
+                    else setError("Error entering bio.")
+                });
+            //setError("oh no it didn't work!")
+            //setPage(1)
+        }
+        return(
+            <div>
+                <p>
+                Please enter your mentor bio here! This bio will be available for clients to see.
+                </p>
+                    <form>
+                        <label for="fname">Bio: </label>
+                        <input type="text" id="bio" name="bio"></input>
+                        <br></br><br></br>
+                    </form>
+                    <button onClick = {() => handleSubmit()}>Submit</button>
+            </div>
         );
     }
 
