@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
+import baseServerURL from "../constants.js"
 // import Modal from '@mui/material/Modal';
 
 const MentorSearch = ()=>{
     const [biolist, setBiolist] = useState([])
-    const makeBioObject = (image, name, text) => {
-        return {image: image, name: name, text: text}
+    const makeBioObject = (image, name, text, tags) => {
+        return {
+            image: image, 
+            name: name, 
+            text: text,
+            tags: tags
+
+        }
     }
 
     //This useEffect will run makeBioList when the page first renders. 
@@ -18,18 +25,37 @@ const MentorSearch = ()=>{
         let tempBioList = []
         for (let i = 0; i < 20; i++){
             tempBioList.push(makeBioObject( 
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
+                "https://philpeople.org/assets/storage/hn/53/variants/hn53pGbwWXTFg4zUUj8TQMuy/315ff44855809d54a726e8c586da6618910c4812e16ad3eacc2580fe3adba825",
                 "Catalyn the kitty",
-                "Hello! my name is cat and I am here to party! I like to scratch things and play with yarn"
+                "Hello! my name is cat and I am here to party! I like to scratch things and play with yarn",
+                ["cat", "orange", "cute", "lots of text here to test if we can fit tags"]
             ))
         }
         setBiolist(tempBioList)
     }
 
+    const getBioList = () => {
+        fetch(baseServerURL)
+        .then((res)=>{
+            if (res.status == 200){ //if the response is OK
+                return res.json()
+            }
+        })
+        .then(res => {
+            console.log(res)
+            setBiolist(res)
+        })
+    }
+
     const [taglist, setTaglist] = useState(["Mentor"])
-    const onAddTagSubmit = (event) => {
+    const onAddTagClick = (event) => {
         var areaTag = document.getElementById("areaTag").value;
         setTaglist([...taglist, areaTag])
+        event.preventDefault();
+    }
+
+    const onSubmit = (event) => {
+
         event.preventDefault();
     }
 
@@ -39,6 +65,7 @@ const MentorSearch = ()=>{
         setTaglist(tempTag)
     }
 
+    //WHERE WE RENDER MENTOR PAGE 
     return(
     <div className  = "mentor-page">
         <div className = "sidebar">
@@ -49,32 +76,38 @@ const MentorSearch = ()=>{
                 <p>
                 Enter a tag to narrow down the mentors.
                 </p>
-                <form onSubmit = {onAddTagSubmit}>
+                <form onSubmit = {(event)=> {
+                    console.log("submitted")
+                    event.preventDefault();
+                    }}>
                     <input type="text" id="areaTag" name="areaTag"></input>
-                    <input type="submit" value="Add Tag"></input>
+                    <button onClick = {onAddTagClick}>Add Tag</button>
+                    <div className = "tagbox">
+                        {
+                            taglist.map((item, i) => {
+                            return (<p className = "tags" onClick = {() => removeTag(i)} key = {i}>{item}</p>)
+                            })
+                        }
+                    </div>
+                    <input type= "submit" value = "Search"></input>
                 </form>
-                <div className = "tagbox">
-                    {
-                        taglist.map((item, i) => {
-                        return (<p onClick = {() => removeTag(i)} key = {i}>{item}</p>)
-                        })
-                    }
-                </div>
             </div>
         </div>
-
-        <div className = "mentor-grid">
-            {
-            biolist.map((item,i) => {
-                return(            
-                <MentorBioBox 
-                    bio = {item}
-                    key = {i}
-                    index = {i}
-                    />
-                )
-            })
-            }
+        <div className = "search-results">
+            <h1>Search Results:</h1>
+            <div className = "mentor-grid">
+                {
+                biolist.map((item,i) => {
+                    return(            
+                    <MentorBioBox 
+                        bio = {item}
+                        key = {i}
+                        index = {i}
+                        />
+                    )
+                })
+                }
+            </div>
         </div>
     </div>
     )
@@ -93,7 +126,11 @@ const MentorBioBox = (props)=> {
             <div>
                 <img src= {props.bio.image} alt = {props.bio.name} />
                 <h4>{props.bio.name}</h4>
-                <p>Some basic info about cat</p>
+                {
+                    props.bio.tags.map((item, i) => {
+                    return (<p className = "tags" key = {i}>{item}</p>)
+                    })
+                }
             </div>
             <div className = "textbox">
                 <p id = {props.id}>{props.bio.text}</p>
