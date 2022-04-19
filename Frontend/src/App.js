@@ -12,7 +12,7 @@ import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, 
 //import ConnectWithMentors from "./Pages/ConnectWithMentors"; add this later
 
 import flower from "./Flower-black.png"
-import Footer from './pages/Footer.js'
+import Footer from './Pages/Footer.js'
 import Checkbox from '@mui/material/Checkbox';
 
 class App extends Component{
