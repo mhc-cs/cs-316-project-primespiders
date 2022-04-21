@@ -4,12 +4,12 @@ import {baseServerURL} from "../constants.js"
 
 const MentorSearch = ()=>{
     const [biolist, setBiolist] = useState([])
-    const makeBioObject = (image, name, text, tags) => {
+    const makeBioObject = (image, name, text, expertise) => {
         return {
             image: image, 
             name: name, 
             text: text,
-            tags: tags
+            expertise: expertise
 
         }
     }
@@ -35,8 +35,9 @@ const MentorSearch = ()=>{
         setBiolist(tempBioList)
     }
 
-    //getBioList fetches 
-    function getBioList(){
+    //getBioList fetches bios based on inputs
+    function getBioList(expertise){
+        
         fetch("http://localhost:9000/bios")
         .then(res=> res.json()) //convert response to JSOn
         .then(data => {
@@ -65,8 +66,11 @@ const MentorSearch = ()=>{
         event.preventDefault();
     }
 
+    //onSubmit is called when user hits the search button on the 
+    //search sidebar
     const onSubmit = (event) => {
-        getBioList();
+        var specialty = document.getElementById("expertise").value;
+        getBioList(specialty);
         event.preventDefault();
     }
 
@@ -76,7 +80,6 @@ const MentorSearch = ()=>{
         setTaglist(tempTag)
     }
 
-    //check if there are names in the list
 
     //WHERE WE RENDER MENTOR PAGE 
     return(
@@ -87,18 +90,27 @@ const MentorSearch = ()=>{
                 Search our Mentors!
                 </h1>
                 <p>
-                Enter a tag to narrow down the mentors.
+                Enter Select an area of expertise to narrow down the mentors...
                 </p>
                 <form onSubmit = {onSubmit}>
-                    <input type="text" id="areaTag" name="areaTag"></input>
-                    <button onClick = {onAddTagClick}>Add</button>
+                    {/* <input type="text" id="areaTag" name="areaTag"></input> */}
+                    <select name="expertise" id="expertise">
+                        <option value="Arts">Arts</option>
+                        <option value="Business">Business</option>
+                        <option value="Education">Education</option>
+                        <option value="Medical">Media</option>
+                        <option value="Service-Industry">Service Industry</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    {/* <button onClick = {onAddTagClick}>Add</button>
                     <div className = "tagbox">
                         {
                             taglist.map((item, i) => {
                             return (<p className = "tags" onClick = {() => removeTag(i)} key = {i}>{item}</p>)
                             })
                         }
-                    </div>
+                    </div> */}
                     <input type= "submit" value = "Search"></input>
                 </form>
             </div>
@@ -138,7 +150,7 @@ const MentorBioBox = (props)=> {
                 <img src= {props.bio.image} alt = {props.bio.name} />
                 <h4>{props.bio.name}</h4>
                 {
-                    props.bio.tags.map((item, i) => {
+                    props.bio.expertise.map((item, i) => {
                     return (<p className = "tags" key = {i}>{item}</p>)
                     })
                 }
