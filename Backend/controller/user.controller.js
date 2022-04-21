@@ -108,6 +108,8 @@ exports.findOne = (req, res) => {
   };
 
 
+
+
 // Get if the user is authentic
 // exports.Authenticate = (req, res) => {
 //   var email = req.body.email;

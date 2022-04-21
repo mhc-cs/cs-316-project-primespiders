@@ -18,9 +18,10 @@ const MentorSearch = ()=>{
     //Once we have the backend setup, we can adjust makeBioList to fetch
     //the correct list of bios given the search criteria
     useEffect(() => {
-        makeBioList();
+        getBioList()
     }, []);
-    
+
+    //makeBioList is for testing. Fills BioList with fake local hardcoded cat profiles. 
     const makeBioList = (jsonObject) => {
         let tempBioList = []
         for (let i = 0; i < 20; i++){
@@ -28,25 +29,27 @@ const MentorSearch = ()=>{
                 "https://philpeople.org/assets/storage/hn/53/variants/hn53pGbwWXTFg4zUUj8TQMuy/315ff44855809d54a726e8c586da6618910c4812e16ad3eacc2580fe3adba825",
                 "Catalyn the kitty",
                 "Hello! my name is cat and I am here to party! I like to scratch things and play with yarn",
-                ["cat", "orange", "cute", "lots of text here to test if we can fit tags"]
+                ["cat", "orange", "cute"]
             ))
         }
         setBiolist(tempBioList)
     }
 
+    //getBioList fetches 
     function getBioList(){
-        fetch("http://localhost:9000/users")
+        fetch("http://localhost:9000/bios")
         .then(res=> res.json()) //convert response to JSOn
         .then(data => {
             let tempBioList = []
             console.log(data)
             for (let i= 0; i<data.length; i++){
+                let bio = data[i]
                 //make a bio in the correct format using makeBioObject
                 tempBioList.push(makeBioObject(  
-                    "https://philpeople.org/assets/storage/hn/53/variants/hn53pGbwWXTFg4zUUj8TQMuy/315ff44855809d54a726e8c586da6618910c4812e16ad3eacc2580fe3adba825",
-                    data[i].firstName,
-                    "lorem Ipsum blah blah blah",
-                    [data[i].email, data[i].lastName]
+                    bio.image,
+                    bio.name,
+                    bio.bio,
+                    [bio.expertise, bio.location]
                 ))
             }
             console.log(tempBioList);
@@ -72,6 +75,8 @@ const MentorSearch = ()=>{
         let tempTag = [...taglist.slice(0,i),...taglist.slice(i+1,taglist.length)]
         setTaglist(tempTag)
     }
+
+    //check if there are names in the list
 
     //WHERE WE RENDER MENTOR PAGE 
     return(
@@ -111,7 +116,7 @@ const MentorSearch = ()=>{
                         />
                     )
                 })
-                }
+            }
             </div>
         </div>
     </div>
@@ -124,6 +129,7 @@ const MentorBioBox = (props)=> {
     // const [open, setOpen] = useState(false);
     // const handleOpen = () => setOpen(true);
     // const handleClose = () => setOpen(false);
+
 
 
     return(

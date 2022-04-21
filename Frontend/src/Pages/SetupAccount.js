@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 
@@ -14,6 +14,10 @@ const SetupAccount = (props) => {
     console.log("page:",page)
     const [account, setAccount] = useState("client");
     const [user, setUser] = useState("NULL");
+
+    // useEffect(() => {
+    //     setupFillerBios();
+    // }, []);
 
     function getConditionalContent(page, setPage) {
         switch (page) {
@@ -137,6 +141,74 @@ const SetupAccount = (props) => {
         );
     }
 
+    const addBio = (newBio) =>{
+        console.log(newBio)
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(newBio),
+            headers: new Headers({
+                "Content-Type": "application/json"
+            })
+        };
+        fetch(`http://localhost:9000/bios`, options)
+            .then(data => {
+                return data.json();
+            })
+            .then(bio => {
+                if(bio.id) {
+                    const updateUser = {
+                        bioIndex: bio.id
+                    };
+                    const options = {
+                        method: 'PUT',
+                        body: JSON.stringify(updateUser),
+                        headers: new Headers({
+                            "Content-Type": "application/json"
+                        })
+                    };
+                    fetch(`http://localhost:9000/users/${user}`, options)
+                        .then(data => {
+                            return data.json();
+                        })
+                    setPage(3)
+                }
+                else setError("Error entering bio.")
+            });
+    }
+
+    //hardcoded function to add bios to the db 
+    const setupFillerBios = () => {
+        let bio1 = {
+        bio: "I am an expert in the field of psychology. I am happy to talk about my experience",
+        name: "Lucy Ren",
+        location: "Seattle",
+        expertise: "Psychology",
+        contact: "RenL@gmail.com",
+        image: "https://this-person-does-not-exist.com/img/avatar-bb4107109584df2327c5d1fd9940205f.jpg"
+        }
+        addBio(bio1)
+        
+        let bio2 = {
+            bio: "What does it mean to be a magician? I am here to talk to you about my life and passions, and hopefully help you get your foot in the magical door",
+            name: "John Moralis",
+            location: "Chicago",
+            expertise: "Magic",
+            contact: "Woosh123@gmail.com",
+            image: "https://this-person-does-not-exist.com/img/avatar-a2afa9188563d8d4d1adb77df8aed747.jpg"
+        }
+        addBio(bio2);
+
+        let bio3 = {
+            bio: "Have you ever thought about the world of mouse racing? Mouse racing has been my passion since I was a child. I am the head trainer of the humane mouse racing leauge of Arazona",
+            name: "Forest Mott",
+            location: "Phoenix",
+            expertise: "Mouse Racing",
+            contact: "MForest@gmail.com",
+            image: "https://this-person-does-not-exist.com/img/avatar-0214a5bc0841b536cc6969d679433615.jpg"
+        }
+        addBio(bio3)
+    }
+    
     const BioEnter = (props) =>{
         const handleSubmit = ()=>{
             var inputBio = document.getElementById("bio").value;
@@ -153,41 +225,11 @@ const SetupAccount = (props) => {
                 contact: inputContact,
                 image: inputImage
             };
-            console.log(newBio)
-            const options = {
-                method: 'POST',
-                body: JSON.stringify(newBio),
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            };
-            fetch(`http://localhost:9000/bios`, options)
-                .then(data => {
-                    return data.json();
-                })
-                .then(bio => {
-                    if(bio.id) {
-                        const updateUser = {
-                            bioIndex: bio.id
-                        };
-                        const options = {
-                            method: 'PUT',
-                            body: JSON.stringify(updateUser),
-                            headers: new Headers({
-                                "Content-Type": "application/json"
-                            })
-                        };
-                        fetch(`http://localhost:9000/users/${user}`, options)
-                            .then(data => {
-                                return data.json();
-                            })
-                        setPage(3)
-                    }
-                    else setError("Error entering bio.")
-                });
+            addBio(newBio)
             //setError("oh no it didn't work!")
             //setPage(1)
         }
+
         return(
             <div>
                 <p>
@@ -230,7 +272,10 @@ const SetupAccount = (props) => {
             </div>
         </div>
     );
+
 }
+
+
 
 
 
