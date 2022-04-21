@@ -41,6 +41,19 @@ exports.findAll = (req, res, next) => {
         })
 };
 
+// Get all bios from the database with specific expertise
+exports.findFiltered = (req, res, next) => {
+  var expertise = req.params.expertise;
+  Bio.findAll({where: {expertise: expertise}})
+      .then(data => {res.send(data)})
+      .catch(err => {
+          res.status(500).send({
+              message:
+                  err.message || "Could not retrieve bios"
+          })
+      })
+};
+
 // Get one bio from the database.
 exports.findOne = (req, res) => {
     var id = req.params.id;
