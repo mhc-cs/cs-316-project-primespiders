@@ -1,6 +1,7 @@
 import React from "react";
 import flower from "../Flower-black.png"
 import {Outlet, Link} from "react-router-dom";
+import Footer from "./Footer"
 //import Checkbox from '@mui/material/Checkbox';
 
 const NavBar = (props) =>{
@@ -26,6 +27,7 @@ const NavBar = (props) =>{
             </div>
         </header>
     <Outlet />
+          <Footer></Footer>
     </>
     );
 }

@@ -10,10 +10,7 @@ import Layout from './Pages/Layout.js'
 import MentorSearch from './Pages/MentorSearch'
 import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, Contact, OurModel} from "./Pages/StaticPages";
 //import ConnectWithMentors from "./Pages/ConnectWithMentors"; add this later
-
-import flower from "./Flower-black.png"
 import Footer from './Pages/Footer.js'
-import Checkbox from '@mui/material/Checkbox';
 
 class App extends Component{
   constructor(props){
