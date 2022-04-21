@@ -4,12 +4,12 @@ import {baseServerURL} from "../constants.js"
 
 const MentorSearch = ()=>{
     const [biolist, setBiolist] = useState([])
-    const makeBioObject = (image, name, text, tags) => {
+    const makeBioObject = (image, name, text, expertise) => {
         return {
             image: image, 
             name: name, 
             text: text,
-            tags: tags
+            expertise: expertise
 
         }
     }
@@ -66,6 +66,8 @@ const MentorSearch = ()=>{
         event.preventDefault();
     }
 
+    //onSubmit is called when user hits the search button on the 
+    //search sidebar
     const onSubmit = (event) => {
         var specialty = document.getElementById("expertise").value;
         getBioList(specialty);
@@ -78,7 +80,6 @@ const MentorSearch = ()=>{
         setTaglist(tempTag)
     }
 
-    //check if there are names in the list
 
     //WHERE WE RENDER MENTOR PAGE 
     return(
@@ -149,7 +150,7 @@ const MentorBioBox = (props)=> {
                 <img src= {props.bio.image} alt = {props.bio.name} />
                 <h4>{props.bio.name}</h4>
                 {
-                    props.bio.tags.map((item, i) => {
+                    props.bio.expertise.map((item, i) => {
                     return (<p className = "tags" key = {i}>{item}</p>)
                     })
                 }
