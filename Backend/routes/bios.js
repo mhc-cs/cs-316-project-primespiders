@@ -9,6 +9,8 @@ var router = express.Router();
 router.post("/", bios.create);
 // Get all bios
 router.get("/", bios.findAll);
+// Get all bios matching filter
+router.get("/filter/:expertise", bios.findFiltered);
 // Get one bio using id
 router.get("/:id", bios.findOne);
 // update bio info using id
