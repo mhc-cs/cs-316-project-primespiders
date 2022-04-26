@@ -12,11 +12,11 @@ router.get("/", users.findAll);
 // Get one user using email
 router.get("/:email", users.findOne);
 // update user info using email
-router.put("/:email", users.update);
+router.put("/update/:email", users.update);
 // delete specific user using email
 router.delete("/:email", users.delete);
 // authenticate email using user and pass
-// router.post("/authenticate", users.authenticate);
+router.put("/authenticate", users.authenticate);
 
 module.exports = router;
 

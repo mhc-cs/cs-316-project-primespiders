@@ -28,21 +28,24 @@ const Login = (props) =>{
             password: inputPassword
         };
         const options = {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify(checkUser),
             headers: new Headers({
                 "Content-Type": "application/json"
             })
         };
-        fetch(`http://localhost:9000/users/authenticate`, options)
+        fetch(`http://localhost:9000/users/authenticate/`, options)
             .then(data => {
-                console.log(data)
                 return data.json();
             })
             .then(auth => {
-                console.log(auth)
+                if(auth){
+                    setError("Login successful!")
+                }
+                else{
+                    setError("Incorrect username or password.")
+                }
             });
-        props.setPage(1)
     }
 
     return(
