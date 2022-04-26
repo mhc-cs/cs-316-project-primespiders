@@ -18,7 +18,7 @@ const MentorSearch = ()=>{
     //Once we have the backend setup, we can adjust makeBioList to fetch
     //the correct list of bios given the search criteria
     useEffect(() => {
-        getBioList()
+        makeBioList()
     }, []);
 
     //makeBioList is for testing. Fills BioList with fake local hardcoded cat profiles. 
@@ -27,9 +27,9 @@ const MentorSearch = ()=>{
         for (let i = 0; i < 20; i++){
             tempBioList.push(makeBioObject( 
                 "https://philpeople.org/assets/storage/hn/53/variants/hn53pGbwWXTFg4zUUj8TQMuy/315ff44855809d54a726e8c586da6618910c4812e16ad3eacc2580fe3adba825",
-                "Catalyn the kitty",
-                "Hello! my name is cat and I am here to party! I like to scratch things and play with yarn",
-                ["cat", "orange", "cute"]
+                "John Smith",
+                "Hello! my name is John and I am passionate about entrepreneurship. I would love to chat and talk about how you can get started in the industry!",
+                ["Business"]
             ))
         }
         setBiolist(tempBioList)
@@ -102,7 +102,6 @@ const MentorSearch = ()=>{
         let tempTag = [...taglist.slice(0,i),...taglist.slice(i+1,taglist.length)]
         setTaglist(tempTag)
     }
-
 
     //WHERE WE RENDER MENTOR PAGE 
     return(

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100%
 }
 
 .App-header {
@@ -13,9 +14,9 @@
   color: white;
 }
 
-
 .App-link {
   color: #61dafb;
+
 }
 
 input[type=text], select {
@@ -39,6 +40,8 @@ input[type=submit], button {
 
 .basicPage{
   text-align: left;
+  min-height: 76vh;
+
 }
 
 
@@ -83,8 +86,8 @@ input[type=submit], button {
 
 .dropdown .dropdown-content a{
   display:block;
-
 }
+
 .dropdown .dropbtn:hover {
   text-decoration: underline;
 }
@@ -94,11 +97,14 @@ input[type=submit], button {
   background-color: rgb(33, 150, 247);
   position: absolute;
   z-index: 1;
-  padding: .5rem .5rem;
+  padding: .5rem .75rem;
+  min-width: 100px;
 }
+
 .dropdown .dropdown-content a{
   color: white;
   text-decoration: none;
+  padding: .5rem 0rem;
 }
 .dropdown .dropdown-content a:hover{
   color: white;
@@ -108,23 +114,68 @@ input[type=submit], button {
   display: block;
 }
 
-
 /** Landing page CSS**/
-.banner {
-  width: 100%;
+.landingPage {
+  text-align: center;
 }
-.banner img {
+
+.landingPage h4{
+  margin: 0rem;
+  color: rgb(94, 94, 94);
+}
+.landingPage .banner {
+  width: 100%;
+  background-color: rgb(255, 246, 220);
+}
+.landingPage .banner img {
   object-fit: scale-down;
   width: 100%;
 }
-.landingPage {
-  text-align: left;
-  padding: 1rem;
+
+.landingPage .d1 {
+  padding: 3rem;
+  background-color: rgb(255, 246, 220);
+  font-size: xx-large;
+}
+.landingPage .d1 {
+  padding: 1rem 0 4rem 0;
+  background-color: rgb(255, 246, 220);
+}
+.landingPage .d2 {
+  margin: 5% 0%;
+  display: flex;
+  justify-content: space-evenly;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+}
+
+.landingPage .d2 h1{
+  flex-basis: 30%;
+  color: rgb(18, 80, 131);
+  font-size: xxx-large;
+}
+
+.landingPage .d2 p{
+  flex-basis: 40%;
+  color: rgb(18, 80, 131);
+  font-size: x-large;
+}
+
+.landingPage .d2 img{
+  flex-basis: 20%;
+}
+
+.landingPage .d3 {
+  padding: 3rem;
+  background-color: rgb(255, 246, 220);
+  font-size: xx-large;
+  font-style: italic;
 }
 
 /** Account setup style**/
 .basicPage{
   padding: 0% 5%;
+
 }
 
 .basicPage h3{
@@ -141,16 +192,18 @@ input[type=submit], button {
   padding: 3% 5%;
   margin: 0% 3%;
 }
+
 .basicPage .grid .content-box1{
-  background-color:rgb(209, 209, 190);
-  border: medium solid rgb(209, 209, 190);
+  background-color:rgb(255, 233, 168);
+  border: medium solid rgb(255, 233, 168);
   max-height: fit-content;
   height: fit-content;
   position: relative;
 }
+
 .basicPage .grid .content-box2{
-  background-color:beige;
-  border: medium solid rgb(209, 209, 190);
+  background-color: rgb(255, 246, 220);
+  border: medium solid rgb(255, 233, 168);
 }
 
 
@@ -159,7 +212,8 @@ input[type=submit], button {
 .mentor-page {
   display: grid;
   grid-template-columns: 1fr 3fr;
-  background-color: rgb(255, 246, 220);
+  /* background-color: rgb(255, 255, 255); */
+  background-color:  rgb(255, 246, 220);
 }
 
 .mentor-page .sidebar {
@@ -171,7 +225,7 @@ input[type=submit], button {
 .mentor-page .sidebar .sidebar-content {
   position: sticky;
   z-index: 2;
-  top: 20px;
+  top: 25px;
 }
 
 .mentor-page .sidebar .tagbox{
@@ -192,7 +246,7 @@ input[type=submit], button {
   border-width: 2px;
   padding: .2rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
-  font-size: x-small;
+  font-size: smaller;
 }
 
 .mentor-page .sidebar .tagbox p:hover{
@@ -214,9 +268,10 @@ input[type=submit], button {
   gap: 1rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
 }
+
 .mentor-box .textbox{
   background-color:rgb(200, 244, 255);
-  height: 12em;
+  height: auto;
   text-align: center;
   overflow: auto;
   border-left-style: solid;
@@ -245,7 +300,6 @@ input[type=submit], button {
   color: black;
   height: 40px;
   padding: 1em 0em;
-  position:absolute;
   bottom:0;
   width: 100%;
 }
