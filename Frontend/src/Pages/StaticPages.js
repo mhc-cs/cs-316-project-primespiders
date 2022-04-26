@@ -10,9 +10,9 @@ export const MissionStatement = (props) => {
 
 export const OurModel = (props) => {
     return (
-        <div>
-            <h3>This is our model!</h3>
-        </div>
+    <div>
+        <h3>This is our model!</h3>
+    </div>
     );
 }
 
