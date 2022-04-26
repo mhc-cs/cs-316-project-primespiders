@@ -16,14 +16,12 @@ const NavBar = (props) =>{
     return (
         <>
         <header className="App-Header">
-
-            <h1 className="App-title">Recovery Ventures</h1>
             <div class = "navbar">
                 <Link to={"/"}><img className = "navbar-item" src = {flower}/></Link>
                 <DropDown name = "Your Account" items = {account} links = {accountLinks}/>
-                <DropDown name = "About" items = {about} links = {aboutLinks}/>
-                <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
                 <DropDown name = "Get involved" items = {getInvolved} links = {involvedLinks}/>
+                <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
+                <DropDown name = "About" items = {about} links = {aboutLinks}/>
             </div>
         </header>
     <Outlet />
@@ -42,7 +40,9 @@ const DropDown = (props) =>{
             <div className = "dropdown-content">
                 {
                 props.items.map((item, i) => {
-                return (<Link key={i} to={props.links[i]}>{item}</Link>)
+                return (
+                        <Link key={i} to={props.links[i]}>{item}</Link>
+                    )
                 })
                 }
             </div>
