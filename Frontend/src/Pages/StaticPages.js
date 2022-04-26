@@ -11,7 +11,12 @@ export const MissionStatement = (props) => {
 export const OurModel = (props) => {
     return (
         <div className = "basicPage">
-            <h3>This is our model!</h3>
+            <div className = "d1">
+                <h1>About Our Collaborative Governance Model</h1>
+            </div>
+            <div className = "d2">
+                <p>Recovery Ventures exists to serve YOU, so it only makes sense that this mission extends to the boardroom.  All staff and clients hold equal governing power, and all are responsible for making key decisions on issues such as hiring, fiscal management, and program planning.  We value transparency and accessibility in this process, and strive to provide opportunities for clients to assume leadership roles.</p>
+            </div>
         </div>
     );
 }
