@@ -50,20 +50,22 @@ const SetupAccount = (props) => {
 
     const PinEnter = (props) =>{
         const handleSubmit = ()=>{
+            //get the pin from the input field
             var inputNum = document.getElementById("pin").value;
+            //GET request to find a pin with this number
             fetch(`http://localhost:9000/pins/${inputNum}`)
                 .then(data => {
                     return data.json();
                 })
                 .then(pin => {
+                    //store the account type associated with the pin
                     if(pin.account) {
                         setAccount(pin.account);
                         setPage(1)
                     }
+                    //or if there is no associated account type, alert the user to error
                     else setError("Invalid pin. Please check for errors.")
                 });
-            //setError("oh no it didn't work!")
-            //setPage(1)
         }
         return(
             <div>
@@ -83,10 +85,12 @@ const SetupAccount = (props) => {
     const EnterInfo = () =>{
         const handleSubmit = ()=>{
             //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+            //get the input from the text boxes
             var inputEmail = document.getElementById("email1").value
             var inputPassword = document.getElementById("password").value
             var inputFName = document.getElementById("fname").value
             var inputLName = document.getElementById("lname").value
+            //create a user to add
             const newUser = {
                 email: inputEmail,
                 password: inputPassword,
@@ -95,6 +99,7 @@ const SetupAccount = (props) => {
                 accountType: account,
                 bioIndex: 0
             };
+            //set up for the post request
             const options = {
                 method: 'POST',
                 body: JSON.stringify(newUser),
@@ -102,14 +107,17 @@ const SetupAccount = (props) => {
                     "Content-Type": "application/json"
                 })
             };
+            //POST request to add new user to db
             fetch(`http://localhost:9000/users`, options)
                 .then(data => {
                     console.log(data)
                     return data.json();
                 })
                 .then(update => {
+                    //if the account type is client, set up is done
                     console.log(update);
                     setUser(inputEmail);
+                    //if account type is mentor, redirect to the bio entry page
                     if(account == "mentor") {
                         setPage(2)
                     }
@@ -142,6 +150,7 @@ const SetupAccount = (props) => {
     }
 
     const addBio = (newBio) =>{
+        //set up a post request to add the new bio
         console.log(newBio)
         const options = {
             method: 'POST',
@@ -150,12 +159,14 @@ const SetupAccount = (props) => {
                 "Content-Type": "application/json"
             })
         };
+        //POST request adds bio to db
         fetch(`http://localhost:9000/bios`, options)
             .then(data => {
                 return data.json();
             })
             .then(bio => {
                 if(bio.id) {
+                    //update this users bioIndex attribute to match the new bio
                     const updateUser = {
                         bioIndex: bio.id
                     };

@@ -21,8 +21,10 @@ const Login = (props) =>{
 
     const handleSubmit = ()=> {
         //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+        //get the input from text boxes
         var inputEmail = document.getElementById("email").value
         var inputPassword = document.getElementById("password").value
+        //set up for HTTP request
         const checkUser = {
             email: inputEmail,
             password: inputPassword
@@ -34,11 +36,13 @@ const Login = (props) =>{
                 "Content-Type": "application/json"
             })
         };
+        //PUT request to authenticate username and password
         fetch(`http://localhost:9000/users/authenticate/`, options)
             .then(data => {
                 return data.json();
             })
             .then(auth => {
+                //if the login was a success or failure redirect accordingly
                 if(auth){
                     setError("Login successful!")
                 }
