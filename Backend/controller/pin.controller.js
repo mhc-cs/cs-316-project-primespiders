@@ -1,4 +1,9 @@
-//https://www.bezkoder.com/node-js-express-sequelize-mysql/
+/*
+Functions to allow the site to interact with the pins data table (create, read, update and delete pins)
+author: M Klein
+reference: https://www.bezkoder.com/react-node-express-mysql/
+*/
+
 var db = require("../models/index");
 var Pin = db.pins;
 var Op = db.Sequelize.Op;
@@ -37,7 +42,7 @@ exports.findAll = (req, res, next) => {
         })
 };
 
-// Get one pin from the database.
+// Get one pin from the database by num.
 exports.findOne = (req, res) => {
     var num = req.params.num;
     Pin.findByPk(num)
@@ -57,6 +62,7 @@ exports.findOne = (req, res) => {
       });
   };
 
+  // Update one pin from the database by num.
   exports.update = (req, res) => {
     var num = req.params.num;
     Pin.update(req.body, {
@@ -80,6 +86,7 @@ exports.findOne = (req, res) => {
       });
   };
 
+  // Delete one pin from the database by num.
   exports.delete = (req, res) => {
     var num = req.params.num;
     Pin.destroy({
