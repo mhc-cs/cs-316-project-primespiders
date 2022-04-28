@@ -37,10 +37,11 @@ const MentorSearch = ()=>{
 
     //getBioList fetches bios based on inputs
     function getBioList(expertise){
-        
-        fetch("http://localhost:9000/bios")
-        .then(res=> res.json()) //convert response to JSOn
-        .then(data => {
+        //return bios with the correct expertise
+        if (expertise === "All"){
+            fetch("http://localhost:9000/bios/")
+            .then(res=> res.json()) //convert response to JSOn
+            .then(data => {
             let tempBioList = []
             console.log(data)
             for (let i= 0; i<data.length; i++){
@@ -57,6 +58,28 @@ const MentorSearch = ()=>{
             setBiolist(tempBioList);
         })
         .catch(e => console.log(e));
+        }
+        else {
+            fetch("http://localhost:9000/bios/filter/"+expertise)
+            .then(res=> res.json()) //convert response to JSOn
+            .then(data => {
+            let tempBioList = []
+            console.log(data)
+            for (let i= 0; i<data.length; i++){
+                let bio = data[i]
+                //make a bio in the correct format using makeBioObject
+                tempBioList.push(makeBioObject(  
+                    bio.image,
+                    bio.name,
+                    bio.bio,
+                    [bio.expertise, bio.location]
+                ))
+            }
+            console.log(tempBioList);
+            setBiolist(tempBioList);
+        })
+        .catch(e => console.log(e));
+        }
     }
 
     const [taglist, setTaglist] = useState(["Mentor"])
@@ -94,10 +117,11 @@ const MentorSearch = ()=>{
                 <form onSubmit = {onSubmit}>
                     {/* <input type="text" id="areaTag" name="areaTag"></input> */}
                     <select name="expertise" id="expertise">
+                        <option value="All">All</option>
                         <option value="Arts">Arts</option>
                         <option value="Business">Business</option>
                         <option value="Education">Education</option>
-                        <option value="Medical">Media</option>
+                        <option value="Media">Media</option>
                         <option value="Service-Industry">Service Industry</option>
                         <option value="Technology">Technology</option>
                         <option value="Other">Other</option>
