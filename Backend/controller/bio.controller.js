@@ -24,6 +24,7 @@ exports.create = (req, res, next) => {
       contact: req.body.contact,
       image: req.body.image
     };
+    //add the bio to the db
     Bio.create(bioToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
@@ -48,6 +49,7 @@ exports.findAll = (req, res, next) => {
 
 // Get all bios from the database, filtering by expertise
 exports.findFiltered = (req, res, next) => {
+  //filter passed in as a param
   var expertise = req.params.expertise;
   Bio.findAll({where: {expertise: expertise}})
       .then(data => {res.send(data)})

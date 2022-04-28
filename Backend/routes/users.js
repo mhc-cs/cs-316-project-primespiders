@@ -2,9 +2,13 @@
 
 var express = require("express");
 var users = require("../controller/user.controller");
+/*
+Express routes for finding all users, finding a specfici user, updating a user, adding a user, deleting a user.
+reference: //https://www.bezkoder.com/node-js-express-sequelize-mysql/
+*/
+
 var router = express.Router();
 
-//https://www.bezkoder.com/node-js-express-sequelize-mysql/
 // Add a new user to the DB
 router.post("/", users.create);
 // Get all users

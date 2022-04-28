@@ -20,6 +20,7 @@ exports.create = (req, res, next) => {
       account: req.body.account,
       num: req.body.num
     };
+    //add pin to db
     Pin.create(pinToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
