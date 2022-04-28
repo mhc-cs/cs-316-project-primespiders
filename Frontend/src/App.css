@@ -72,7 +72,6 @@ input[type=submit], button {
 }
 
 
-
 .dropdown .dropbtn {
   font-size: 16px;
   border: none;
@@ -271,7 +270,7 @@ input[type=submit], button {
 
 .mentor-box .textbox{
   background-color:rgb(200, 244, 255);
-  height: auto;
+  height: 260px;
   text-align: center;
   overflow: auto;
   border-left-style: solid;

@@ -25,7 +25,7 @@ const NavBar = (props) =>{
             </div>
         </header>
     <Outlet />
-          {/* <Footer></Footer> */}
+          <Footer></Footer>
     </>
     );
 }

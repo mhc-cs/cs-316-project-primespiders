@@ -18,7 +18,7 @@ const MentorSearch = ()=>{
     //Once we have the backend setup, we can adjust makeBioList to fetch
     //the correct list of bios given the search criteria
     useEffect(() => {
-        makeBioList()
+        getBioList("All")
     }, []);
 
     //makeBioList is for testing. Fills BioList with fake local hardcoded cat profiles. 
@@ -35,7 +35,7 @@ const MentorSearch = ()=>{
         setBiolist(tempBioList)
     }
 
-    //getBioList fetches bios based on inputs
+    //getBioList fetches bios from db based on inputs
     function getBioList(expertise){
         //return bios with the correct expertise
         if (expertise === "All"){
@@ -44,15 +44,16 @@ const MentorSearch = ()=>{
             .then(data => {
             let tempBioList = []
             console.log(data)
-            for (let i= 0; i<data.length; i++){
+            for (let i= 0; i<data.length; i++){ //iterate through all bios
                 let bio = data[i]
                 //make a bio in the correct format using makeBioObject
-                tempBioList.push(makeBioObject(  
+                tempBioList.push(
+                    makeBioObject(  
                     bio.image,
                     bio.name,
                     bio.bio,
-                    [bio.expertise, bio.location]
-                ))
+                    [bio.expertise, bio.location])
+                )
             }
             console.log(tempBioList);
             setBiolist(tempBioList);
@@ -121,7 +122,7 @@ const MentorSearch = ()=>{
                         <option value="Arts">Arts</option>
                         <option value="Business">Business</option>
                         <option value="Education">Education</option>
-                        <option value="Media">Media</option>
+                        <option value="Medical">Medical</option>
                         <option value="Service-Industry">Service Industry</option>
                         <option value="Technology">Technology</option>
                         <option value="Other">Other</option>
