@@ -23,6 +23,7 @@ exports.create = (req, res, next) => {
       accountType: req.body.accountType,
       bioIndex: req.body.bioIndex
     };
+    //add user to db
     User.create(userToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
@@ -118,11 +119,15 @@ exports.findOne = (req, res) => {
 
 // // Determine if the user is authentic by comparing password
 exports.authenticate = (req, res, next) => {
+  //user and password from request body
   var email = req.body.email;
   var password = req.body.password;
+  //find the account with this email
   User.findByPk(email)
     .then(async (response) => {
+      //if there is an account with this email
       if (response) {
+        //compare passwords and return the result
         if(response.dataValues.password && await response.validPassword(password, response.dataValues.password)){
           res.send(true);
         }
@@ -131,9 +136,7 @@ exports.authenticate = (req, res, next) => {
         }
       } 
       else {
-        res.status(404).send({
-          message: `Cannot find User with email=${email}.`
-        });
+        res.send(false);
       }
     })
     .catch(err => {
