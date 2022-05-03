@@ -5,7 +5,7 @@ author: M Klein
 module.exports = (sequelize, Sequelize) => {
     const Bio = sequelize.define("bio", {
       bio: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(2000)
       },
       name: {
         type: Sequelize.STRING
@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(2000)
       }
     });
     return Bio;
