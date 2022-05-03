@@ -1,2 +1,3 @@
 .DS_Store
 Backend/api/node_modules
+Backend/.env

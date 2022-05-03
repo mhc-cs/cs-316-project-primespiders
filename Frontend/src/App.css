@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100%
 }
 
 .App-header {
@@ -13,15 +14,38 @@
   color: white;
 }
 
-
 .App-link {
   color: #61dafb;
+
+}
+
+input[type=text], select {
+  padding: 8px 16px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit], button {
+  background-color:rgb(33, 150, 247);
+  color: white;
+  padding: 8px 20px;
+  margin: 2px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .basicPage{
   text-align: left;
+  min-height: 76vh;
+
 }
 
+
+/* NAVBAR STYLING  */
 .navbar{
   overflow: hidden;
   background-color: rgb(163, 214, 255);
@@ -30,9 +54,10 @@
   padding: 0em 0em;
   text-align: left;
 }
-/* The dropdown container */
+
 .navbar .navbar-item {
   overflow: hidden;
+  display: inline-block;
 }
 .navbar .dropdown {
   float: right;
@@ -41,13 +66,12 @@
 
 .navbar img{
   float: left;
-  width: 4em;
-  height: 4em;
-  padding: .5em 4% .5em 4%;
+  width: 66px;
+  height: 66px;
+  padding: 1em 4%;
 }
 
 
-/* Dropdown button */
 .dropdown .dropbtn {
   font-size: 16px;
   border: none;
@@ -61,8 +85,8 @@
 
 .dropdown .dropdown-content a{
   display:block;
-
 }
+
 .dropdown .dropbtn:hover {
   text-decoration: underline;
 }
@@ -72,11 +96,14 @@
   background-color: rgb(33, 150, 247);
   position: absolute;
   z-index: 1;
-  padding: .5rem .5rem;
+  padding: .5rem .75rem;
+  min-width: 100px;
 }
+
 .dropdown .dropdown-content a{
   color: white;
   text-decoration: none;
+  padding: .5rem 0rem;
 }
 .dropdown .dropdown-content a:hover{
   color: white;
@@ -87,21 +114,70 @@
 }
 
 /** Landing page CSS**/
-.banner {
-  width: 100%;
-}
-.banner img {
-  object-fit: scale-down;
-  width: 100%;
-}
 .landingPage {
-  text-align: left;
-  padding: 1rem;
+  text-align: center;
+}
+
+.landingPage h4{
+  margin: 0rem;
+  color: rgb(94, 94, 94);
+}
+.landingPage .banner {
+  width: 100%;
+  background-color: rgb(255, 246, 220);
+  max-height: 1000px;
+}
+.landingPage .banner img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 500px;
+  margin: 0rem;
+}
+
+.landingPage .d1 {
+  padding: 3rem;
+  background-color: rgb(255, 246, 220);
+  font-size: xx-large;
+}
+.landingPage .d1 {
+  padding: 1rem 0 4rem 0;
+  background-color: rgb(255, 246, 220);
+}
+.landingPage .d2 {
+  margin: 5% 0%;
+  display: flex;
+  justify-content: space-evenly;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+}
+
+.landingPage .d2 h1{
+  flex-basis: 30%;
+  color: rgb(18, 80, 131);
+  font-size: xxx-large;
+}
+
+.landingPage .d2 p{
+  flex-basis: 40%;
+  color: rgb(18, 80, 131);
+  font-size: x-large;
+}
+
+.landingPage .d2 img{
+  flex-basis: 20%;
+}
+
+.landingPage .d3 {
+  padding: 3rem;
+  background-color: rgb(255, 246, 220);
+  font-size: xx-large;
+  font-style: italic;
 }
 
 /** Account setup style**/
 .basicPage{
   padding: 0% 5%;
+
 }
 
 .basicPage h3{
@@ -110,7 +186,7 @@
 
 .basicPage .grid{
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
 }
 
 .basicPage .grid .content-box1,.content-box2{
@@ -118,16 +194,18 @@
   padding: 3% 5%;
   margin: 0% 3%;
 }
+
 .basicPage .grid .content-box1{
-  background-color:rgb(209, 209, 190);
-  border: medium solid rgb(209, 209, 190);
+  background-color:rgb(255, 233, 168);
+  border: medium solid rgb(255, 233, 168);
   max-height: fit-content;
   height: fit-content;
   position: relative;
 }
+
 .basicPage .grid .content-box2{
-  background-color:beige;
-  border: medium solid rgb(209, 209, 190);
+  background-color: rgb(255, 246, 220);
+  border: medium solid rgb(255, 233, 168);
 }
 
 
@@ -136,18 +214,20 @@
 .mentor-page {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  /* background-color: rgb(255, 255, 255); */
+  background-color:  rgb(255, 246, 220);
 }
 
 .mentor-page .sidebar {
   padding: 1rem;
-  background-color: beige;
+  background-color:rgb(200, 244, 255);
   text-align: left;
 }
 
 .mentor-page .sidebar .sidebar-content {
   position: sticky;
   z-index: 2;
-  top: 20px;
+  top: 25px;
 }
 
 .mentor-page .sidebar .tagbox{
@@ -158,7 +238,7 @@
   min-height: 2rem;
 }
 
-.mentor-page .sidebar .tagbox p{
+.mentor-page .sidebar .tagbox p, .tags{
   background-color: #F0FFFF;
   margin: .25rem;
   display: inline-block;
@@ -167,7 +247,8 @@
   border-radius: 10px;
   border-width: 2px;
   padding: .2rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
+  font-size: smaller;
 }
 
 .mentor-page .sidebar .tagbox p:hover{
@@ -181,28 +262,55 @@
 }
 
 .mentor-box {
-  background-color: rgb(155, 227, 255);
+  background-color: rgb(246, 252, 255);
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 2fr 3fr;
   padding: 1rem;
   border-radius: 10px;
   gap: 1rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
 }
+
 .mentor-box .textbox{
-  background-color:beige;
+  background-color:rgb(200, 244, 255);
+  height: 260px;
   text-align: center;
+  overflow: auto;
   border-left-style: solid;
   padding: .5rem;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 .mentor-box img{
+  object-fit: cover;
   width: 5rem;
   height: 5rem;
   border: solid;
+  border-color: rgb(43, 43, 43);
+  border-width: 2px; 
 }
-/* 
+/*
 .mentor-page .mentor-box .bio-modal {
   position: 'absolute';
   width: 400;
   background-color: 'white';
 } */
+
+.footer {
+  overflow: hidden;
+  background-color: rgb(163, 214, 255);
+  color: black;
+  height: 40px;
+  padding: 1em 0em;
+  bottom:0;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 33%;
+  padding: 1em;
+}

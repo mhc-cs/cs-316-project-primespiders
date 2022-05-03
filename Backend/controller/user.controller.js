@@ -1,10 +1,14 @@
-//https://www.bezkoder.com/node-js-express-sequelize-mysql/
+/*
+Functions to allow the site to interact with the pins data table (create, read, update and delete pins)
+author: M Klein
+reference: https://www.bezkoder.com/react-node-express-mysql/
+*/
 var db = require("../models/index");
 var User = db.users;
 var Op = db.Sequelize.Op;
 // Add a new user to the database.
 exports.create = (req, res, next) => {
-    if (!req.body.num) {
+    if (!req.body.email) {
         res.status(400).send({
           message: "Must include parameters!"
         });
@@ -12,8 +16,14 @@ exports.create = (req, res, next) => {
     }
     // create a user to add
     var userToAdd = {
-        num: req.body.num,
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      accountType: req.body.accountType,
+      bioIndex: req.body.bioIndex
     };
+    //add user to db
     User.create(userToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
@@ -36,30 +46,31 @@ exports.findAll = (req, res, next) => {
         })
 };
 
-// Get one user from the database.
+// Get one user from the database by email
 exports.findOne = (req, res) => {
-    var id = req.params.id;
-    User.findByPk(id)
+    var email = req.params.email;
+    User.findByPk(email)
       .then(data => {
         if (data) {
           res.send(data);
         } else {
           res.status(404).send({
-            message: `Cannot find User with id=${id}.`
+            message: `Cannot find User with email=${email}.`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving User with id=" + id
+          message: "Error retrieving User with email=" + email
         });
       });
   };
 
+  //Update one user from the database by email
   exports.update = (req, res) => {
-    var id = req.params.id;
+    var email = req.params.email;
     User.update(req.body, {
-      where: { id: id }
+      where: { email: email }
     })
       .then(num => {
         if (num == 1) {
@@ -68,21 +79,22 @@ exports.findOne = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
+            message: `Cannot update User with email=${email}. Maybe User was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating User with id=" + id
+          message: "Error updating User with email=" + email
         });
       });
   };
 
+  //Delete one user from the database by email
   exports.delete = (req, res) => {
-    const id = req.params.id;
+    const email = req.params.email;
     User.destroy({
-      where: { id: id }
+      where: { email: email }
     })
       .then(num => {
         if (num == 1) {
@@ -91,15 +103,45 @@ exports.findOne = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot delete User with id=${id}. Maybe User was not found!`
+            message: `Cannot delete User with email=${email}. Maybe User was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete User with id=" + id
+          message: "Could not delete User with email=" + email
         });
       });
   };
 
 
+
+
+// // Determine if the user is authentic by comparing password
+exports.authenticate = (req, res, next) => {
+  //user and password from request body
+  var email = req.body.email;
+  var password = req.body.password;
+  //find the account with this email
+  User.findByPk(email)
+    .then(async (response) => {
+      //if there is an account with this email
+      if (response) {
+        //compare passwords and return the result
+        if(response.dataValues.password && await response.validPassword(password, response.dataValues.password)){
+          res.send(true);
+        }
+        else{
+          res.send(false);
+        }
+      } 
+      else {
+        res.send(false);
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving User with email=" + email
+      });
+    });
+};

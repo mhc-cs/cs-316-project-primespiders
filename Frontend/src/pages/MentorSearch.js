@@ -1,35 +1,100 @@
 import React, { useState, useEffect } from "react";
+import {baseServerURL} from "../constants.js"
 // import Modal from '@mui/material/Modal';
 
 const MentorSearch = ()=>{
     const [biolist, setBiolist] = useState([])
-    const makeBioObject = (image, name, text) => {
-        return {image: image, name: name, text: text}
+    const makeBioObject = (image, name, text, expertise) => {
+        return {
+            image: image, 
+            name: name, 
+            text: text,
+            expertise: expertise
+
+        }
     }
 
     //This useEffect will run makeBioList when the page first renders. 
     //Once we have the backend setup, we can adjust makeBioList to fetch
     //the correct list of bios given the search criteria
     useEffect(() => {
-        makeBioList();
-      }, []);
-    
-    const makeBioList = () => {
+        getBioList("All")
+    }, []);
+
+    //makeBioList is for testing. Fills BioList with fake local hardcoded cat profiles. 
+    const makeBioList = (jsonObject) => {
         let tempBioList = []
         for (let i = 0; i < 20; i++){
             tempBioList.push(makeBioObject( 
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
-                "Catalyn the kitty",
-                "Hello! my name is cat and I am here to party! I like to scratch things and play with yarn"
+                "https://philpeople.org/assets/storage/hn/53/variants/hn53pGbwWXTFg4zUUj8TQMuy/315ff44855809d54a726e8c586da6618910c4812e16ad3eacc2580fe3adba825",
+                "John Smith",
+                "Hello! my name is John and I am passionate about entrepreneurship. I would love to chat and talk about how you can get started in the industry!",
+                ["Business"]
             ))
         }
         setBiolist(tempBioList)
     }
 
+    //getBioList fetches bios from db based on inputs
+    function getBioList(expertise){
+        //return bios with the correct expertise
+        if (expertise === "All"){
+            fetch("http://localhost:9000/bios/")
+            .then(res=> res.json()) //convert response to JSOn
+            .then(data => {
+            let tempBioList = []
+            console.log(data)
+            for (let i= 0; i<data.length; i++){ //iterate through all bios
+                let bio = data[i]
+                //make a bio in the correct format using makeBioObject
+                tempBioList.push(
+                    makeBioObject(  
+                    bio.image,
+                    bio.name,
+                    bio.bio,
+                    [bio.expertise, bio.location])
+                )
+            }
+            console.log(tempBioList);
+            setBiolist(tempBioList);
+        })
+        .catch(e => console.log(e));
+        }
+        else {
+            fetch("http://localhost:9000/bios/filter/"+expertise)
+            .then(res=> res.json()) //convert response to JSOn
+            .then(data => {
+            let tempBioList = []
+            console.log(data)
+            for (let i= 0; i<data.length; i++){
+                let bio = data[i]
+                //make a bio in the correct format using makeBioObject
+                tempBioList.push(makeBioObject(  
+                    bio.image,
+                    bio.name,
+                    bio.bio,
+                    [bio.expertise, bio.location]
+                ))
+            }
+            console.log(tempBioList);
+            setBiolist(tempBioList);
+        })
+        .catch(e => console.log(e));
+        }
+    }
+
     const [taglist, setTaglist] = useState(["Mentor"])
-    const onAddTagSubmit = (event) => {
+    const onAddTagClick = (event) => {
         var areaTag = document.getElementById("areaTag").value;
         setTaglist([...taglist, areaTag])
+        event.preventDefault();
+    }
+
+    //onSubmit is called when user hits the search button on the 
+    //search sidebar
+    const onSubmit = (event) => {
+        var specialty = document.getElementById("expertise").value;
+        getBioList(specialty);
         event.preventDefault();
     }
 
@@ -39,6 +104,7 @@ const MentorSearch = ()=>{
         setTaglist(tempTag)
     }
 
+    //WHERE WE RENDER MENTOR PAGE 
     return(
     <div className  = "mentor-page">
         <div className = "sidebar">
@@ -47,34 +113,47 @@ const MentorSearch = ()=>{
                 Search our Mentors!
                 </h1>
                 <p>
-                Enter a tag to narrow down the mentors.
+                Enter Select an area of expertise to narrow down the mentors...
                 </p>
-                <form onSubmit = {onAddTagSubmit}>
-                    <input type="text" id="areaTag" name="areaTag"></input>
-                    <input type="submit" value="Add Tag"></input>
+                <form onSubmit = {onSubmit}>
+                    {/* <input type="text" id="areaTag" name="areaTag"></input> */}
+                    <select name="expertise" id="expertise">
+                        <option value="All">All</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Business">Business</option>
+                        <option value="Education">Education</option>
+                        <option value="Medical">Medical</option>
+                        <option value="Service-Industry">Service Industry</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    {/* <button onClick = {onAddTagClick}>Add</button>
+                    <div className = "tagbox">
+                        {
+                            taglist.map((item, i) => {
+                            return (<p className = "tags" onClick = {() => removeTag(i)} key = {i}>{item}</p>)
+                            })
+                        }
+                    </div> */}
+                    <input type= "submit" value = "Search"></input>
                 </form>
-                <div className = "tagbox">
-                    {
-                        taglist.map((item, i) => {
-                        return (<p onClick = {() => removeTag(i)} key = {i}>{item}</p>)
-                        })
-                    }
-                </div>
             </div>
         </div>
-
-        <div className = "mentor-grid">
-            {
-            biolist.map((item,i) => {
-                return(            
-                <MentorBioBox 
-                    bio = {item}
-                    key = {i}
-                    index = {i}
-                    />
-                )
-            })
+        <div className = "search-results">
+            <h1>Search Results:</h1>
+            <div className = "mentor-grid">
+                {
+                biolist.map((item,i) => {
+                    return(            
+                    <MentorBioBox 
+                        bio = {item}
+                        key = {i}
+                        index = {i}
+                        />
+                    )
+                })
             }
+            </div>
         </div>
     </div>
     )
@@ -88,12 +167,17 @@ const MentorBioBox = (props)=> {
     // const handleClose = () => setOpen(false);
 
 
+
     return(
         <div className= "mentor-box" >
             <div>
                 <img src= {props.bio.image} alt = {props.bio.name} />
                 <h4>{props.bio.name}</h4>
-                <p>Some basic info about cat</p>
+                {
+                    props.bio.expertise.map((item, i) => {
+                    return (<p className = "tags" key = {i}>{item}</p>)
+                    })
+                }
             </div>
             <div className = "textbox">
                 <p id = {props.id}>{props.bio.text}</p>

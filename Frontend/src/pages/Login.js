@@ -20,8 +20,36 @@ const Login = (props) =>{
     }
 
     const handleSubmit = ()=> {
-        var inputName = document.getElementById("fname").value;
-        setError('Trying to log in ' + inputName);
+        //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+        //get the input from text boxes
+        var inputEmail = document.getElementById("email").value
+        var inputPassword = document.getElementById("password").value
+        //set up for HTTP request
+        const checkUser = {
+            email: inputEmail,
+            password: inputPassword
+        };
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(checkUser),
+            headers: new Headers({
+                "Content-Type": "application/json"
+            })
+        };
+        //PUT request to authenticate username and password
+        fetch(`http://localhost:9000/users/authenticate/`, options)
+            .then(data => {
+                return data.json();
+            })
+            .then(auth => {
+                //if the login was a success or failure redirect accordingly
+                if(auth){
+                    setError("Login successful!")
+                }
+                else{
+                    setError("Incorrect username or password.")
+                }
+            });
     }
 
     return(
@@ -31,8 +59,8 @@ const Login = (props) =>{
                 <div className = "content-box2">
                     <p>Enter your information below</p>
                         <form>
-                            <label for="fname">First name: </label>
-                            <input type="text" id="fname" name="fname"></input>
+                            <label for="email">Email: </label>
+                            <input type="text" id="email" name="email"></input>
                             <br></br><br></br>
                             <label for="password">Password: </label>
                             <input type="text" id="password" name="password"></input>

@@ -1,6 +1,7 @@
 import React from "react";
 import flower from "../Flower-black.png"
 import {Outlet, Link} from "react-router-dom";
+import Footer from "./Footer"
 //import Checkbox from '@mui/material/Checkbox';
 
 const NavBar = (props) =>{
@@ -10,26 +11,21 @@ const NavBar = (props) =>{
     const clientLinks = ["/CommunityResources", "/ConnectWithMentors"];
     const getInvolved = ["Donate", "Volunteer", "Contact"];
     const involvedLinks = ["/Donate", "/Volunteer", "/Contact"];
+    const account = ["Login", "Create Account"];
+    const accountLinks = ["/Login", "/SetupAccount"];
     return (
         <>
         <header className="App-Header">
-
-            <h1 className="App-title">Recovery Ventures</h1>
-          {/* <button onClick = {() => {this.callAPI()}}>Say Hello!</button>
-          <h2 className="App-title">{this.state.apiResponse}</h2> */}
-           {/* <Checkbox className = "check"
-            checked={this.state.loggedIn}
-            onChange={this.handleLoginChange}
-            inputProps={{ 'aria-label': 'controlled' }}
-          /> */}
             <div class = "navbar">
                 <Link to={"/"}><img className = "navbar-item" src = {flower}/></Link>
-                <DropDown name = "About" items = {about} links = {aboutLinks}/>
-                <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
+                <DropDown name = "Your Account" items = {account} links = {accountLinks}/>
                 <DropDown name = "Get involved" items = {getInvolved} links = {involvedLinks}/>
+                <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
+                <DropDown name = "About" items = {about} links = {aboutLinks}/>
             </div>
         </header>
     <Outlet />
+          <Footer></Footer>
     </>
     );
 }
@@ -44,7 +40,9 @@ const DropDown = (props) =>{
             <div className = "dropdown-content">
                 {
                 props.items.map((item, i) => {
-                return (<Link key={i} to={props.links[i]}>{item}</Link>)
+                return (
+                        <Link key={i} to={props.links[i]}>{item}</Link>
+                    )
                 })
                 }
             </div>
