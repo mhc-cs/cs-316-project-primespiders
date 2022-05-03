@@ -125,10 +125,13 @@ input[type=submit], button {
 .landingPage .banner {
   width: 100%;
   background-color: rgb(255, 246, 220);
+  max-height: 1000px;
 }
 .landingPage .banner img {
-  object-fit: scale-down;
+  object-fit: cover;
   width: 100%;
+  max-height: 500px;
+  margin: 0rem;
 }
 
 .landingPage .d1 {
@@ -183,7 +186,7 @@ input[type=submit], button {
 
 .basicPage .grid{
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
 }
 
 .basicPage .grid .content-box1,.content-box2{

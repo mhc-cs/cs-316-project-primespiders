@@ -5,13 +5,12 @@ const LandingPage = (props) => {
     return(
         <div className = "landingPage">
             <div className = "banner">
-                {/* <img src = "https://www.verywellmind.com/thmb/zdRkgcbRRQNDvHTaptaRuCS2xos=/1000x1000/smart/filters:no_upscale()/going-back-to-the-office-after-COVID-19_nologo-d4040d1ceb584adc840ba412d2d6056c.png"></img> */}
-                <img src = "https://www.rimage.com/apac/wp-content/uploads/sites/4/2016/02/Two-Business-People-Talking-Banner-1.png"></img>
-                <div className = "cover"></div>
+                <img src = "https://www.verywellmind.com/thmb/zdRkgcbRRQNDvHTaptaRuCS2xos=/1000x1000/smart/filters:no_upscale()/going-back-to-the-office-after-COVID-19_nologo-d4040d1ceb584adc840ba412d2d6056c.png"></img>
+                {/* <img src = "https://www.rimage.com/apac/wp-content/uploads/sites/4/2016/02/Two-Business-People-Talking-Banner-1.png"></img> */}
             </div>
             <div className = "d1">
                 <h1>Welcome to Recovery Ventures</h1>
-                <h4>A place for you to dive back into what you love</h4>
+                <h4>Ideas. Empowerment. Know-how.</h4>
             </div>
             <div className = "d2">
                 <img src = "https://static.vecteezy.com/system/resources/thumbnails/004/828/252/small_2x/4-people-join-forces-the-concept-of-hand-to-hand-to-create-unity-group-of-people-hands-teamwork-business-group-by-reaching-out-in-a-circle-the-power-of-work-is-friendship-with-business-colleagues-photo.jpg"></img>
