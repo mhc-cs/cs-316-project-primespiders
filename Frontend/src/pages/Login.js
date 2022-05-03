@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 //Login is a page to allow the user to login to their account
 //The user should enter a username and password
-
+ 
 const Login = (props) =>{
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
 
