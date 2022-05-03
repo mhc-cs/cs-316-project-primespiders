@@ -3,14 +3,14 @@
 import React, { Component } from "react";
 import './App.css';
 import{ Routes, Route} from "react-router-dom";
-import SetupAccount from './Pages/SetupAccount.js'
-import Login from './Pages/Login'
-import LandingPage from './Pages/LandingPage.js'
-import Layout from './Pages/Layout.js'
-import MentorSearch from './Pages/MentorSearch'
-import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, Contact, OurModel} from "./Pages/StaticPages";
+import SetupAccount from './OurPages/SetupAccount.js'
+import Login from './OurPages/Login'
+import LandingPage from './OurPages/LandingPage.js'
+import Layout from './OurPages/Layout.js'
+import MentorSearch from './OurPages/MentorSearch'
+import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, Contact, OurModel} from "./OurPages/StaticPages";
 //import ConnectWithMentors from "./Pages/ConnectWithMentors"; add this later
-import Footer from './Pages/Footer.js'
+import Footer from './OurPages/Footer.js'
 
 class App extends Component{
   constructor(props){
