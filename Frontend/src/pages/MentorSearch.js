@@ -18,7 +18,7 @@ const MentorSearch = ()=>{
     //Once we have the backend setup, we can adjust makeBioList to fetch
     //the correct list of bios given the search criteria
     useEffect(() => {
-        makeBioList()
+        getBioList("All");
     }, []);
 
     //makeBioList is for testing. Fills BioList with fake local hardcoded cat profiles. 

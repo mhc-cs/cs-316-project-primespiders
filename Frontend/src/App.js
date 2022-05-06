@@ -38,7 +38,7 @@ class App extends Component{
           <Route path="/MissionStatement" element={<MissionStatement />} />
           <Route path="/Staff" element={<Staff />} />
           <Route path="/ConnectWithMentors" element={<MentorSearch/>} />
-          *<Route path="/OurModel" element={<OurModel/>} />
+          <Route path="/OurModel" element={<OurModel/>} />
           <Route path="/Contact" element ={<Contact/>} />
           <Route path="/LogIn" element = {<Login/>} />
           <Route path="/SetUpAccount" element ={<SetupAccount/>} />
