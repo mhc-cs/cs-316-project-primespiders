@@ -1,4 +1,8 @@
-//https://www.bezkoder.com/node-js-express-sequelize-mysql/
+/*
+Functions to allow the site to interact with the pins data table (create, read, update and delete pins)
+author: M Klein
+reference: https://www.bezkoder.com/react-node-express-mysql/
+*/
 var db = require("../models/index");
 var User = db.users;
 var Op = db.Sequelize.Op;
@@ -19,6 +23,7 @@ exports.create = (req, res, next) => {
       accountType: req.body.accountType,
       bioIndex: req.body.bioIndex
     };
+    //add user to db
     User.create(userToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
@@ -41,7 +46,7 @@ exports.findAll = (req, res, next) => {
         })
 };
 
-// Get one user from the database.
+// Get one user from the database by email
 exports.findOne = (req, res) => {
     var email = req.params.email;
     User.findByPk(email)
@@ -61,6 +66,7 @@ exports.findOne = (req, res) => {
       });
   };
 
+  //Update one user from the database by email
   exports.update = (req, res) => {
     var email = req.params.email;
     User.update(req.body, {
@@ -84,6 +90,7 @@ exports.findOne = (req, res) => {
       });
   };
 
+  //Delete one user from the database by email
   exports.delete = (req, res) => {
     const email = req.params.email;
     User.destroy({
@@ -110,27 +117,31 @@ exports.findOne = (req, res) => {
 
 
 
-// Get if the user is authentic
-// exports.Authenticate = (req, res) => {
-//   var email = req.body.email;
-//   var password = req.body.password;
-//   User.findByPk(email)
-//     .then(data => {
-//       if (data) {
-//         if(data.password){
-//           console.log(data.password)
-//           if(data.password === password) res.send("authenticated");
-//         }
-//         console.log("testttt")
-//       } else {
-//         res.status(404).send({
-//           message: `Cannot find User with email=${email}.`
-//         });
-//       }
-//     })
-//     .catch(err => {
-//       res.status(500).send({
-//         message: "Error retrieving User with email=" + email
-//       });
-//     });
-// };
+// // Determine if the user is authentic by comparing password
+exports.authenticate = (req, res, next) => {
+  //user and password from request body
+  var email = req.body.email;
+  var password = req.body.password;
+  //find the account with this email
+  User.findByPk(email)
+    .then(async (response) => {
+      //if there is an account with this email
+      if (response) {
+        //compare passwords and return the result
+        if(response.dataValues.password && await response.validPassword(password, response.dataValues.password)){
+          res.send(true);
+        }
+        else{
+          res.send(false);
+        }
+      } 
+      else {
+        res.send(false);
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving User with email=" + email
+      });
+    });
+};

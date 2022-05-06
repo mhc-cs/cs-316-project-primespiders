@@ -1,10 +1,13 @@
-//https://www.bezkoder.com/node-js-express-sequelize-mysql/
+/*
+Express routes for finding all pins, finding a specific pin, updating a pin, adding a pin, deleting a pin.
+reference: //https://www.bezkoder.com/node-js-express-sequelize-mysql/
+*/
 
 var express = require("express");
 var pins = require("../controller/pin.controller");
 var router = express.Router();
 
-//https://www.bezkoder.com/node-js-express-sequelize-mysql/
+
 // Add a new pin to the DB
 router.post("/", pins.create);
 // Get all pins

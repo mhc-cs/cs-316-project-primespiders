@@ -47,9 +47,26 @@ export const Donate = (props) => {
 
 export const Volunteer = (props) => {
     return (
-        <div className = "basicPage">
-            <h3>Volunteer</h3>
+        <div className = "basicPage ">
+           <div >
+                <h1>Volunteer</h1>
+            </div>
+            <div className = "grid">
+                <div>
+                <p>We have many Volunteer opportunities for you!</p>
+                <ol>
+                    <li>Work with Clients</li>
+                    <li>Help us maintain our site</li>
+                    <li>Be a mentor</li>
+                    <li>Help us with outreach</li>
+                </ol>
+                </div>
+                <img src = "https://www.signupgenius.com/cms/images/business/volunteering-ideas-tips-business-article-600x400.jpg"></img>
+            </div>
+
+
         </div>
+
     );
 }
 

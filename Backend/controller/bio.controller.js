@@ -1,4 +1,9 @@
-//https://www.bezkoder.com/node-js-express-sequelize-mysql/
+/*
+Functions to allow the site to interact with the bios data table (create, read, update and delete bios)
+author: M Klein
+reference: https://www.bezkoder.com/react-node-express-mysql/
+*/
+
 var db = require("../models/index");
 var Bio = db.bios;
 var Op = db.Sequelize.Op;
@@ -19,6 +24,7 @@ exports.create = (req, res, next) => {
       contact: req.body.contact,
       image: req.body.image
     };
+    //add the bio to the db
     Bio.create(bioToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
@@ -41,8 +47,9 @@ exports.findAll = (req, res, next) => {
         })
 };
 
-// Get all bios from the database with specific expertise
+// Get all bios from the database, filtering by expertise
 exports.findFiltered = (req, res, next) => {
+  //filter passed in as a param
   var expertise = req.params.expertise;
   Bio.findAll({where: {expertise: expertise}})
       .then(data => {res.send(data)})
@@ -54,7 +61,7 @@ exports.findFiltered = (req, res, next) => {
       })
 };
 
-// Get one bio from the database.
+// Get one bio from the database by ID
 exports.findOne = (req, res) => {
     var id = req.params.id;
     Bio.findByPk(id)
@@ -74,6 +81,7 @@ exports.findOne = (req, res) => {
       });
   };
 
+  // Update one bio from the database by ID
   exports.update = (req, res) => {
     var id = req.params.id;
     Bio.update(req.body, {
@@ -97,6 +105,7 @@ exports.findOne = (req, res) => {
       });
   };
 
+  // Delete one bio from the database by ID
   exports.delete = (req, res) => {
     var id = req.params.id;
     Bio.destroy({
