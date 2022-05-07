@@ -23,7 +23,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+//connecting 
+//https://create-react-app.dev/docs/deployment/
+app.use(express.static(path.join(__dirname, '..', 'Frontend', 'build')));
+console.log(path.join(__dirname, '..', 'Frontend', 'build'))
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
