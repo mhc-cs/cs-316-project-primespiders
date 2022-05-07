@@ -54,7 +54,7 @@ const SetupAccount = (props) => {
             var inputNum = document.getElementById("pin").value;
             //GET request to find a pin with this number
             fetch(`${baseServerURL}/pins/${inputNum}`)
-                .then(data => {
+                .then(data => { 
                     return data.json();
                 })
                 .then(pin => {
