@@ -39,7 +39,7 @@ const MentorSearch = ()=>{
     function getBioList(expertise){
         //return bios with the correct expertise
         if (expertise === "All"){
-            fetch("http://localhost:9000/bios/")
+            fetch(`${baseServerURL}/bios/`)
             .then(res=> res.json()) //convert response to JSOn
             .then(data => {
             let tempBioList = []
@@ -61,7 +61,7 @@ const MentorSearch = ()=>{
         .catch(e => console.log(e));
         }
         else {
-            fetch("http://localhost:9000/bios/filter/"+expertise)
+            fetch(`${baseServerURL}/bios/filter/`+expertise)
             .then(res=> res.json()) //convert response to JSOn
             .then(data => {
             let tempBioList = []
