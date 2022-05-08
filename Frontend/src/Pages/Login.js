@@ -3,6 +3,7 @@ The Login page allows users to login by entering their username and password.
 reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
 */
 import React, { useState } from "react";
+import { baseServerURL } from "../constants";
 
 const Login = (props) =>{
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
@@ -40,7 +41,7 @@ const Login = (props) =>{
             })
         };
         //PUT request to authenticate username and password
-        fetch(`http://localhost:9000/users/authenticate/`, options)
+        fetch(`${baseServerURL}/users/authenticate/`, options)
             .then(data => {
                 return data.json();
             })

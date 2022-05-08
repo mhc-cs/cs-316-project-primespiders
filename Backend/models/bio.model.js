@@ -1,5 +1,5 @@
 /*
-Create the bios table in the database each bio stores bio, name, location, expertise, contact, and image 
+Create the bios table in the database each bio stores bio, name, location, expertise, contact, and image
 author: M Klein
 */
 module.exports = (sequelize, Sequelize) => {

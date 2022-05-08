@@ -5,6 +5,7 @@ reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
 */
 
 import React, { useState, useEffect } from "react";
+import {baseServerURL} from "../constants.js";
 
 const SetupAccount = (props) => {
 
@@ -19,7 +20,7 @@ const SetupAccount = (props) => {
     //     setupFillerBios();
     // }, []);
 
-    //controls which page elements are displayed 
+    //controls which page elements are displayed
     function getConditionalContent(page, setPage) {
         switch (page) {
         case 0:
@@ -60,7 +61,7 @@ const SetupAccount = (props) => {
             //get the pin from the input field
             var inputNum = document.getElementById("pin").value;
             //GET request to find a pin with this number
-            fetch(`http://localhost:9000/pins/${inputNum}`)
+            fetch(`${baseServerURL}/pins/${inputNum}`)
                 .then(data => {
                     return data.json();
                 })
@@ -100,7 +101,7 @@ const SetupAccount = (props) => {
             })
         };
         //POST request to add new user to db
-        fetch(`http://localhost:9000/users`, options)
+        fetch(`${baseServerURL}/users/`, options)
             .then(data => {
                 return data.json();
             })
@@ -138,7 +139,7 @@ const SetupAccount = (props) => {
             }
             else {
                 //make sure this email isn't already in use
-                fetch(`http://localhost:9000/users/${inputEmail}`)
+                fetch(`${baseServerURL}/users/${inputEmail}`)
                 .then(data => {
                     return data.json();
                 })
@@ -199,7 +200,7 @@ const SetupAccount = (props) => {
             })
         };
         //POST request adds bio to db
-        fetch(`http://localhost:9000/bios`, options)
+        fetch(`${baseServerURL}/bios`, options)
             .then(data => {
                 return data.json();
             })
@@ -217,8 +218,7 @@ const SetupAccount = (props) => {
                             "Content-Type": "application/json"
                         })
                     };
-                    //update bioIndex
-                    fetch(`http://localhost:9000/users/${user}`, options)
+                    fetch(`${baseServerURL}/users/${user}`, options)
                         .then(data => {
                             return data.json();
                         })
@@ -228,7 +228,7 @@ const SetupAccount = (props) => {
             });
     }
 
-    //hardcoded function to add bios to the db 
+    //hardcoded function to add bios to the db
     const setupFillerBios = () => {
         let bio1 = {
         bio: "I am an expert in the field of psychology. I am happy to talk about my experience",
@@ -239,7 +239,7 @@ const SetupAccount = (props) => {
         image: "https://this-person-does-not-exist.com/img/avatar-bb4107109584df2327c5d1fd9940205f.jpg"
         }
         addBio(bio1)
-        
+
         let bio2 = {
             bio: "What does it mean to be a magician? I am here to talk to you about my life and passions, and hopefully help you get your foot in the magical door",
             name: "John Moralis",
