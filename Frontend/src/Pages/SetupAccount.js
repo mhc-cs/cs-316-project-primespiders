@@ -82,6 +82,30 @@ const SetupAccount = (props) => {
         );
     }
 
+    const addUser = (newUser) =>{
+        //set up for the post request
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(newUser),
+            headers: new Headers({
+                "Content-Type": "application/json"
+            })
+        };
+        //POST request to add new user to db
+        fetch(`http://localhost:9000/users`, options)
+            .then(data => {
+                return data.json();
+            })
+            .then(update => {
+                //if the account type is client, set up is done
+                setUser(newUser['email']);
+                //if account type is mentor, redirect to the bio entry page
+                if(account == "mentor") {
+                    setPage(2)
+                }
+                else setPage(3)
+            });
+    }
     const EnterInfo = () =>{
         const handleSubmit = ()=>{
             //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
@@ -90,39 +114,44 @@ const SetupAccount = (props) => {
             var inputPassword = document.getElementById("password").value
             var inputFName = document.getElementById("fname").value
             var inputLName = document.getElementById("lname").value
-            //create a user to add
-            const newUser = {
-                email: inputEmail,
-                password: inputPassword,
-                firstName: inputFName,
-                lastName: inputLName,
-                accountType: account,
-                bioIndex: 0
-            };
-            //set up for the post request
-            const options = {
-                method: 'POST',
-                body: JSON.stringify(newUser),
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            };
-            //POST request to add new user to db
-            fetch(`http://localhost:9000/users`, options)
+            //check to make sure email matches both times its entered
+            if(inputEmail != document.getElementById("email2").value){
+                setError("Emails do not match.")
+            }
+            else if (!inputEmail){
+                setError("Please enter an email address.")
+            }
+            else if (!inputPassword){
+                setError("Please enter a password.")
+            }
+            else if (!inputFName || !inputLName){
+                setError("Please enter your name.")
+            }
+            else {
+                //make sure this email isn't already in use
+                fetch(`http://localhost:9000/users/${inputEmail}`)
                 .then(data => {
-                    console.log(data)
                     return data.json();
                 })
                 .then(update => {
-                    //if the account type is client, set up is done
-                    console.log(update);
-                    setUser(inputEmail);
-                    //if account type is mentor, redirect to the bio entry page
-                    if(account == "mentor") {
-                        setPage(2)
+                    if(update['email']){
+                        setError("Email is already in use.")
                     }
-                    else setPage(3)
+                    else{
+                        setError(" ")
+                        //create a user to add
+                        const newUser = {
+                            email: inputEmail,
+                            password: inputPassword,
+                            firstName: inputFName,
+                            lastName: inputLName,
+                            accountType: account,
+                            bioIndex: 0
+                        };
+                        addUser(newUser)
+                    }
                 });
+            }
         }
         return(
             <div className = "contentBox1">
