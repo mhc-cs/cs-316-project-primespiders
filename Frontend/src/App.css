@@ -239,6 +239,9 @@ input[type=submit], button {
   background-color: 'white';
 } */
 
+/*
+Style for the footer at the bottom of the page
+*/
 .footer {
   overflow: hidden;
   background-color: rgb(163, 214, 255);

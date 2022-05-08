@@ -8,6 +8,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       num: {
+        //use the pin number as the primary key, should be unique
         type: Sequelize.INTEGER,
         primaryKey: true
       }

@@ -1,14 +1,14 @@
+/*
+SetupAccount is the account setup page. It has a form for entering the pin to begin account setup.
+If the pin is correct, the form should update to a full account setup page
+reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+*/
+
 import React, { useState, useEffect } from "react";
-
-
-
-// SetupAccount is the account setup page.
-// It has a form for entering the pin to begin account setup.
-// If the pin is correct, the form should update to a full account setup page
-//TODO: Create Account setup component
 
 const SetupAccount = (props) => {
 
+    //set up variables necessary for the page
     const [page, setPage] = useState(0);
     const [error, setError] = useState("If there is a problem with your login attempt, it may appear here!");
     console.log("page:",page)
@@ -19,22 +19,28 @@ const SetupAccount = (props) => {
     //     setupFillerBios();
     // }, []);
 
+    //controls which page elements are displayed 
     function getConditionalContent(page, setPage) {
         switch (page) {
         case 0:
+            //original display: prompt for the user to enter pin
             return (
             <div>
                 <PinEnter setPage= {() => setPage(1)}/>
             </div>)
         case 1:
+            //second display: prompt for the user to enter account information
             return <EnterInfo setPage= {() => setPage(3)}/>;
         case 2:
+            //(optional) mentor display: prompt for the mentor to enter profile information
             return <BioEnter setPage= {() => setPage(3)}/>;
         default:
+            //final display: notify the user the account creation was a success
             return <div>Account created!</div>;
         }
     }
 
+    //side panel on the right of the page to display messages
     const HelpBox = (props) =>{
         return(
             <div className = "content-box1">
@@ -48,6 +54,7 @@ const SetupAccount = (props) => {
         );
     }
 
+    //once the user enters pin and hits submit, this function runs
     const PinEnter = (props) =>{
         const handleSubmit = ()=>{
             //get the pin from the input field
@@ -82,6 +89,7 @@ const SetupAccount = (props) => {
         );
     }
 
+    //adds a given user to the database (requires parameter: user to add)
     const addUser = (newUser) =>{
         //set up for the post request
         const options = {
@@ -106,9 +114,9 @@ const SetupAccount = (props) => {
                 else setPage(3)
             });
     }
+    //once the user enters info and hits submit, this function runs
     const EnterInfo = () =>{
         const handleSubmit = ()=>{
-            //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
             //get the input from the text boxes
             var inputEmail = document.getElementById("email1").value
             var inputPassword = document.getElementById("password").value
@@ -118,6 +126,7 @@ const SetupAccount = (props) => {
             if(inputEmail != document.getElementById("email2").value){
                 setError("Emails do not match.")
             }
+            //make sure that email, password, and name fields are not empty
             else if (!inputEmail){
                 setError("Please enter an email address.")
             }
@@ -134,6 +143,7 @@ const SetupAccount = (props) => {
                     return data.json();
                 })
                 .then(update => {
+                    //if the email is already used, let the user know
                     if(update['email']){
                         setError("Email is already in use.")
                     }
@@ -177,7 +187,7 @@ const SetupAccount = (props) => {
                 </div>
         );
     }
-
+    //adds a given user to the database (requires parameter: bio to add)
     const addBio = (newBio) =>{
         //set up a post request to add the new bio
         console.log(newBio)
@@ -199,6 +209,7 @@ const SetupAccount = (props) => {
                     const updateUser = {
                         bioIndex: bio.id
                     };
+                    //set up HTTP request
                     const options = {
                         method: 'PUT',
                         body: JSON.stringify(updateUser),
@@ -206,6 +217,7 @@ const SetupAccount = (props) => {
                             "Content-Type": "application/json"
                         })
                     };
+                    //update bioIndex
                     fetch(`http://localhost:9000/users/${user}`, options)
                         .then(data => {
                             return data.json();
@@ -248,15 +260,18 @@ const SetupAccount = (props) => {
         }
         addBio(bio3)
     }
-    
+
+    //once the user enters bio info and hits submit, this function runs
     const BioEnter = (props) =>{
         const handleSubmit = ()=>{
+            //get the input from the text boxes
             var inputBio = document.getElementById("bio").value;
             var inputName = document.getElementById("name").value
             var inputLocation = document.getElementById("location").value
             var inputExpertise = document.getElementById("expertise").value
             var inputContact = document.getElementById("contact").value
             var inputImage = document.getElementById("image").value
+            //create bio object to add
             const newBio = {
                 bio: inputBio,
                 name: inputName,

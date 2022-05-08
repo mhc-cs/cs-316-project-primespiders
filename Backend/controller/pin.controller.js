@@ -24,6 +24,7 @@ exports.create = (req, res, next) => {
     Pin.create(pinToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
+            //report if there is an error
             res.status(500).send({
                 message:
                     err.message || "Could not add pin"
@@ -36,6 +37,7 @@ exports.findAll = (req, res, next) => {
     Pin.findAll()
         .then(data => {res.send(data)})
         .catch(err => {
+            //report if there is an error
             res.status(500).send({
                 message:
                     err.message || "Could not retrieve pins"
@@ -51,12 +53,14 @@ exports.findOne = (req, res) => {
         if (data) {
           res.send(data);
         } else {
+          //report if pin doesn't exist
           res.status(404).send({
             message: `Cannot find Pin with num=${num}.`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Error retrieving Pin with num=" + num
         });
@@ -75,12 +79,14 @@ exports.findOne = (req, res) => {
             message: "Pin info was updated successfully."
           });
         } else {
+          //report if there is an error
           res.send({
             message: `Cannot update Pin with num=${num}. Maybe Pin was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Error updating Pin with num=" + num
         });
@@ -99,12 +105,14 @@ exports.findOne = (req, res) => {
             message: "Pin was deleted successfully!"
           });
         } else {
+          //report if there is an error
           res.send({
             message: `Cannot delete Pin with num=${num}. Maybe Pin was not found!`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Could not delete Pin with num=" + num
         });
