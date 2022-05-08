@@ -23,13 +23,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+//connecting 
+//https://create-react-app.dev/docs/deployment/
+app.use(express.static(path.join(__dirname, '..', 'Frontend', 'build')));
+console.log(path.join(__dirname, '..', 'Frontend', 'build'))
+
+
 app.use('/users', usersRouter);
 app.use('/bios', biosRouter);
 app.use('/pins', pinsRouter);
 app.use("/testAPI", testAPIRouter); //testing https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
+app.use('/*', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

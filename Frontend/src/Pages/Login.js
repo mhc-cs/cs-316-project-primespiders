@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { baseServerURL } from "../constants";
 
 //Login is a page to allow the user to login to their account
 //The user should enter a username and password
@@ -37,7 +38,7 @@ const Login = (props) =>{
             })
         };
         //PUT request to authenticate username and password
-        fetch(`http://localhost:9000/users/authenticate/`, options)
+        fetch(`${baseServerURL}/users/authenticate/`, options)
             .then(data => {
                 return data.json();
             })

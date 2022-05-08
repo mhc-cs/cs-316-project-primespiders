@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import {baseServerURL} from "../constants.js";
 
 
 // SetupAccount is the account setup page.
@@ -53,8 +53,8 @@ const SetupAccount = (props) => {
             //get the pin from the input field
             var inputNum = document.getElementById("pin").value;
             //GET request to find a pin with this number
-            fetch(`http://localhost:9000/pins/${inputNum}`)
-                .then(data => {
+            fetch(`${baseServerURL}/pins/${inputNum}`)
+                .then(data => { 
                     return data.json();
                 })
                 .then(pin => {
@@ -108,7 +108,7 @@ const SetupAccount = (props) => {
                 })
             };
             //POST request to add new user to db
-            fetch(`http://localhost:9000/users`, options)
+            fetch(`${baseServerURL}/users`, options)
                 .then(data => {
                     console.log(data)
                     return data.json();
@@ -160,7 +160,7 @@ const SetupAccount = (props) => {
             })
         };
         //POST request adds bio to db
-        fetch(`http://localhost:9000/bios`, options)
+        fetch(`${baseServerURL}/bios`, options)
             .then(data => {
                 return data.json();
             })
@@ -177,7 +177,7 @@ const SetupAccount = (props) => {
                             "Content-Type": "application/json"
                         })
                     };
-                    fetch(`http://localhost:9000/users/${user}`, options)
+                    fetch(`${baseServerURL}/users/${user}`, options)
                         .then(data => {
                             return data.json();
                         })
