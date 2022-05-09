@@ -62,13 +62,13 @@ const DropDown = (props) =>{
 
 const AccountBox = (props) => {
     //Update these variables to use global versions once redux is working. 
-    let loginStatus = props.isLoggedIn
+    let loginStatus = props.isSignedIn
     let fname = props.fname
     let profile = props.profile
 
     //if the loginStatus is true, it should display a welcome box 
     //with the user's picture
-    if (loginStatus){
+    if (true){
         return (
         <div className = "navbar-item" >
             <div class = "account-profile">

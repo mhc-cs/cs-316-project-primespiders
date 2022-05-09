@@ -1,6 +1,9 @@
 /*
-Login is  page component 
-authors: C Brandt and E Gitlin
+Login is is a component that renders a help box and a user input box on the screen. 
+When a user enters their username and password, the data is sent to the server, and a
+response is returned with whether the login credentials matched an account. 
+
+authors: C Brandt, E Gitlin, M Klien
 */
 
 import React, { useState } from "react";
@@ -10,6 +13,8 @@ import { baseServerURL } from "../constants";
 //The user should enter a username and password
  
 const Login = (props) =>{
+    
+    //
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
 
     const HelpBox = (props) =>{

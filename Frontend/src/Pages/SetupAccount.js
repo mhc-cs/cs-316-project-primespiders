@@ -240,7 +240,7 @@ const SetupAccount = (props) => {
             //setError("oh no it didn't work!")
             //setPage(1)
         }
-
+        
         return(
             <div>
                 <p>
@@ -257,7 +257,16 @@ const SetupAccount = (props) => {
                         <input type="text" id="location" name="location"></input>
                         <br></br><br></br>
                         <label for="fname">Expertise: </label>
-                        <input type="text" id="expertise" name="expertise"></input>
+                        <select name="expertise" id="expertise">
+                            <option value="All">All</option>
+                            <option value="Arts">Arts</option>
+                            <option value="Business">Business</option>
+                            <option value="Education">Education</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Service-Industry">Service Industry</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Other">Other</option>
+                        </select>
                         <br></br><br></br>
                         <label for="fname">Contact: </label>
                         <input type="text" id="contact" name="contact"></input>

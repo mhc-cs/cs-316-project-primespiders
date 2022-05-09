@@ -12,14 +12,15 @@ const LandingPage = (props) => {
         <div className = "landingPage">
             <div className = "banner">
                 {/* <img src = "https://www.verywellmind.com/thmb/zdRkgcbRRQNDvHTaptaRuCS2xos=/1000x1000/smart/filters:no_upscale()/going-back-to-the-office-after-COVID-19_nologo-d4040d1ceb584adc840ba412d2d6056c.png"></img> */}
-                <img src = "https://www.rimage.com/apac/wp-content/uploads/sites/4/2016/02/Two-Business-People-Talking-Banner-1.png"></img>
+                <img alt = "business people looking professional"
+                src = "https://www.rimage.com/apac/wp-content/uploads/sites/4/2016/02/Two-Business-People-Talking-Banner-1.png"></img>
             </div>
             <div className = "d1">
                 <h1>Welcome to Recovery Ventures</h1>
                 <h4>Ideas. Empowerment. Know-how.</h4>
             </div>
             <div className = "d2">
-                <img src = "https://static.vecteezy.com/system/resources/thumbnails/004/828/252/small_2x/4-people-join-forces-the-concept-of-hand-to-hand-to-create-unity-group-of-people-hands-teamwork-business-group-by-reaching-out-in-a-circle-the-power-of-work-is-friendship-with-business-colleagues-photo.jpg"></img>
+                <img alt = "Hands doing a fist bump"src = "https://static.vecteezy.com/system/resources/thumbnails/004/828/252/small_2x/4-people-join-forces-the-concept-of-hand-to-hand-to-create-unity-group-of-people-hands-teamwork-business-group-by-reaching-out-in-a-circle-the-power-of-work-is-friendship-with-business-colleagues-photo.jpg"></img>
                 <p>Recovery Ventures is a collaboratively governed nonprofit dedicated to supporting people 
                 with histories of mental illness or addiction in the pursuit of their career goals.  
                 Empowered by a network of volunteer community professionals, we are proud to offer a fully customized pathway 
@@ -39,7 +40,7 @@ const LandingPage = (props) => {
             </div>
             <div className = "d2">
                 <h1>Connect with Professionals in Your Field!</h1>
-                <img src = {bioBoxImg}></img>
+                <img alt = "a sample of our mentor matching box"src = {bioBoxImg}></img>
             </div>
         </div>
     );
