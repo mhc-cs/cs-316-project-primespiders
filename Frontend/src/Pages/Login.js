@@ -8,11 +8,15 @@ reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
 */
 import React, { useState } from "react";
 import { baseServerURL } from "../constants";
+import {useDispatch} from "react-redux";
+import {changeStatus} from "../store/loggedIn/loggedIn";
 
 const Login = (props) =>{
     
     //
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
+    const [success,setSuccess] = useState(false);
+    const dispatch = useDispatch();
 
     //side panel on the right of the page to display messages
     const HelpBox = (props) =>{
@@ -55,11 +59,14 @@ const Login = (props) =>{
                 //if the login was a success or failure redirect accordingly
                 if(auth){
                     setError("Login successful!")
+                    setSuccess(true)
                 }
                 else{
                     setError("Incorrect username or password.")
+                    setSuccess(false)
                 }
             });
+        dispatch(changeStatus(success));
     }
 
     return(
