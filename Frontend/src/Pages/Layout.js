@@ -3,6 +3,8 @@ Layout is used to render both the Navagation bar and the Footer components,
 while using react-router-dom to render the child route's element between the two. 
 
 authors: C Brandt and E Gitlin
+
+layout strategy: https://www.w3schools.com/react/react_router.asp
 */
 
 import React from "react";

@@ -1,12 +1,12 @@
 /*
-App.js is ...
+App.js is part of the entrance to the site, and identifies connections between different url paths and the 
+pages they should lead to
 
 authors: C Brandt, M Klien, and E Gitlin
 */
-//demo code from https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
-//redux references and demo:
-//https://read.reduxbook.com/markdown/part1/03-updating-state.html
-//https://www.digitalocean.com/community/tutorials/how-to-manage-state-in-react-with-redux
+//initial demo code from https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
+//Create react app tutorial: https://blog.logrocket.com/getting-started-with-create-react-app-d93147444a27/ 
+//routing references: https://www.w3schools.com/react/react_router.asp
 
 import './App.css';
 import{ Routes, Route} from "react-router-dom";
@@ -19,6 +19,8 @@ import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, 
 
 function App(props){
 
+  //the layout element matches the / path, which every valid path begins with. This inserts common elements on every
+  //page, such as the navigation bar and footer. Other routes add additional elements for cotent. 
   return(
     <div className="App" >
     <Routes>

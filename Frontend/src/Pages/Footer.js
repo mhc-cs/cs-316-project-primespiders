@@ -1,3 +1,4 @@
+//Author: M Klein
 /*
 Footer to display at bottom of the page with contact information 
 */

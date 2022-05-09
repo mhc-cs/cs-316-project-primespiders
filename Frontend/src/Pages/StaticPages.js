@@ -1,7 +1,8 @@
 /*
 StaticPages has all of the simple text based pages that we 
 use on our website besides from the landing page. They all have basic
-info pertaining to the organization. 
+info pertaining to the organization. Several of these pages only have stand-in text for now.
+Authors: C Brandt and E Gitlin
 */
 
 import React from "react";
@@ -9,7 +10,7 @@ import React from "react";
 export const MissionStatement = (props) => {
     return (
         <div className = "basic-page">
-            <h3>The statement of our mission...</h3>
+            <h3>Mission Statement</h3>
         </div>
     );
 }
@@ -30,7 +31,7 @@ export const OurModel = (props) => {
 export const Staff = (props) => {
     return (
         <div className = "basic-page">
-            <h3>That would be us :)</h3>
+            <h3>Staff</h3>
         </div>
     );
 }
@@ -46,7 +47,7 @@ export const CommunityResources = (props) => {
 export const Donate = (props) => {
     return (
         <div className = "basic-page">
-            <h3>$$$</h3>
+            <h3>Donate</h3>
         </div>
     );
 }
@@ -79,7 +80,9 @@ export const Volunteer = (props) => {
 export const Contact = (props) => {
     return (
         <div className = "basic-page">
-            <h3>Phone or email or facebook or instagram or twitter or fax or letters...</h3>
+            <h3>
+                <a href = "https://datatracker.ietf.org/doc/html/rfc1149">Contact us!</a>
+            </h3>
         </div>
     );
 }
