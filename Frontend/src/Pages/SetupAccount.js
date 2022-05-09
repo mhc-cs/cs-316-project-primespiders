@@ -1,6 +1,8 @@
 /*
 SetupAccount is the account setup page. It has a form for entering the pin to begin account setup.
-If the pin is correct, the form should update to a full account setup page
+If the pin is correct, the form should update to a full account setup page. in the function
+getConditionalContent, you can view the order of conditional rendering based on the current value of 
+the page variable.
 reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
 */
 
@@ -55,8 +57,10 @@ const SetupAccount = (props) => {
         );
     }
 
-    //once the user enters pin and hits submit, this function runs
+    //PinEnter renders the pin prompt 
     const PinEnter = (props) =>{
+        
+        //once the user enters pin and hits submit, this function runs
         const handleSubmit = ()=>{
             //get the pin from the input field
             var inputNum = document.getElementById("pin").value;
@@ -115,8 +119,11 @@ const SetupAccount = (props) => {
                 else setPage(3)
             });
     }
-    //once the user enters info and hits submit, this function runs
+
+    //EnterInfo is a component with user inputs for account creation
     const EnterInfo = () =>{
+
+        //once the user enters info and hits submit, this function runs
         const handleSubmit = ()=>{
             //get the input from the text boxes
             var inputEmail = document.getElementById("email1").value
@@ -188,7 +195,20 @@ const SetupAccount = (props) => {
                 </div>
         );
     }
-    //adds a given user to the database (requires parameter: bio to add)
+
+
+    //addBio is a function that adds a given user to the database 
+    //requires parameter: newBio which is an object with the following fields:
+    /*
+    {
+        bio: inputBio,
+        name: inputName,
+        location: inputLocation,
+        expertise: inputExpertise,
+        contact: inputContact,
+        image: inputImage
+    }
+    */
     const addBio = (newBio) =>{
         //set up a post request to add the new bio
         console.log(newBio)
@@ -228,7 +248,7 @@ const SetupAccount = (props) => {
             });
     }
 
-    //hardcoded function to add bios to the db
+    //hardcoded function to add bios to the db for testing purposes. 
     const setupFillerBios = () => {
         let bio1 = {
         bio: "I am an expert in the field of psychology. I am happy to talk about my experience",
@@ -261,8 +281,10 @@ const SetupAccount = (props) => {
         addBio(bio3)
     }
 
-    //once the user enters bio info and hits submit, this function runs
+    //BioEnter renders the profile creation user input screen 
     const BioEnter = (props) =>{
+
+        //once the user enters bio info and hits submit, this function runs
         const handleSubmit = ()=>{
             //get the input from the text boxes
             var inputBio = document.getElementById("bio").value;
@@ -281,8 +303,6 @@ const SetupAccount = (props) => {
                 image: inputImage
             };
             addBio(newBio)
-            //setError("oh no it didn't work!")
-            //setPage(1)
         }
         
         return(
