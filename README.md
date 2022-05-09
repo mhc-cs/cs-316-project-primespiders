@@ -52,9 +52,18 @@ The Recovery Ventures website has a number of implemented use cases.
   - Bios are displayed on the screen as a grid that users can scroll through. Each bio box has a profile picture, a set of info tags about the mentor, and a written bio description of the mentor. If the user is logged in, they will be able to see the mentor's contact info amongst the other info tags. 
 
 
-## Diviations from original plan 
-stuff
+## Deviations
+- The site is not mobile friendly. It is possible to navigate / use the site on a mobile phone but formatting is poor on smaller screen sizes.
+- Did not complete medium or low priority use cases: contact form for volunteers, payment link for donations, google maps to show co-op location, interactive resource list, mentor-client chat functionality, translation options, etc.
+- Mentor search is not as thorough as we had originally imagined - you can only search a list of drop down terms and not type in your own search term. We also originally designed a modal card that would appear if you clicked on a specific mentor. 
+- We originally planned to have a profile page available to both clients and mentors to create and edit profiles, but now only mentors can create profiles and only at account creation. 
 ## Known Problems
-stuff
+- Pins must be manually entered into the database through HTTP request. There is no way to add them from the site. 
+- Similarly, there is no way to edit or delete user or profile information from the site. This can only be done through HTTP requests. 
+- There is no mechanism to retrieve forgotten passwords or reset your password.
+- Formatting for the mentor search page does not adjust given the size of the text entered.
+- Footer doesn’t stay at the bottom of the page when there is not enough content to fill the page. 
+- There is no logout functionality
+
 
 
