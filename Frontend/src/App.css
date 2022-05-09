@@ -182,6 +182,9 @@ input[type=submit], button {
   width: auto;
   text-align: center;
 }
+.navbar .account-buttons div:hover{
+  background-color: rgb(190, 226, 255);
+}
 
 .navbar .account-buttons div a{
   text-decoration: none;

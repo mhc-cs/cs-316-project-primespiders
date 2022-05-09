@@ -1,4 +1,12 @@
+/*
+MentorSearch has a sidebar that controls search functionality, and a grid that 
+displays mentor bio boxes. The mentor bios are pulled from the database based on the 
+search criteria entered in the side bar. The page defaults to searching and displaying 
+all entries that are currently in the database
 
+authors: C Brandt, E Gitlin, M Klien
+reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+*/
 
 import React, { useState, useEffect } from "react";
 import {baseServerURL} from "../constants.js"
@@ -21,8 +29,8 @@ const MentorSearch = ()=>{
     //Once we have the backend setup, we can adjust makeBioList to fetch
     //the correct list of bios given the search criteria
     useEffect(() => {
-        makeBioList();
-        // getBioList("All")
+        // makeBioList();
+        getBioList("All")
     }, []);
 
     //makeBioList is for testing. Fills BioList with fake local hardcoded cat profiles. 
@@ -30,7 +38,7 @@ const MentorSearch = ()=>{
         let tempBioList = []
         for (let i = 0; i < 20; i++){
             tempBioList.push(makeBioObject( 
-                "https://philpeople.org/assets/storage/hn/53/variants/hn53pGbwWXTFg4zUUj8TQMuy/315ff44855809d54a726e8c586da6618910c4812e16ad3eacc2580fe3adba825",
+                undefined,
                 "John Smith",
                 "Hello! my name is John and I am passionate about entrepreneurship. I would love to chat and talk about how you can get started in the industry!",
                 ["Business", "Sheboygan", "Phil@temporal12345635663245235.com"]
@@ -96,15 +104,6 @@ const MentorSearch = ()=>{
         }
     }
 
-
-    //currenly not in use. 
-    const [taglist, setTaglist] = useState(["Mentor"])
-    const onAddTagClick = (event) => {
-        var areaTag = document.getElementById("areaTag").value;
-        setTaglist([...taglist, areaTag])
-        event.preventDefault();
-    }
-
     //onSubmit is called when user hits the search button on the 
     //search sidebar
     const onSubmit = (event) => {
@@ -113,11 +112,6 @@ const MentorSearch = ()=>{
         event.preventDefault();
     }
 
-    //used to remove a tag from the list of tags currently 
-    const removeTag = (i) => {
-        let tempTag = [...taglist.slice(0,i),...taglist.slice(i+1,taglist.length)]
-        setTaglist(tempTag)
-    }
 
     //WHERE WE RENDER MENTOR PAGE 
     return(
@@ -158,6 +152,7 @@ const MentorSearch = ()=>{
             <h1>Search Results:</h1>
             <div className = "mentor-grid">
                 {
+                //creating a MentorBioBox for each bio in the current biolist
                 biolist.map((item,i) => {
                     return(            
                     <MentorBioBox 
@@ -175,18 +170,17 @@ const MentorSearch = ()=>{
 }
 
 const MentorBioBox = (props)=> {
-
-    //stuff for modal that will is still being tested
-    // const [open, setOpen] = useState(false);
-    // const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
-
-
-
+    if (props.bio.image){
+        var image = props.bio.image
+    }
+    else{ //else image is undefined then load a default image
+        //https://www.flaticon.com/free-icons/user
+        var image = "https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+    }
     return(
         <div className= "mentor-box" >
             <div className = "profile">
-                <img src= {props.bio.image} alt = {props.bio.name} />
+                <img src= {image} alt = {props.bio.name} />
                 <h4>{props.bio.name}</h4>
                 {
                     props.bio.expertise.map((item, i) => {
@@ -197,27 +191,8 @@ const MentorBioBox = (props)=> {
             <div className = "textbox">
                 <p id = {props.id}>{props.bio.text}</p>
             </div> 
-            {/* <BioModal 
-            bio = {props.bio} 
-            index = {props.index}
-            open={open}
-            onClose={handleClose}
-            /> */}
         </div>
     )
 }
-
-// const BioModal = (props) => {
-//     return(
-//         <Modal
-//         open={props.open}
-//         onClose={props.onClose}
-//         >
-//             <div className = "bio-modal">
-//                 {props.bio.name}
-//             </div>
-//         </Modal>
-//     )
-// }
 
 export default MentorSearch;

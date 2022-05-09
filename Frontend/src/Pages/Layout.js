@@ -68,7 +68,7 @@ const AccountBox = (props) => {
 
     //if the loginStatus is true, it should display a welcome box 
     //with the user's picture
-    if (true){
+    if (false){
         return (
         <div className = "navbar-item" >
             <div class = "account-profile">
