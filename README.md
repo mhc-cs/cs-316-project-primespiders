@@ -1,9 +1,17 @@
 # Recovery Ventures
 
-This repository holds a React app and an Express app used for the Recovery Co-op website
+This repository holds a React app and an Express app used for the Recovery Ventures website
 
 ## How to Run Recovery Ventures
-stuff
+### On the MHC network
+From Mount Holyoke's network, you should be able to access the Recovery Ventures website by simply clicking [this link](http://cs-vm-05.cs.mtholyoke.edu:31600/).
+### Alternative Access
+If you are not on the Mount Holyoke network, you will need to clone this repository, and run the code locally on your machine. To do this, follow the steps outlined below:
+1. Clone the main branch of this repo to your machine. ([How to Clone a Github Repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository))
+2. From inside the directory you just cloned (cs-316-project-primespiders), navigate to the Backend folder: `cd Backend`
+3. Inside of Backend, run `npm install`.
+4. Once all dependencies have finished installing inside the Backend folder, run 'npm start'
+5. Open localhost:9000 
 
 ## Directory Structure
 #### Frontend
