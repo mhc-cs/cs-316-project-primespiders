@@ -82,7 +82,7 @@ const SetupAccount = (props) => {
         return(
             <div>
                 <p>
-                Enter your 5 digit activation pin to begin the account creation process
+                Enter your 3 digit activation pin to begin the account creation process
                 </p>
                     <form>
                         <label for="fname">Pin: </label>

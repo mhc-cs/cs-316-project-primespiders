@@ -6,7 +6,7 @@ This repository holds a React app and an Express app used for the Recovery Ventu
 ### On the MHC network
 From Mount Holyoke's network, you should be able to access the Recovery Ventures website by simply clicking [this link](http://cs-vm-05.cs.mtholyoke.edu:31600/)
 
-Note: In order to use the account setup feature on the MHC hosted version of the website, you need to use the pin "123" for a mentor account.
+Note: In order to use the account setup feature on the MHC hosted version of the website, you need to use the pin "456" for a mentor account.
 ### Alternative Access
 If you are not on the Mount Holyoke network, you will need to clone this repository, and run the code locally on your machine. To do this, follow the steps outlined below:
 1. Clone the main branch of this repo to your machine. ([How to Clone a Github Repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository))
@@ -65,6 +65,7 @@ The Recovery Ventures website has a number of implemented use cases.
 - Formatting for the mentor search page does not adjust given the size of the text entered.
 - Footer doesn’t stay at the bottom of the page when there is not enough content to fill the page. 
 - There is no logout functionality
+- 
 
 
 
