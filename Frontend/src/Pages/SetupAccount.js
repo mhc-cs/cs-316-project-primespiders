@@ -1,14 +1,15 @@
+/*
+SetupAccount is the account setup page. It has a form for entering the pin to begin account setup.
+If the pin is correct, the form should update to a full account setup page
+reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+*/
+
 import React, { useState, useEffect } from "react";
 import {baseServerURL} from "../constants.js";
 
-
-// SetupAccount is the account setup page.
-// It has a form for entering the pin to begin account setup.
-// If the pin is correct, the form should update to a full account setup page
-//TODO: Create Account setup component
-
 const SetupAccount = (props) => {
 
+    //set up variables necessary for the page
     const [page, setPage] = useState(0);
     const [error, setError] = useState("If there is a problem with your login attempt, it may appear here!");
     console.log("page:",page)
@@ -19,22 +20,28 @@ const SetupAccount = (props) => {
     //     setupFillerBios();
     // }, []);
 
+    //controls which page elements are displayed
     function getConditionalContent(page, setPage) {
         switch (page) {
         case 0:
+            //original display: prompt for the user to enter pin
             return (
             <div>
                 <PinEnter setPage= {() => setPage(1)}/>
             </div>)
         case 1:
+            //second display: prompt for the user to enter account information
             return <EnterInfo setPage= {() => setPage(3)}/>;
         case 2:
+            //(optional) mentor display: prompt for the mentor to enter profile information
             return <BioEnter setPage= {() => setPage(3)}/>;
         default:
+            //final display: notify the user the account creation was a success
             return <div>Account created!</div>;
         }
     }
 
+    //side panel on the right of the page to display messages
     const HelpBox = (props) =>{
         return(
             <div className = "content-box1">
@@ -48,13 +55,14 @@ const SetupAccount = (props) => {
         );
     }
 
+    //once the user enters pin and hits submit, this function runs
     const PinEnter = (props) =>{
         const handleSubmit = ()=>{
             //get the pin from the input field
             var inputNum = document.getElementById("pin").value;
             //GET request to find a pin with this number
             fetch(`${baseServerURL}/pins/${inputNum}`)
-                .then(data => { 
+                .then(data => {
                     return data.json();
                 })
                 .then(pin => {
@@ -82,47 +90,79 @@ const SetupAccount = (props) => {
         );
     }
 
+    //adds a given user to the database (requires parameter: user to add)
+    const addUser = (newUser) =>{
+        //set up for the post request
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(newUser),
+            headers: new Headers({
+                "Content-Type": "application/json"
+            })
+        };
+        //POST request to add new user to db
+        fetch(`${baseServerURL}/users/`, options)
+            .then(data => {
+                return data.json();
+            })
+            .then(update => {
+                //if the account type is client, set up is done
+                setUser(newUser['email']);
+                //if account type is mentor, redirect to the bio entry page
+                if(account == "mentor") {
+                    setPage(2)
+                }
+                else setPage(3)
+            });
+    }
+    //once the user enters info and hits submit, this function runs
     const EnterInfo = () =>{
         const handleSubmit = ()=>{
-            //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
             //get the input from the text boxes
             var inputEmail = document.getElementById("email1").value
             var inputPassword = document.getElementById("password").value
             var inputFName = document.getElementById("fname").value
             var inputLName = document.getElementById("lname").value
-            //create a user to add
-            const newUser = {
-                email: inputEmail,
-                password: inputPassword,
-                firstName: inputFName,
-                lastName: inputLName,
-                accountType: account,
-                bioIndex: 0
-            };
-            //set up for the post request
-            const options = {
-                method: 'POST',
-                body: JSON.stringify(newUser),
-                headers: new Headers({
-                    "Content-Type": "application/json"
-                })
-            };
-            //POST request to add new user to db
-            fetch(`${baseServerURL}/users`, options)
+            //check to make sure email matches both times its entered
+            if(inputEmail != document.getElementById("email2").value){
+                setError("Emails do not match.")
+            }
+            //make sure that email, password, and name fields are not empty
+            else if (!inputEmail){
+                setError("Please enter an email address.")
+            }
+            else if (!inputPassword){
+                setError("Please enter a password.")
+            }
+            else if (!inputFName || !inputLName){
+                setError("Please enter your name.")
+            }
+            else {
+                //make sure this email isn't already in use
+                fetch(`${baseServerURL}/users/${inputEmail}`)
                 .then(data => {
-                    console.log(data)
                     return data.json();
                 })
                 .then(update => {
-                    //if the account type is client, set up is done
-                    console.log(update);
-                    setUser(inputEmail);
-                    //if account type is mentor, redirect to the bio entry page
-                    if(account == "mentor") {
-                        setPage(2)
+                    //if the email is already used, let the user know
+                    if(update['email']){
+                        setError("Email is already in use.")
                     }
-                    else setPage(3)
+                    else{
+                        setError(" ")
+                        //create a user to add
+                        const newUser = {
+                            email: inputEmail,
+                            password: inputPassword,
+                            firstName: inputFName,
+                            lastName: inputLName,
+                            accountType: account,
+                            bioIndex: 0
+                        };
+                        addUser(newUser)
+                    }
                 });
+            }
         }
         return(
             <div className = "contentBox1">
@@ -148,7 +188,7 @@ const SetupAccount = (props) => {
                 </div>
         );
     }
-
+    //adds a given user to the database (requires parameter: bio to add)
     const addBio = (newBio) =>{
         //set up a post request to add the new bio
         console.log(newBio)
@@ -170,6 +210,7 @@ const SetupAccount = (props) => {
                     const updateUser = {
                         bioIndex: bio.id
                     };
+                    //set up HTTP request
                     const options = {
                         method: 'PUT',
                         body: JSON.stringify(updateUser),
@@ -187,7 +228,7 @@ const SetupAccount = (props) => {
             });
     }
 
-    //hardcoded function to add bios to the db 
+    //hardcoded function to add bios to the db
     const setupFillerBios = () => {
         let bio1 = {
         bio: "I am an expert in the field of psychology. I am happy to talk about my experience",
@@ -198,7 +239,7 @@ const SetupAccount = (props) => {
         image: "https://this-person-does-not-exist.com/img/avatar-bb4107109584df2327c5d1fd9940205f.jpg"
         }
         addBio(bio1)
-        
+
         let bio2 = {
             bio: "What does it mean to be a magician? I am here to talk to you about my life and passions, and hopefully help you get your foot in the magical door",
             name: "John Moralis",
@@ -219,15 +260,18 @@ const SetupAccount = (props) => {
         }
         addBio(bio3)
     }
-    
+
+    //once the user enters bio info and hits submit, this function runs
     const BioEnter = (props) =>{
         const handleSubmit = ()=>{
+            //get the input from the text boxes
             var inputBio = document.getElementById("bio").value;
             var inputName = document.getElementById("name").value
             var inputLocation = document.getElementById("location").value
             var inputExpertise = document.getElementById("expertise").value
             var inputContact = document.getElementById("contact").value
             var inputImage = document.getElementById("image").value
+            //create bio object to add
             const newBio = {
                 bio: inputBio,
                 name: inputName,

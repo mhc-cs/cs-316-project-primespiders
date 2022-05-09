@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
 
+//import all of the routers we will be using
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var biosRouter = require('./routes/bios');
@@ -24,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//connecting 
+//connecting
 //https://create-react-app.dev/docs/deployment/
 app.use(express.static(path.join(__dirname, '..', 'Frontend', 'build')));
 console.log(path.join(__dirname, '..', 'Frontend', 'build'))

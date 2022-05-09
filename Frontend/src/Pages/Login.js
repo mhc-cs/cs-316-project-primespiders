@@ -4,19 +4,17 @@ When a user enters their username and password, the data is sent to the server, 
 response is returned with whether the login credentials matched an account. 
 
 authors: C Brandt, E Gitlin, M Klien
+reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
 */
-
 import React, { useState } from "react";
 import { baseServerURL } from "../constants";
 
-//Login is a page to allow the user to login to their account
-//The user should enter a username and password
- 
 const Login = (props) =>{
     
     //
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
 
+    //side panel on the right of the page to display messages
     const HelpBox = (props) =>{
         return(
             <div className = "content-box1">
@@ -30,16 +28,17 @@ const Login = (props) =>{
         );
     }
 
+    //once the user enters infor and hits submit, this function runs
     const handleSubmit = ()=> {
-        //https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
         //get the input from text boxes
         var inputEmail = document.getElementById("email").value
         var inputPassword = document.getElementById("password").value
-        //set up for HTTP request
+        //use input to make a user object
         const checkUser = {
             email: inputEmail,
             password: inputPassword
         };
+        //set up for HTTP request
         const options = {
             method: 'PUT',
             body: JSON.stringify(checkUser),

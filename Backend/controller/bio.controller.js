@@ -40,6 +40,7 @@ exports.findAll = (req, res, next) => {
     Bio.findAll()
         .then(data => {res.send(data)})
         .catch(err => {
+            //report if there is an error
             res.status(500).send({
                 message:
                     err.message || "Could not retrieve bios"
@@ -54,6 +55,7 @@ exports.findFiltered = (req, res, next) => {
   Bio.findAll({where: {expertise: expertise}})
       .then(data => {res.send(data)})
       .catch(err => {
+          //report if there is an error
           res.status(500).send({
               message:
                   err.message || "Could not retrieve bios"
@@ -69,12 +71,14 @@ exports.findOne = (req, res) => {
         if (data) {
           res.send(data);
         } else {
+          //report if this bio does not exist
           res.status(404).send({
             message: `Cannot find bio with id=${id}.`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Error retrieving bio with id=" + id
         });
@@ -93,12 +97,14 @@ exports.findOne = (req, res) => {
             message: "bio info was updated successfully."
           });
         } else {
+          //report if there is an error
           res.send({
             message: `Cannot update bio with id=${id}. Maybe bio was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Error updating bio with id=" + id
         });
@@ -117,12 +123,14 @@ exports.findOne = (req, res) => {
             message: "Bio was deleted successfully!"
           });
         } else {
+          //report if there is an error
           res.send({
             message: `Cannot delete Bio with id=${id}. Maybe Bio was not found!`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Could not delete Bio with id=" + id
         });
