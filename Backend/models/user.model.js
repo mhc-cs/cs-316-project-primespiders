@@ -1,7 +1,8 @@
 /*
 Create the users table in the database each bio stores email, password, account type, bioIndex, first and last name
 author: M Klein
-reference: https://javascript.plainenglish.io/password-encryption-using-bcrypt-sequelize-and-nodejs-fb9198634ee7
+reference: https://javascript.plainenglish.io/password-encryption-using-bcrypt-sequelize-and-nodejs-fb9198634ee7,
+https://sequelize.org/v4/manual/tutorial/models-definition.html
 */
 const bcrypt  = require('bcrypt');
 module.exports = (sequelize, Sequelize) => {
