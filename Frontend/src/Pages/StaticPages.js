@@ -80,7 +80,9 @@ export const Volunteer = (props) => {
 export const Contact = (props) => {
     return (
         <div className = "basic-page">
-            <h3>Contact</h3>
+            <h3>
+                <a href = "https://datatracker.ietf.org/doc/html/rfc1149">Contact us!</a>
+            </h3>
         </div>
     );
 }
