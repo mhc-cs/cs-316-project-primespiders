@@ -9,12 +9,12 @@ import LandingPage from './Pages/LandingPage.js'
 import Layout from './Pages/Layout.js'
 import MentorSearch from './Pages/MentorSearch'
 import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, Contact, OurModel} from "./Pages/StaticPages";
-//import ConnectWithMentors from "./Pages/ConnectWithMentors"; add this later
-import Footer from './Pages/Footer.js'
+import {useDispatch, useSelector} from 'react-redux'
 
 
 function App(props){
-  const [loggedIn, setLoggedIn] = useState();
+  const loggedIn = useSelector(state.loggedIn);
+  const dispatch = useDispatch();
 
   return(
     <div className="App" >
