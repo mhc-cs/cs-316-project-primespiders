@@ -6,6 +6,7 @@ reference: https://javascript.plainenglish.io/password-encryption-using-bcrypt-s
 const bcrypt  = require('bcrypt');
 module.exports = (sequelize, Sequelize) => {
     const User = sequelize.define("user", {
+      ////use the pin number as the primary key, should be unique
       email: {
         type: Sequelize.STRING,
         primaryKey: true
@@ -31,12 +32,14 @@ module.exports = (sequelize, Sequelize) => {
     hooks: {
       beforeCreate: async (user) => {
         if (user.password) {
+          //use bcrypt to encrypt password
           const genSalt = await bcrypt.genSaltSync(10, 'b');
           user.password = bcrypt.hashSync(user.password, genSalt);
         }
       },
       beforeUpdate: async (user) => {
         if (user.password) {
+          //use bcrypt to encrypt password
           const genSalt = await bcrypt.genSaltSync(10, 'b');
           user.password = bcrypt.hashSync(user.password, genSalt);
         }

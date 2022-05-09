@@ -1,24 +1,53 @@
+/* 
+This is the stylesheet for the entirety of the Recovery Ventures 
+Website. It is organized into the following sections:
+-General Styles
+-User input styling
+-Utility classes
+-Navbar Styling
+-Footer styling
+-Landing page
+-misc page templates (basic and split)
+-Mentor Page
+
+Author: E. Gitlin
+Sources:
+-Create React App
+-https://developer.mozilla.org/en-US/docs/Web/CSS
+-https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp
+
+*/
+
 .App {
   text-align: center;
   height: 100%
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
-
 }
 
+/*  General Styles */
+
+h4 { 
+  margin: 0rem;
+  color: rgb(94, 94, 94);
+}
+
+p {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Default styling for user input */
 input[type=text], select {
   padding: 8px 16px;
   margin: 8px 0;
@@ -38,39 +67,54 @@ input[type=submit], button {
   cursor: pointer;
 }
 
-.basicPage{
-  text-align: left;
-  min-height: 76vh;
+/* Utility classes */
 
-}
-
-
-/* NAVBAR STYLING  */
-.navbar{
-  overflow: hidden;
-  background-color: rgb(163, 214, 255);
-  color: black;
+.vertical{
   display: block;
-  padding: 0em 0em;
+}
+
+.left{
+  float: left
+}
+
+.right{
+  float: right;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  padding:0;
+  margin:0;
+}
+
+
+/* Navbar Styling */
+.App-Header{
+  display: block;
+  background-color: rgb(163, 214, 255);
+  overflow: hidden;
+  color: black;
+  padding: .5em 1em;
   text-align: left;
 }
+
+.navbar .navbar-menus{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}  
 
 .navbar .navbar-item {
   overflow: hidden;
-  display: inline-block;
+  display: block;
 }
+
 .navbar .dropdown {
   float: right;
   padding: 2em 5em 2em 0em;
 }
-
-.navbar img{
-  float: left;
-  width: 66px;
-  height: 66px;
-  padding: 1em 4%;
-}
-
 
 .dropdown .dropbtn {
   font-size: 16px;
@@ -84,7 +128,7 @@ input[type=submit], button {
 }
 
 .dropdown .dropdown-content a{
-  display:block;
+  display: block;
 }
 
 .dropdown .dropbtn:hover {
@@ -102,18 +146,84 @@ input[type=submit], button {
 
 .dropdown .dropdown-content a{
   color: white;
-  text-decoration: none;
   padding: .5rem 0rem;
 }
-.dropdown .dropdown-content a:hover{
-  color: white;
-  text-decoration: underline;
-}
+
 .dropdown:hover .dropdown-content{
   display: block;
 }
 
-/** Landing page CSS**/
+.navbar img{
+  float: left;
+  width: 66px;
+  height: 66px;
+  padding: 1em 0%;
+}
+
+.navbar .account-buttons div, .navbar .account-profile{
+  background-color: rgb(214, 237, 255);
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  height: auto;
+}
+
+.navbar .account-profile{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: .75rem .25rem;
+  max-width: 12rem;
+  min-width: 10rem;
+  overflow: auto;
+}
+
+.navbar .account-buttons div{
+  padding: .5rem 1rem;
+  margin: .3rem 0rem;
+  width: auto;
+  text-align: center;
+}
+
+.navbar .account-buttons div a{
+  text-decoration: none;
+  color: black;
+}
+
+.navbar .account-profile img{
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  padding: 0rem;
+}
+.navbar .account-profile p{
+  text-align: center;
+  margin: 0rem 0rem;
+}
+
+
+/* Footer  */
+.footer {
+  overflow: hidden;
+  background-color: rgb(163, 214, 255);
+  color: black;
+  height: 40px;
+  padding: 1em 0em;
+  bottom:0;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 33%;
+  padding: 1em;
+}
+
+
+
+
+/** Landing page **/
 .landingPage {
   text-align: center;
 }
@@ -174,43 +284,45 @@ input[type=submit], button {
   font-style: italic;
 }
 
-/** Account setup style**/
-.basicPage{
-  padding: 0% 5%;
 
+/* MISC PAGE TEMPLATES */
+/* default styling for a basic static text page */
+.basic-page{
+  padding: 3% 5%;
+  text-align: left;
+  min-height: 76vh;
 }
 
-.basicPage h3{
-  padding: 0% 0% 0% 2%;
-}
 
-.basicPage .grid{
+/** Styling for pages with two columns 
+like login and account setup**/
+.split-page .grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.basicPage .grid .content-box1,.content-box2{
+.split-page .grid .content-box1, .split-page .grid .content-box2{
   border-radius: 12px;
   padding: 3% 5%;
   margin: 0% 3%;
 }
 
-.basicPage .grid .content-box1{
+.split-page .grid .content-box1{
   background-color:rgb(255, 233, 168);
   border: medium solid rgb(255, 233, 168);
-  max-height: fit-content;
+  max-height: fit-content; 
   height: fit-content;
   position: relative;
 }
 
-.basicPage .grid .content-box2{
+.split-page .grid .content-box2{
   background-color: rgb(255, 246, 220);
   border: medium solid rgb(255, 233, 168);
 }
 
 
-/* Mentor Page */
 
+/* Mentor Page */
 .mentor-page {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -230,15 +342,10 @@ input[type=submit], button {
   top: 25px;
 }
 
-.mentor-page .sidebar .tagbox{
-  background-color: white;
-  border: solid;
-  margin: 1rem 1rem 1rem 0rem;
-  padding: .5rem .5rem .5rem .5rem;
-  min-height: 2rem;
-}
 
-.mentor-page .sidebar .tagbox p, .tags{
+/* Tags are used on the mentor page to display short form
+information about the mentor */
+.mentor-page .tags{
   background-color: #F0FFFF;
   margin: .25rem;
   display: inline-block;
@@ -249,6 +356,9 @@ input[type=submit], button {
   padding: .2rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
   font-size: smaller;
+  
+  /* This means that the textbox will not overflow the container its in */
+  max-width: 90%;
 }
 
 .mentor-page .sidebar .tagbox p:hover{
@@ -264,7 +374,7 @@ input[type=submit], button {
 .mentor-box {
   background-color: rgb(246, 252, 255);
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 40% 1fr;
   padding: 1rem;
   border-radius: 10px;
   gap: 1rem;
@@ -281,6 +391,10 @@ input[type=submit], button {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 }
+/* .mentor-box .profile {
+  max-width: auto;
+
+} */
 .mentor-box img{
   object-fit: cover;
   width: 5rem;
@@ -296,21 +410,3 @@ input[type=submit], button {
   background-color: 'white';
 } */
 
-.footer {
-  overflow: hidden;
-  background-color: rgb(163, 214, 255);
-  color: black;
-  height: 40px;
-  padding: 1em 0em;
-  bottom:0;
-  width: 100%;
-}
-
-.row {
-  display: flex;
-}
-
-.col {
-  flex: 33%;
-  padding: 1em;
-}

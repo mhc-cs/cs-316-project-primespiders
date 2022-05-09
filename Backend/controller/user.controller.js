@@ -27,6 +27,7 @@ exports.create = (req, res, next) => {
     User.create(userToAdd)
         .then(data => {res.send(data)})
         .catch(err => {
+            //report if there is an error
             res.status(500).send({
                 message:
                     err.message || "Could not add user"
@@ -39,6 +40,7 @@ exports.findAll = (req, res, next) => {
     User.findAll()
         .then(data => {res.send(data)})
         .catch(err => {
+            //report if there is an error
             res.status(500).send({
                 message:
                     err.message || "Could not retrieve users"
@@ -54,12 +56,14 @@ exports.findOne = (req, res) => {
         if (data) {
           res.send(data);
         } else {
+          //report if user doesn't exist
           res.status(404).send({
             message: `Cannot find User with email=${email}.`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Error retrieving User with email=" + email
         });
@@ -78,12 +82,14 @@ exports.findOne = (req, res) => {
             message: "User info was updated successfully."
           });
         } else {
+          //report if there is an error
           res.send({
             message: `Cannot update User with email=${email}. Maybe User was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Error updating User with email=" + email
         });
@@ -102,12 +108,14 @@ exports.findOne = (req, res) => {
             message: "User was deleted successfully!"
           });
         } else {
+          //report if there is an error
           res.send({
             message: `Cannot delete User with email=${email}. Maybe User was not found!`
           });
         }
       })
       .catch(err => {
+        //report if there is an error
         res.status(500).send({
           message: "Could not delete User with email=" + email
         });
@@ -140,6 +148,7 @@ exports.authenticate = (req, res, next) => {
       }
     })
     .catch(err => {
+      //report if there is an error
       res.status(500).send({
         message: "Error retrieving User with email=" + email
       });

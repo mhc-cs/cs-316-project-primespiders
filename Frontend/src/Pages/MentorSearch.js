@@ -1,8 +1,11 @@
+
+
 import React, { useState, useEffect } from "react";
 import {baseServerURL} from "../constants.js"
 // import Modal from '@mui/material/Modal';
 
 const MentorSearch = ()=>{
+    const [signedIn, setSignedIn] = useState(true)
     const [biolist, setBiolist] = useState([])
     const makeBioObject = (image, name, text, expertise) => {
         return {
@@ -18,7 +21,8 @@ const MentorSearch = ()=>{
     //Once we have the backend setup, we can adjust makeBioList to fetch
     //the correct list of bios given the search criteria
     useEffect(() => {
-        getBioList("All")
+        makeBioList();
+        // getBioList("All")
     }, []);
 
     //makeBioList is for testing. Fills BioList with fake local hardcoded cat profiles. 
@@ -29,7 +33,7 @@ const MentorSearch = ()=>{
                 "https://philpeople.org/assets/storage/hn/53/variants/hn53pGbwWXTFg4zUUj8TQMuy/315ff44855809d54a726e8c586da6618910c4812e16ad3eacc2580fe3adba825",
                 "John Smith",
                 "Hello! my name is John and I am passionate about entrepreneurship. I would love to chat and talk about how you can get started in the industry!",
-                ["Business"]
+                ["Business", "Sheboygan", "Phil@temporal12345635663245235.com"]
             ))
         }
         setBiolist(tempBioList)
@@ -39,20 +43,29 @@ const MentorSearch = ()=>{
     function getBioList(expertise){
         //return bios with the correct expertise
         if (expertise === "All"){
-            fetch("http://localhost:9000/bios/")
+            fetch(`${baseServerURL}/bios/`)
             .then(res=> res.json()) //convert response to JSOn
             .then(data => {
             let tempBioList = []
             console.log(data)
             for (let i= 0; i<data.length; i++){ //iterate through all bios
                 let bio = data[i]
+                
+                //set the data that is loaded based on if the user is signed in
+                if (signedIn){
+                    var tags = [bio.expertise, bio.location, bio.contact]
+                }
+                else{
+                    var tags = [bio.expertise, bio.location]
+                }
+
                 //make a bio in the correct format using makeBioObject
                 tempBioList.push(
                     makeBioObject(  
                     bio.image,
                     bio.name,
                     bio.bio,
-                    [bio.expertise, bio.location])
+                    tags)
                 )
             }
             console.log(tempBioList);
@@ -61,7 +74,7 @@ const MentorSearch = ()=>{
         .catch(e => console.log(e));
         }
         else {
-            fetch("http://localhost:9000/bios/filter/"+expertise)
+            fetch(`${baseServerURL}/bios/filter/`+expertise)
             .then(res=> res.json()) //convert response to JSOn
             .then(data => {
             let tempBioList = []
@@ -83,6 +96,8 @@ const MentorSearch = ()=>{
         }
     }
 
+
+    //currenly not in use. 
     const [taglist, setTaglist] = useState(["Mentor"])
     const onAddTagClick = (event) => {
         var areaTag = document.getElementById("areaTag").value;
@@ -170,7 +185,7 @@ const MentorBioBox = (props)=> {
 
     return(
         <div className= "mentor-box" >
-            <div>
+            <div className = "profile">
                 <img src= {props.bio.image} alt = {props.bio.name} />
                 <h4>{props.bio.name}</h4>
                 {
