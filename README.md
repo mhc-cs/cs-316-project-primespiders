@@ -65,7 +65,7 @@ The Recovery Ventures website has a number of implemented use cases.
 - Formatting for the mentor search page does not adjust given the size of the text entered.
 - Footer doesn’t stay at the bottom of the page when there is not enough content to fill the page. 
 - There is no logout functionality
-- 
+- A default name is used in the greeting after logging in
 
 
 
