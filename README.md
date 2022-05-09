@@ -1,17 +1,29 @@
 # Recovery Ventures
 
-This repository holds a React app and an Express app used for the Recovery Ventures website
+This repository holds a React app and an Express app used for the Recovery Ventures website 
 
 ## How to Run Recovery Ventures
 ### On the MHC network
-From Mount Holyoke's network, you should be able to access the Recovery Ventures website by simply clicking [this link](http://cs-vm-05.cs.mtholyoke.edu:31600/).
+From Mount Holyoke's network, you should be able to access the Recovery Ventures website by simply clicking [this link](http://cs-vm-05.cs.mtholyoke.edu:31600/)
+
+Note: In order to use the account setup feature on the MHC hosted version of the website, you need to use the pin "123" for a mentor account.
 ### Alternative Access
 If you are not on the Mount Holyoke network, you will need to clone this repository, and run the code locally on your machine. To do this, follow the steps outlined below:
 1. Clone the main branch of this repo to your machine. ([How to Clone a Github Repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository))
 2. From inside the directory you just cloned (cs-316-project-primespiders), navigate to the Backend folder: `cd Backend`
 3. Inside of Backend, run `npm install`.
-4. Once all dependencies have finished installing inside the Backend folder, run 'npm start'
-5. Open localhost:9000 
+4. If MariaDB is already installed and the database is set up, then skip these steps. Otherwise, do the following:
+    *  Install MariaDB ([tutorial](https://mariadb.com/resources/blog/installing-mariadb-10-1-16-on-mac-os-x-with-homebrew/))
+    *  Login to MariaDB with “mariadb -u root -p” and then enter your password. 
+    *  Create a new database “CREATE DATABASE dbName;”
+    *  In the Backend folder, create a .env file with the following environment variables:
+    `MYSQL_HOST=localhost`,
+    `MYSQL_USER=yourUserName`,
+    `MYSQL_PASSWORD=yourPassword`,
+    `MYSQL_DB=dbName`
+5. Once all dependencies have finished installing inside the Backend folder, run 'npm start'
+6. You should now be able to access the site from http://localhost:9000/. Note that once the site is running, you will need to have pins in the database to allow for the account creation feature. In order to add pins to the database, send an HTTP PUSH request to “http://localhost:9000/pins” with a JSON body containing, for example: `{ "account": "mentor",  "num": "some number" }`
+
 
 ## Directory Structure
 #### Frontend
