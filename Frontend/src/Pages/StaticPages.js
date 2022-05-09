@@ -1,3 +1,9 @@
+/*
+StaticPages has all of the simple text based pages that we 
+use on our website besides from the landing page. They all have basic
+info pertaining to the organization. 
+*/
+
 import React from "react";
 
 export const MissionStatement = (props) => {
