@@ -6,9 +6,10 @@ authors: C Brandt and E Gitlin
 */
 
 import React from "react";
-import flower from "../Flower-black.png"
+import flower from "../Flower-black.png";
 import {Outlet, Link} from "react-router-dom";
-import Footer from "./Footer"
+import Footer from "./Footer";
+import {useSelector} from "react-redux";
 //import Checkbox from '@mui/material/Checkbox';
 
 const Layout = (props) =>{
@@ -61,14 +62,13 @@ const DropDown = (props) =>{
 }
 
 const AccountBox = (props) => {
-    //Update these variables to use global versions once redux is working. 
-    let loginStatus = props.isSignedIn
+    let loginStatus = useSelector(state=>state.loggedIn);
     let fname = props.fname
     let profile = props.profile
 
     //if the loginStatus is true, it should display a welcome box 
     //with the user's picture
-    if (true){
+    if (loginStatus){
         return (
         <div className = "navbar-item" >
             <div class = "account-profile">

@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import {baseServerURL} from "../constants.js"
+import {useSelector} from "react-redux";
 // import Modal from '@mui/material/Modal';
 
 const MentorSearch = ()=>{
-    const [signedIn, setSignedIn] = useState(true)
+    const loggedIn = useSelector(state=>state.loggedIn);
     const [biolist, setBiolist] = useState([])
     const makeBioObject = (image, name, text, expertise) => {
         return {
@@ -21,8 +22,8 @@ const MentorSearch = ()=>{
     //Once we have the backend setup, we can adjust makeBioList to fetch
     //the correct list of bios given the search criteria
     useEffect(() => {
-        makeBioList();
-        // getBioList("All")
+        //makeBioList();
+        getBioList("All")
     }, []);
 
     //makeBioList is for testing. Fills BioList with fake local hardcoded cat profiles. 
@@ -52,7 +53,7 @@ const MentorSearch = ()=>{
                 let bio = data[i]
                 
                 //set the data that is loaded based on if the user is signed in
-                if (signedIn){
+                if (loggedIn){
                     var tags = [bio.expertise, bio.location, bio.contact]
                 }
                 else{

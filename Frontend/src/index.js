@@ -8,11 +8,9 @@ import{ BrowserRouter} from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import coopApp from './store/LoggedIn';
+import coopApp from './store/loggedIn/loggedIn';
 
-const store = createStore((coopApp)=>({
-  loggedIn: false
-}));
+const store = createStore(coopApp)
 
 ReactDOM.render(
   <React.StrictMode>

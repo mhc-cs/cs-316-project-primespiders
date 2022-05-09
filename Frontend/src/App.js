@@ -1,6 +1,8 @@
 //demo code from https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend-and-connect-them-together-c5798926047c/
+//redux references and demo:
+//https://read.reduxbook.com/markdown/part1/03-updating-state.html
+//https://www.digitalocean.com/community/tutorials/how-to-manage-state-in-react-with-redux
 
-import React, { Component, useState} from "react";
 import './App.css';
 import{ Routes, Route} from "react-router-dom";
 import SetupAccount from './Pages/SetupAccount.js'
@@ -9,12 +11,8 @@ import LandingPage from './Pages/LandingPage.js'
 import Layout from './Pages/Layout.js'
 import MentorSearch from './Pages/MentorSearch'
 import {CommunityResources, Staff, MissionStatement, Donate, Volunteer, NoPage, Contact, OurModel} from "./Pages/StaticPages";
-import {useDispatch, useSelector} from 'react-redux'
-
 
 function App(props){
-  const loggedIn = useSelector(state.loggedIn);
-  const dispatch = useDispatch();
 
   return(
     <div className="App" >
