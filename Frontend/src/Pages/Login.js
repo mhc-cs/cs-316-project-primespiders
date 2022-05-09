@@ -1,3 +1,8 @@
+/*
+Login is  page component 
+authors: C Brandt and E Gitlin
+*/
+
 import React, { useState } from "react";
 import { baseServerURL } from "../constants";
 
@@ -54,8 +59,8 @@ const Login = (props) =>{
     }
 
     return(
-        <div className = "login basicPage">
-            <h3>Login</h3>
+        <div className = "login split-page basic-page">
+            <h1>Login</h1>
             <div className = "grid">
                 <div className = "content-box2">
                     <p>Enter your information below</p>

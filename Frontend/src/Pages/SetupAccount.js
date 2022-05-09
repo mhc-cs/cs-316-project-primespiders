@@ -272,8 +272,8 @@ const SetupAccount = (props) => {
     }
 
     return (
-        <div className = "setupAccount basicPage">
-            <h3>Account Creation</h3>
+        <div className = "setupAccount basic-page split-page">
+            <h1>Account Creation</h1>
             {/* <h4>{page}</h4> */}
             <div className = "grid">
                 <div className = "content-box2">

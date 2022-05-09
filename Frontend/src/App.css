@@ -1,24 +1,31 @@
+
+
 .App {
   text-align: center;
   height: 100%
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
-
 }
 
+/* || GENERAL STYLES */
+
+h4 { 
+  margin: 0rem;
+  color: rgb(94, 94, 94);
+}
+
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Default styling for user input */
 input[type=text], select {
   padding: 8px 16px;
   margin: 8px 0;
@@ -38,37 +45,55 @@ input[type=submit], button {
   cursor: pointer;
 }
 
-.basicPage{
-  text-align: left;
-  min-height: 76vh;
+/* UTILITY CLASSES */
 
+.vertical{
+  display: block;
+}
+
+.left{
+  float: left
+}
+
+.right{
+  float: right;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  padding:0;
+  margin:0;
 }
 
 
 /* NAVBAR STYLING  */
-.navbar{
-  overflow: hidden;
-  background-color: rgb(163, 214, 255);
-  color: black;
+
+
+.App-Header{
   display: block;
-  padding: 0em 0em;
+  background-color: rgb(163, 214, 255);
+  overflow: hidden;
+  color: black;
+  padding: .5em 1em;
   text-align: left;
 }
 
+.navbar .navbar-menus{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}  
+
+
 .navbar .navbar-item {
   overflow: hidden;
-  display: inline-block;
+  display: block;
 }
 .navbar .dropdown {
   float: right;
   padding: 2em 5em 2em 0em;
-}
-
-.navbar img{
-  float: left;
-  width: 66px;
-  height: 66px;
-  padding: 1em 4%;
 }
 
 
@@ -84,7 +109,7 @@ input[type=submit], button {
 }
 
 .dropdown .dropdown-content a{
-  display:block;
+  display: block;
 }
 
 .dropdown .dropbtn:hover {
@@ -102,16 +127,81 @@ input[type=submit], button {
 
 .dropdown .dropdown-content a{
   color: white;
-  text-decoration: none;
   padding: .5rem 0rem;
 }
-.dropdown .dropdown-content a:hover{
-  color: white;
-  text-decoration: underline;
-}
+
 .dropdown:hover .dropdown-content{
   display: block;
 }
+
+
+.navbar img{
+  float: left;
+  width: 66px;
+  height: 66px;
+  padding: 1em 0%;
+}
+
+.navbar .account-buttons div, .navbar .account-profile{
+  background-color: rgb(214, 237, 255);
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  height: auto;
+
+}
+.navbar .account-profile{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: .75rem .25rem;
+  width: 10rem;
+}
+
+.navbar .account-buttons div{
+  padding: .5rem 1rem;
+  margin: .3rem 0rem;
+  width: auto;
+  text-align: center;
+}
+
+.navbar .account-buttons div a{
+  text-decoration: none;
+  color: black;
+}
+
+.navbar .account-profile img{
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  padding: 0rem;
+}
+.navbar .account-profile p{
+  text-align: center;
+  margin: 0rem 0rem;
+}
+
+
+/* Footer  */
+.footer {
+  overflow: hidden;
+  background-color: rgb(163, 214, 255);
+  color: black;
+  height: 40px;
+  padding: 1em 0em;
+  bottom:0;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 33%;
+  padding: 1em;
+}
+
+
+
 
 /** Landing page CSS**/
 .landingPage {
@@ -174,39 +264,41 @@ input[type=submit], button {
   font-style: italic;
 }
 
-/** Account setup style**/
-.basicPage{
-  padding: 0% 5%;
 
+/* default styling for a basic static text page */
+.basic-page{
+  padding: 3% 5%;
+  text-align: left;
+  min-height: 76vh;
 }
 
-.basicPage h3{
-  padding: 0% 0% 0% 2%;
-}
 
-.basicPage .grid{
+/** Styling for pages with two columns 
+like login and account setup**/
+.split-page .grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.basicPage .grid .content-box1,.content-box2{
+.split-page .grid .content-box1, .split-page .grid .content-box2{
   border-radius: 12px;
   padding: 3% 5%;
   margin: 0% 3%;
 }
 
-.basicPage .grid .content-box1{
+.split-page .grid .content-box1{
   background-color:rgb(255, 233, 168);
   border: medium solid rgb(255, 233, 168);
-  max-height: fit-content;
+  max-height: fit-content; 
   height: fit-content;
   position: relative;
 }
 
-.basicPage .grid .content-box2{
+.split-page .grid .content-box2{
   background-color: rgb(255, 246, 220);
   border: medium solid rgb(255, 233, 168);
 }
+
 
 
 /* Mentor Page */
@@ -296,21 +388,3 @@ input[type=submit], button {
   background-color: 'white';
 } */
 
-.footer {
-  overflow: hidden;
-  background-color: rgb(163, 214, 255);
-  color: black;
-  height: 40px;
-  padding: 1em 0em;
-  bottom:0;
-  width: 100%;
-}
-
-.row {
-  display: flex;
-}
-
-.col {
-  flex: 33%;
-  padding: 1em;
-}

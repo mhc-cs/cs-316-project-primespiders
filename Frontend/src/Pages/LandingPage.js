@@ -1,3 +1,9 @@
+/*
+LandingPage introduces the user to the basics of the business. 
+It is a simple static page with no advanced functionality
+author: E Gitlin
+*/
+
 import React from "react";
 import bioBoxImg from "../bioBox.png"
 
@@ -5,8 +11,8 @@ const LandingPage = (props) => {
     return(
         <div className = "landingPage">
             <div className = "banner">
-                <img src = "https://www.verywellmind.com/thmb/zdRkgcbRRQNDvHTaptaRuCS2xos=/1000x1000/smart/filters:no_upscale()/going-back-to-the-office-after-COVID-19_nologo-d4040d1ceb584adc840ba412d2d6056c.png"></img>
-                {/* <img src = "https://www.rimage.com/apac/wp-content/uploads/sites/4/2016/02/Two-Business-People-Talking-Banner-1.png"></img> */}
+                {/* <img src = "https://www.verywellmind.com/thmb/zdRkgcbRRQNDvHTaptaRuCS2xos=/1000x1000/smart/filters:no_upscale()/going-back-to-the-office-after-COVID-19_nologo-d4040d1ceb584adc840ba412d2d6056c.png"></img> */}
+                <img src = "https://www.rimage.com/apac/wp-content/uploads/sites/4/2016/02/Two-Business-People-Talking-Banner-1.png"></img>
             </div>
             <div className = "d1">
                 <h1>Welcome to Recovery Ventures</h1>
@@ -32,7 +38,6 @@ const LandingPage = (props) => {
                     </h4>
             </div>
             <div className = "d2">
-                
                 <h1>Connect with Professionals in Your Field!</h1>
                 <img src = {bioBoxImg}></img>
             </div>

@@ -1,10 +1,17 @@
+/*
+Layout is used to render both the Navagation bar and the Footer components, 
+while using react-router-dom to render the child route's element between the two. 
+
+authors: C Brandt and E Gitlin
+*/
+
 import React from "react";
 import flower from "../Flower-black.png"
 import {Outlet, Link} from "react-router-dom";
 import Footer from "./Footer"
 //import Checkbox from '@mui/material/Checkbox';
 
-const NavBar = (props) =>{
+const Layout = (props) =>{
     const about = ["Mission Statment", "Staff", "Our Model"];
     const aboutLinks = ["/MissionStatement", "/Staff", "/OurModel"];
     const clients = ["Community Resources", "Connent with Mentors"];
@@ -16,12 +23,15 @@ const NavBar = (props) =>{
     return (
         <>
         <header className="App-Header">
-            <div class = "navbar">
-                <Link to={"/"}><img className = "navbar-item" src = {flower}/></Link>
-                <DropDown name = "Your Account" items = {account} links = {accountLinks}/>
+            <div className = "navbar">
+            <Link to={"/"}><img className = "navbar-item" src = {flower}/></Link>
+            <div class = "navbar-menus right">
+                {/* <DropDown name = "Your Account" items = {account} links = {accountLinks}/> */}
                 <DropDown name = "Get involved" items = {getInvolved} links = {involvedLinks}/>
                 <DropDown name = "Clients" items = {clients} links = {clientLinks}/>
                 <DropDown name = "About" items = {about} links = {aboutLinks}/>
+                <AccountBox fname = "Kitty" profile = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"/>
+            </div>
             </div>
         </header>
     <Outlet />
@@ -50,4 +60,49 @@ const DropDown = (props) =>{
     );
 }
 
-export default NavBar;
+const AccountBox = (props) => {
+    //Update these variables to use global versions once redux is working. 
+    let loginStatus = props.isLoggedIn
+    let fname = props.fname
+    let profile = props.profile
+
+    //if the loginStatus is true, it should display a welcome box 
+    //with the user's picture
+    if (loginStatus){
+        return (
+        <div className = "navbar-item" >
+            <div class = "account-profile">
+                <div class = "center" >
+                    <p>Welcome {fname}!</p>
+                </div>
+                <div class = "center" >
+                    <img src={profile} alt="cat" ></img>
+                </div>
+            </div>
+        </div>
+        );
+    }
+    //Otherwise it will display the login and sign up buttons 
+    //that link to the respective pages
+    else{ 
+        return (
+            <div className = "navbar-item" >
+                <div className ="account-buttons">
+                    <div className = "vertical">
+                        <Link to = "/SetupAccount">
+                            Setup an Account
+                        </Link>
+                    </div>
+                    <div className = "vertical">
+                        <Link to = "/Login">
+                            Log In
+                        </Link>
+                    </div>
+
+                </div>
+            </div>
+        );
+    }
+}
+
+export default Layout;
