@@ -1,7 +1,7 @@
 /*
 Functions to allow the site to interact with the bios data table (create, read, update and delete bios)
 author: M Klein
-reference: https://www.bezkoder.com/react-node-express-mysql/
+reference: https://www.bezkoder.com/node-js-express-sequelize-mysql/
 */
 
 var db = require("../models/index");

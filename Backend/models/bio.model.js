@@ -1,6 +1,7 @@
 /*
 Create the bios table in the database each bio stores bio, name, location, expertise, contact, and image
 author: M Klein
+reference: https://sequelize.org/v4/manual/tutorial/models-definition.html
 */
 module.exports = (sequelize, Sequelize) => {
     const Bio = sequelize.define("bio", {
