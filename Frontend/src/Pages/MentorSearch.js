@@ -6,6 +6,9 @@ all entries that are currently in the database
 
 authors: C Brandt, E Gitlin, M Klien
 reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+//redux references and demo:
+//https://read.reduxbook.com/markdown/part1/03-updating-state.html
+//https://www.digitalocean.com/community/tutorials/how-to-manage-state-in-react-with-redux
 */
 
 import React, { useState, useEffect } from "react";

@@ -5,6 +5,8 @@ response is returned with whether the login credentials matched an account.
 
 authors: C Brandt, E Gitlin, M Klien
 reference: https://www.freecodecamp.org/news/how-to-make-api-calls-with-fetch/
+https://redux.js.org/usage/troubleshooting
+https://www.digitalocean.com/community/tutorials/how-to-manage-state-in-react-with-redux
 */
 import React, { useState } from "react";
 import { baseServerURL } from "../constants";
@@ -13,8 +15,8 @@ import {changeStatus} from "../store/loggedIn/loggedIn";
 
 const Login = (props) =>{
     
-    //
     const [error,setError] = useState("If there is a problem with your login attempt, it may appear here!");
+    //variable to determine whether login is successful. This is a required value to update global state
     const [success,setSuccess] = useState(false);
     const dispatch = useDispatch();
 
@@ -66,6 +68,7 @@ const Login = (props) =>{
                     setSuccess(false)
                 }
             });
+        //update the store after login hs been confirmed successful or not
         dispatch(changeStatus(success));
     }
 
