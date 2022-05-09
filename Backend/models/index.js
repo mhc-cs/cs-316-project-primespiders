@@ -1,7 +1,7 @@
 /*
 Configure the database by connecting to MariaDB and setting up Sequelize models
 author: M Klein
-reference: https://www.bezkoder.com/react-node-express-mysql/
+reference: https://www.bezkoder.com/node-js-express-sequelize-mysql/
 */
 const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");

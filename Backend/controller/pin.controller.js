@@ -1,7 +1,7 @@
 /*
 Functions to allow the site to interact with the pins data table (create, read, update and delete pins)
 author: M Klein
-reference: https://www.bezkoder.com/react-node-express-mysql/
+reference: https://www.bezkoder.com/node-js-express-sequelize-mysql/
 */
 
 var db = require("../models/index");
