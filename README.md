@@ -24,9 +24,12 @@ The Recovery Ventures website has a number of implemented use cases.
     - Login (dynamic page)
     - Setup Account (dynamic page)
 - Account Creation and Login
-  - The user can create an account from the front end, and their account data will be stored in the database. 
-  - 
+  - The user can create an account from the front end, and their account data will be stored in the database. The account creation process for users who enter the mentor pin ("123") will include a mentor profile creation page where users can enter their bio for clients to view. 
+  - Once an account has been created, the user can log in. The login page will check the database to confirm login credentials.
+  - Both of these pages have error checking and will alert the inform the user via the help box on the right side of the screen if there is a problem. 
 - Mentor Profiles Display and Searching
+  - The user can search mentor bios from the database based on the criteria of "expertise". 
+  - Bios are displayed on the screen as a grid that users can scroll through. Each bio box has a profile picture, a set of info tags about the mentor, and a written bio description of the mentor. If the user is logged in, they will be able to see the mentor's contact info amongst the other info tags. 
 
 
 ## Diviations from original plan 
