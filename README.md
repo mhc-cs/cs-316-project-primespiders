@@ -2,6 +2,11 @@
 
 This repository holds a React app and an Express app used for the Recovery Ventures website 
 
+This repository is not being actively maintained and has known security vulnerabilities so it is being archived.  Knwon vulnerabilities:
+* http-cache-semantics - CVE-2022-25881
+* sequelize - multiple vulnerabilities
+* dns-packet - CVE-2021-23386
+
 ## How to Run Recovery Ventures
 ### On the MHC network
 From Mount Holyoke's network, you should be able to access the Recovery Ventures website by simply clicking [this link](http://cs-vm-05.cs.mtholyoke.edu:31600/)
